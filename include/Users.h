@@ -13,6 +13,8 @@ public:
     string getFirst() const;
     string getLast() const;
     int getAge() const;
+    void userTable(sqlite3*);
+    void addUser(string, string, int, sqlite3*);
 };
 
 
