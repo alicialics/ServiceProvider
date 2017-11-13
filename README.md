@@ -3,7 +3,8 @@ https://github.com/zhuoli99/cs200
 
 Github desktop software: https://desktop.github.com/
 
-Sqlite introduction: http://sqlite.org/
+# Sqlite 
+introduction: http://sqlite.org/
 
 Sqlite3 is a database to save, retrieve and update data.
 
