@@ -26,8 +26,9 @@ int main(){
     
     user1.userTable(db);
     
-    user1.addUser("zhuo", "li", 60, db);
-    user2.addUser("andrew", "fearing", 100, db);
+    user1.addUser(db);
+    user2.addUser(db);
+    cout << user1.getId() << " " << user1.getFirst() << " " << user1.getLast() << endl;
 
     
     
