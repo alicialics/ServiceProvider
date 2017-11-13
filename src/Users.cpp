@@ -9,37 +9,32 @@ using namespace std;
 
 
 
-Users::Users(string ff, string ll, int aa)
-:first(ff),last(ll),age(aa)
+Users::Users(string _first, string _last, int _age)
+:id(0),first(_first),last(_last),age(_age)
 {
     
 }
 
-string Users::getFirst() const{
-    return first;
-}
-string Users::getLast() const{
-    return last;
-}
-int Users::getAge() const{
-    return age;
-}
-
 void Users::userTable(sqlite3* db){
-    string create = "CREATE TABLE IF NOT EXISTS USERS(\
-    ID      INTEGER PRIMARY KEY,\
-    FIRST   TEXT,\
-    LAST    TEXT,\
-    AGE     INT)" ;
+    string create = "CREATE TABLE IF NOT EXISTS Users(\
+    Id      INTEGER PRIMARY KEY,\
+    First   TEXT,\
+    Last    TEXT,\
+    Age     INT)" ;
     
     sqlite3_exec(db, create.c_str(), 0, 0, 0);
 }
 
-void Users::addUser(sqlite3* db){
+void Users::save(sqlite3* db){
     stringstream ss;
-    ss << "INSERT INTO USERS (First, Last, Age) VALUES('" << first << "','" << last << "'," << age << ");";
-    cout << ss.str() << endl;
+    if(id == 0){
+        ss << "INSERT INTO Users (First, Last, Age) VALUES('" << first << "','" << last << "'," << age << ");";
+        sqlite3_exec(db, ss.str().c_str(), 0, 0, 0);
+        id = sqlite3_last_insert_rowid(db);
+    }else{
+        ss << "UPDATE Users SET First = ' " << first << " ' ," << "Last = ' " << last << " ' , Age = " << age << " WHERE Id = " << id << ";" ;
+    }
     sqlite3_exec(db, ss.str().c_str(), 0, 0, 0);
-    id = sqlite3_last_insert_rowid(db);
+    
     
 }

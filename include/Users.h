@@ -12,11 +12,13 @@ private:
 public:
     Users(string, string, int);
     long long getId() const {return id;}
-    string getFirst() const;
-    string getLast() const;
-    int getAge() const;
+    string getFirst() const {return first;}
+
+    string getLast() const{return last;}
+    int getAge() const{return age;}
+    void setAge(int _age){age = _age;}
     void userTable(sqlite3*);
-    void addUser(sqlite3*);
+    void save(sqlite3*);
 };
 
 
