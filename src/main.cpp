@@ -24,7 +24,7 @@ int main(){
     Users user1("zhuo", "li", 60);
     Users user2("andrew", "fearing", 100);
     
-    user1.userTable(db);
+    user1.createTable(db);
     
     user1.save(db);
     user2.save(db);
@@ -33,7 +33,8 @@ int main(){
     user1.setAge(20);
     user1.save(db);
     cout << user1.getId() << " " << user1.getFirst() << " " << user1.getLast() << user1.getAge() << endl;
-
+    user1.remove(db);
+    cout << user1.getId() << endl;
     
     
     return 0;

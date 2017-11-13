@@ -15,7 +15,7 @@ Users::Users(string _first, string _last, int _age)
     
 }
 
-void Users::userTable(sqlite3* db){
+void Users::createTable(sqlite3* db){
     string create = "CREATE TABLE IF NOT EXISTS Users(\
     Id      INTEGER PRIMARY KEY,\
     First   TEXT,\
@@ -35,6 +35,11 @@ void Users::save(sqlite3* db){
         ss << "UPDATE Users SET First = ' " << first << " ' ," << "Last = ' " << last << " ' , Age = " << age << " WHERE Id = " << id << ";" ;
     }
     sqlite3_exec(db, ss.str().c_str(), 0, 0, 0);
-    
-    
+}
+
+void Users::remove(sqlite3* db){
+    stringstream ss;
+    ss << "DELETE FROM Users WHERE Id = " << id << ";";
+    sqlite3_exec(db, ss.str().c_str(), 0, 0, 0);
+    id = 0;
 }

@@ -17,8 +17,9 @@ public:
     string getLast() const{return last;}
     int getAge() const{return age;}
     void setAge(int _age){age = _age;}
-    void userTable(sqlite3*);
+    void createTable(sqlite3*);
     void save(sqlite3*);
+    void remove(sqlite3*);
 };
 
 
