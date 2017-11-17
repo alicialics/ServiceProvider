@@ -36,7 +36,7 @@ int main(){
     user1.remove(db);
     cout << user1.getId() << endl;
     
-    
+    cout << "finished" << endl;
     return 0;
     
 }
