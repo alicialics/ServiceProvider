@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:COMSC200-TermProject/COMSC200-TermProject.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:src">
    </FileRef>
    <FileRef
