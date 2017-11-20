@@ -8,18 +8,7 @@ using namespace std;
 #include "Manager.h"
 
 
-bool update(string choose, Manager& manager){
-    cout << "I'm executing " << choose << endl;
-    
-    if(choose == "signIn"){
-        return manager.signIn();
-    }else if(choose == "createAccount") {
-        return manager.createAccount();
-    }else if(choose == "signOut"){
-        return manager.signOut();
-    }
-    return false;
-}
+
 
 int main(){
    
@@ -103,14 +92,14 @@ int main(){
             cout << index << "." << i->first << "\n";
             convert[to_string(index)] = i->first;
         }
-        string choose;
-        cin >> choose;
-        if(convert.find(choose) != convert.end()){
-            choose = convert[choose];
+        string action;
+        cin >> action;
+        if(convert.find(action) != convert.end()){
+            action = convert[action];
         }
-        if(next[step].find(choose) != next[step].end()){
-            if(update(choose, manager)){
-                step = next[step][choose];
+        if(next[step].find(action) != next[step].end()){
+            if(manager.executeAction(action)){
+                step = next[step][action];
             }else{
                 cout << "Try again." << endl;
             }

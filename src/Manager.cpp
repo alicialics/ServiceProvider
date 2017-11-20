@@ -3,6 +3,19 @@ using namespace std;
 
 #include "Manager.h"
 
+bool Manager::executeAction(string action){
+    cout << "I'm executing " << action << endl;
+    
+    if(action == "signIn"){
+        return signIn();
+    }else if(action == "createAccount") {
+        return createAccount();
+    }else if(action == "signOut"){
+        return signOut();
+    }
+    return false;
+}
+
 bool Manager::createAccount(){
     cout << "Enter your firstName:";
     string first, last, email;

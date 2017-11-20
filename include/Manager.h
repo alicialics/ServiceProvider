@@ -12,6 +12,7 @@ private:
     vector<Users> allUsers;
     const Users* currentUser;
 public:
+    bool executeAction(string action);
     const Users* getCurrentUser() const{return currentUser;}
     bool createAccount();
     bool signIn();
