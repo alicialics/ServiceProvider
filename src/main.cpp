@@ -1,23 +1,31 @@
-#include <sqlite3.h>
 #include <string>
 #include <iostream>
 #include <sstream>
-
 #include <map>
 using namespace std;
 
 #include "Users.h"
+#include "Manager.h"
 
-bool update(string choose){
+
+bool update(string choose, Manager& manager){
     cout << "I'm executing " << choose << endl;
-    return true;
+    
+    if(choose == "signIn"){
+        return manager.signIn();
+    }else if(choose == "createAccount") {
+        return manager.createAccount();
+    }else if(choose == "signOut"){
+        return manager.signOut();
+    }
+    return false;
 }
 
 int main(){
    
     /*
      step 0:
-     create account : addUser firstName lastName email
+     createAccount : addUser firstName lastName email
      sign in : signIn(email)
      
      step 1:
@@ -33,7 +41,7 @@ int main(){
      buyService
      addMoney
      checkOut -> 1
-     back -> 1
+     goBack -> 1
 
      step 3:
      displayServiceOption
@@ -44,14 +52,14 @@ int main(){
      clear
     
      eg:
-     addUser Andrew Fearing andrew@gmail.com
+     createAccount Andrew Fearing andrew@gmail.com
      signIn andrew@gmail.com
      displayServiceOption
      addService carwash 11/12 2pm 2234 clinton street, new york, 30, 30
      displayBuyandSell
      
      
-     addUser zhuo li aliciali666@gmail.com
+     createAccount zhuo li aliciali666@gmail.com
      signIn aliciali666@gmail.com
      displayAvailableSerive
      buyService 2
@@ -65,10 +73,11 @@ int main(){
     
     int step = 0;
     map<string, int> next[4];
+  
     next[0]["signIn"] = 1;
     next[0]["createAccount"] = 1;
-    next[1]["buyService"] = 2;
-    next[1]["sellService"] = 3;
+    next[1]["buyMenu"] = 2;
+    next[1]["sellMenu"] = 3;
     next[1]["viewMyService"] = 1;
     next[1]["withdrawMoney"] = 1;
     next[1]["signOut"] = 0;
@@ -76,12 +85,18 @@ int main(){
     next[2]["buyService"] = 2;
     next[2]["addMoney"] = 2;
     next[2]["checkout"] = 1;
-    next[2]["back"] = 1;
+    next[2]["goBack"] = 1;
     next[3]["displayServiceOption"] = 3;
     next[3]["addService"] = 1;
-    next[3]["back"] = 1;
-
+    next[3]["goBack"] = 1;
+    
+    Manager manager;
     while(true){
+        cout << "Hello";
+        if(manager.getCurrentUser()){
+            cout <<" " + manager.getCurrentUser()->getFirst();
+        }
+        cout << "!\n";
         int index = 1;
         map<string, string> convert;
         for(auto i = next[step].begin(); i != next[step].end(); i++,index++){
@@ -94,7 +109,7 @@ int main(){
             choose = convert[choose];
         }
         if(next[step].find(choose) != next[step].end()){
-            if(update(choose)){
+            if(update(choose, manager)){
                 step = next[step][choose];
             }else{
                 cout << "Try again." << endl;

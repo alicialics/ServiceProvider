@@ -8,18 +8,15 @@ private:
     long long id;
     string first;
     string last;
-    int age;
+    string email;
 public:
-    Users(string, string, int);
-    long long getId() const {return id;}
+    Users(string, string, string);
     string getFirst() const {return first;}
-
     string getLast() const{return last;}
-    int getAge() const{return age;}
-    void setAge(int _age){age = _age;}
-    void createTable(sqlite3*);
-    void save(sqlite3*);
-    void remove(sqlite3*);
+    string getEmail() const{return email;}
+    void createAccount(string, string, string);
+    
+    
 };
 
 
