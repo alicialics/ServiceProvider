@@ -94,6 +94,12 @@ int main(){
         }
         string action;
         cin >> action;
+
+        if (action == "exit") {
+            cout << "Bye!" << endl;
+            return 0;
+        }
+        
         if(convert.find(action) != convert.end()){
             action = convert[action];
         }
