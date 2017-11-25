@@ -8,6 +8,13 @@
 class AutomotiveService: public Service
 {
   public:
+    //constructor
+    AutomotiveService(string, string, string, double, double, int, bool, string = " ", double = 0.0);
+  
+    //print
+    void printAutoService();
   private:
+    string vehicleType;
+    double priceForParts;
 };
 #endif 

@@ -4,18 +4,17 @@
 
 using namespace std;
 
+#include "AutomotiveService.hpp"
+#include "BusinessService.hpp"
 #include "Users.h"
 #include "Manager.h"
+#include "PersonalService.hpp"
 #include "Service.hpp"
 #include "Step.h"
 
-
-//Second Comment Test
-
-
 int main(){
     
-    Step next[4];
+    /*Step next[4];
     
     string parse_instru = R"(
     0 signIn 1
@@ -89,7 +88,7 @@ int main(){
      checkOut
      displayBuyandSell
      
-     */
+     
     
     Step* step = &next[0];
     
@@ -97,12 +96,25 @@ int main(){
    
     
     Manager manager;
-    manager.execute(step);
+    manager.execute(step); */
     
     
     //test change on the github.com
     
     //test change on my local
+  
+    //testingAutomotiveServiceClass
+    AutomotiveService auto1("Car Wash", "High quality interior/exterior wash", "DVC Parking lot", 20, 10.00, -1, true, "All modern cars and motorcycles");
+    auto1.printAutoService();
+  
+    //testingPersonalServiceClass
+    PersonalService pers1("Massage", "Full body deep tissue", "123 Concord Ave, Concord", 30, 50.00, -1, true, true, "English, Spanish, Korean");
+    pers1.printPersonalService();
+  
+    //testingBusinessServiceClass
+    BusinessService bus1("Wedding Videography", "HD editing in 4k, burned to Blu Ray", "Your Wedding", 0, 550.00, -1, true, "Media Services");
+    bus1.printService();
+  
     
     return 0;
     

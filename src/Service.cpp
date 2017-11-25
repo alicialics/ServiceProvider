@@ -55,5 +55,5 @@ void Service::printService() const
   cout << "Location: " << location << endl;
   cout << "Duration(minutes): " << duration << endl;
   cout << "Price: $" << price << endl;
-  cout << "Availability: " << (availability == true ? "yes" : "no" ) << endl;
+  cout << "Availability: " << (availability == true ? "Yes" : "No" ) << endl;
 }//printService

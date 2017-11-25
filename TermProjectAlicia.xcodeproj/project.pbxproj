@@ -13,6 +13,8 @@
 		3BCA67411FCA26EB00A51175 /* Step.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA673C1FCA26EB00A51175 /* Step.cpp */; };
 		3BCA67421FCA26EB00A51175 /* Users.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA673D1FCA26EB00A51175 /* Users.cpp */; };
 		3BCA67451FCA281B00A51175 /* AutomotiveService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67431FCA281B00A51175 /* AutomotiveService.cpp */; };
+		3BCA67481FCA290500A51175 /* PersonalService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67461FCA290500A51175 /* PersonalService.cpp */; };
+		3BCA674B1FCA37EB00A51175 /* BusinessService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67491FCA37EB00A51175 /* BusinessService.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +42,10 @@
 		3BCA673D1FCA26EB00A51175 /* Users.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Users.cpp; sourceTree = "<group>"; };
 		3BCA67431FCA281B00A51175 /* AutomotiveService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AutomotiveService.cpp; sourceTree = "<group>"; };
 		3BCA67441FCA281B00A51175 /* AutomotiveService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AutomotiveService.hpp; path = ../src/AutomotiveService.hpp; sourceTree = "<group>"; };
+		3BCA67461FCA290500A51175 /* PersonalService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PersonalService.cpp; sourceTree = "<group>"; };
+		3BCA67471FCA290500A51175 /* PersonalService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PersonalService.hpp; path = ../src/PersonalService.hpp; sourceTree = "<group>"; };
+		3BCA67491FCA37EB00A51175 /* BusinessService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BusinessService.cpp; sourceTree = "<group>"; };
+		3BCA674A1FCA37EB00A51175 /* BusinessService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BusinessService.hpp; path = ../src/BusinessService.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,8 @@
 		3BCA67331FCA26DF00A51175 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				3BCA674A1FCA37EB00A51175 /* BusinessService.hpp */,
+				3BCA67471FCA290500A51175 /* PersonalService.hpp */,
 				3BCA67441FCA281B00A51175 /* AutomotiveService.hpp */,
 				3BCA67341FCA26DF00A51175 /* Manager.h */,
 				3BCA67351FCA26DF00A51175 /* Service.hpp */,
@@ -99,6 +107,8 @@
 				3BCA673C1FCA26EB00A51175 /* Step.cpp */,
 				3BCA673D1FCA26EB00A51175 /* Users.cpp */,
 				3BCA67431FCA281B00A51175 /* AutomotiveService.cpp */,
+				3BCA67461FCA290500A51175 /* PersonalService.cpp */,
+				3BCA67491FCA37EB00A51175 /* BusinessService.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -161,11 +171,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BCA673E1FCA26EB00A51175 /* main.cpp in Sources */,
+				3BCA674B1FCA37EB00A51175 /* BusinessService.cpp in Sources */,
 				3BCA67411FCA26EB00A51175 /* Step.cpp in Sources */,
 				3BCA67401FCA26EB00A51175 /* Service.cpp in Sources */,
 				3BCA67421FCA26EB00A51175 /* Users.cpp in Sources */,
 				3BCA67451FCA281B00A51175 /* AutomotiveService.cpp in Sources */,
 				3BCA673F1FCA26EB00A51175 /* Manager.cpp in Sources */,
+				3BCA67481FCA290500A51175 /* PersonalService.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
