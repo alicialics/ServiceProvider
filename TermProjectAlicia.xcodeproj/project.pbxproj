@@ -12,6 +12,7 @@
 		3BCA67401FCA26EB00A51175 /* Service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA673B1FCA26EB00A51175 /* Service.cpp */; };
 		3BCA67411FCA26EB00A51175 /* Step.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA673C1FCA26EB00A51175 /* Step.cpp */; };
 		3BCA67421FCA26EB00A51175 /* Users.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA673D1FCA26EB00A51175 /* Users.cpp */; };
+		3BCA67451FCA281B00A51175 /* AutomotiveService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67431FCA281B00A51175 /* AutomotiveService.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,8 @@
 		3BCA673B1FCA26EB00A51175 /* Service.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Service.cpp; sourceTree = "<group>"; };
 		3BCA673C1FCA26EB00A51175 /* Step.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Step.cpp; sourceTree = "<group>"; };
 		3BCA673D1FCA26EB00A51175 /* Users.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Users.cpp; sourceTree = "<group>"; };
+		3BCA67431FCA281B00A51175 /* AutomotiveService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AutomotiveService.cpp; sourceTree = "<group>"; };
+		3BCA67441FCA281B00A51175 /* AutomotiveService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AutomotiveService.hpp; path = ../src/AutomotiveService.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,7 @@
 		3BCA67331FCA26DF00A51175 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				3BCA67441FCA281B00A51175 /* AutomotiveService.hpp */,
 				3BCA67341FCA26DF00A51175 /* Manager.h */,
 				3BCA67351FCA26DF00A51175 /* Service.hpp */,
 				3BCA67361FCA26DF00A51175 /* Step.h */,
@@ -94,6 +98,7 @@
 				3BCA673B1FCA26EB00A51175 /* Service.cpp */,
 				3BCA673C1FCA26EB00A51175 /* Step.cpp */,
 				3BCA673D1FCA26EB00A51175 /* Users.cpp */,
+				3BCA67431FCA281B00A51175 /* AutomotiveService.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -159,6 +164,7 @@
 				3BCA67411FCA26EB00A51175 /* Step.cpp in Sources */,
 				3BCA67401FCA26EB00A51175 /* Service.cpp in Sources */,
 				3BCA67421FCA26EB00A51175 /* Users.cpp in Sources */,
+				3BCA67451FCA281B00A51175 /* AutomotiveService.cpp in Sources */,
 				3BCA673F1FCA26EB00A51175 /* Manager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
