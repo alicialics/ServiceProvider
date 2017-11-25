@@ -1,7 +1,52 @@
 #include <iostream>
+#include <vector>
+#include <map>
 using namespace std;
 
 #include "Manager.h"
+
+Manager::Manager(){
+    currentUser = nullptr;
+}
+
+void Manager::execute(Step* step){
+    while(true){
+        cout << "Hello";
+        if(currentUser){
+            cout <<" " + currentUser->getFirst();
+        }
+        cout << "!\n";
+        map<string, string> convert;
+        for(int i = 0; i < step->getInstructions().size(); i++){
+            cout << i + 1 << "." << step->getInstructions()[i] << "\n"; //get instructions
+            convert[to_string(i+1)] = step->getInstructions()[i];
+        }
+        
+        string action;
+        cin >> action;
+        
+        if (action == "exit") {
+            cout << "Bye!" << endl;
+            break;
+        }
+        
+        if(convert.find(action) != convert.end()){ //if user enter number instruction
+            action = convert[action];  //convert number to alphabet intruction
+        }
+        
+        if(step->nextStep(action) != nullptr){   //if input is correct
+            if(executeAction(action)){
+                step = step->nextStep(action);    //goes to next step
+            }else{
+                cout << "Try again." << endl;
+            }
+            
+        }else{
+            cout << "wrong input" << endl;
+        }
+    
+    }
+}
 
 bool Manager::executeAction(string action){
     cout << "I'm executing " << action << endl;
@@ -38,7 +83,7 @@ bool Manager::signIn(){
     cout << "Enter your email:\n";
     string email;
     cin >> email;
-    for(Users& user : allUsers){
+    for(Users& user : allUsers){  //reference not copy of each user
         if(user.getEmail() == email){
             currentUser = &user;
             return true;

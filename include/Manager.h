@@ -1,7 +1,9 @@
 #include <vector>
+#include <vector>
 using namespace std;
 
 #include "Users.h"
+#include "Step.h"
 
 
 #ifndef Manager_h
@@ -9,10 +11,12 @@ using namespace std;
 
 class Manager{
 private:
-    vector<Users> allUsers;
-    const Users* currentUser;
+    vector<Users> allUsers; //save all users
+    const Users* currentUser; //pointer to const Users
 public:
-    bool executeAction(string action);
+    Manager();
+    void execute(Step*);
+    bool executeAction(string);
     const Users* getCurrentUser() const{return currentUser;}
     bool createAccount();
     bool signIn();

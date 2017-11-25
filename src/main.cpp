@@ -1,17 +1,46 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include <map>
+
 using namespace std;
 
 #include "Users.h"
 #include "Manager.h"
-
+#include "Service.hpp"
+#include "Step.h"
 //JENNS COMMENT FOR TESTING
 
 
 int main(){
-   
+    
+    Step next[4];
+    
+    string parse_instru = R"(
+    0 signIn 1
+    0 createAccount 1
+    1 buyMenu 2
+    1 sellMenu 3
+    1 viewMyService 1
+    1 withdrawMoney 1
+    1 signOut 0
+    2 displayAvailableService 2
+    2 buyService 2
+    2 addMoney 2
+    2 checkout 1
+    2 goBack 1
+    3 displayServiceOption 3
+    3 addService 1
+    3 goBack 1
+    )";
+    
+    stringstream ss(parse_instru);
+    int index, next_index;
+    string instruction;
+    while(ss >> index >> instruction >> next_index){
+        next[index].setInstruction(instruction, &next[next_index]);
+    }
+    
+    
     /*
      step 0:
      createAccount : addUser firstName lastName email
@@ -60,61 +89,15 @@ int main(){
      
      */
     
-    int step = 0;
-    map<string, int> next[4];
-  
-    next[0]["signIn"] = 1;
-    next[0]["createAccount"] = 1;
-    next[1]["buyMenu"] = 2;
-    next[1]["sellMenu"] = 3;
-    next[1]["viewMyService"] = 1;
-    next[1]["withdrawMoney"] = 1;
-    next[1]["signOut"] = 0;
-    next[2]["displayAvailableService"] = 2;
-    next[2]["buyService"] = 2;
-    next[2]["addMoney"] = 2;
-    next[2]["checkout"] = 1;
-    next[2]["goBack"] = 1;
-    next[3]["displayServiceOption"] = 3;
-    next[3]["addService"] = 1;
-    next[3]["goBack"] = 1;
+    Step* step = &next[0];
+    
+    
+   
     
     Manager manager;
-    while(true){
-        cout << "Hello";
-        if(manager.getCurrentUser()){
-            cout <<" " + manager.getCurrentUser()->getFirst();
-        }
-        cout << "!\n";
-        int index = 1;
-        map<string, string> convert;
-        for(auto i = next[step].begin(); i != next[step].end(); i++,index++){
-            cout << index << "." << i->first << "\n";
-            convert[to_string(index)] = i->first;
-        }
-        string action;
-        cin >> action;
-
-        if (action == "exit") {
-            cout << "Bye!" << endl;
-            return 0;
-        }
-        
-        if(convert.find(action) != convert.end()){
-            action = convert[action];
-        }
-        if(next[step].find(action) != next[step].end()){
-            if(manager.executeAction(action)){
-                step = next[step][action];
-            }else{
-                cout << "Try again." << endl;
-            }
-            
-        }else{
-            cout << "wrong input" << endl;
-        }
-        
-    }
+    manager.execute(step);
+    
+    
     //test change on the github.com
     
     //test change on my local
