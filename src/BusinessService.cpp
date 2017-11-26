@@ -1,4 +1,5 @@
 //  BusinessService.cpp
+#include <iomanip>
 #include <iostream>
 using namespace std;
 
@@ -9,6 +10,26 @@ BusinessService::BusinessService(string n, string des, string l, double dur, dou
 {
   businessType = c;
 }//constructor
+
+void BusinessService::setBusinessType(string a)
+{
+  businessType = a;
+}//setBusinessType
+
+string BusinessService::getBusinessType()
+{
+  return businessType;
+}//getBusinessType
+
+double BusinessService::getFeePercentage()
+{
+  return feePercentage;
+}//getFeePercentage
+
+double BusinessService::calculateFee()
+{
+  return Service::getPrice() * (getFeePercentage() / 100);
+}//calculateFee
 
 //print
 void BusinessService::printBusiness()

@@ -10,15 +10,18 @@ All business sellers pay a transaction fee of 8% */
 class BusinessService: public Service
 {
   public:
-    //constructor
-    BusinessService(string, string, string, double, double, int, bool, string = "");
+    BusinessService(string, string, string, double, double, int, bool, string = ""); //constructor
+    void setBusinessType(string); //setter
+    string getBusinessType(); //getter
+    double getFeePercentage(); //getter
+    double calculateFee(); //calculate the fee per sale
   
     //print
     void printBusiness();
     
   private:
     string businessType;
-    int feePercentage = 8;
+    double feePercentage = 8;
 };
 
 #endif

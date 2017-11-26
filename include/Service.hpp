@@ -29,6 +29,7 @@ class Service
   
     //print Service Info
     void printService() const;
+    void printServiceTable(int) const;
 
   private:
     string name;

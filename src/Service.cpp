@@ -1,4 +1,5 @@
 //  Service.cpp
+#include <iomanip>
 #include <iostream>
 using namespace std;
 
@@ -46,7 +47,7 @@ bool Service::getAvail()
   return availability;
 }//getAvail
 
-//print service info
+//print service info (detailed)
 void Service::printService() const
 {
   //format this into a better table with columns for each member variable
@@ -54,6 +55,20 @@ void Service::printService() const
   cout << "Description: " << description << endl;
   cout << "Location: " << location << endl;
   cout << "Duration(minutes): " << duration << endl;
+  cout.setf(ios::fixed|ios::showpoint); cout << setprecision(2);
   cout << "Price: $" << price << endl;
+  cout.unsetf(ios::fixed|ios::showpoint);
   cout << "Availability: " << (availability == true ? "Yes" : "No" ) << endl;
 }//printService
+
+//print basic service details for browsing
+void Service::printServiceTable(int a) const
+{
+  cout.width(5); cout.setf(ios::left); cout << a;
+  cout.width(22); cout << name;
+  cout.width(25); cout << location;
+  cout.width(1); cout << "$";
+  cout.setf(ios::fixed|ios::showpoint); cout << setprecision(2);
+  cout.width(6); cout << price << endl;
+  cout.unsetf(ios::fixed|ios::showpoint);
+}//printServiceTable
