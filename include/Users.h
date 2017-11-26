@@ -16,9 +16,9 @@ public:
     string getFirst() const {return first;}
     string getLast() const{return last;}
     string getEmail() const{return email;}
-    string dataTitle() const{return "Users";}
+    static string dataTitle(){return "Users";}
     map<string, string> toSave() const;
-    map<string, string> toCreate() const;
+    static map<string, string> toCreate(); //call static function without object
 };
 
 

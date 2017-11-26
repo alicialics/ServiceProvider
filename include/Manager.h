@@ -18,6 +18,7 @@ public:
     void execute(Step*);
     bool executeAction(string);
     const Users* getCurrentUser() const{return currentUser;}
+    bool createData();
     bool createAccount();
     bool signIn();
     bool buyMenu();

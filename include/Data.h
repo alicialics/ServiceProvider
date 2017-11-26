@@ -16,7 +16,7 @@ class Data{
 private:
     
 public:
-    void createData(const Users*);
+    void createData(string, const map<string, string>&);
     void saveData(const Users*);
 };
 

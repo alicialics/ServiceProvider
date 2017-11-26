@@ -24,7 +24,7 @@ map<string, string> Users::toSave() const{
     return  userData;
 }
 
-map<string, string> Users::toCreate() const{
+map<string, string> Users::toCreate(){
     map<string,string> create;
     create["FirstName"] = "string";
     create["LastName"] = "string";

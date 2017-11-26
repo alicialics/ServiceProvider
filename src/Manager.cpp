@@ -63,6 +63,12 @@ bool Manager::executeAction(string action){
     return false;
 }
 
+bool Manager::createData(){
+    userData.createData(Users::dataTitle(), Users::toCreate());
+    return true;
+}
+
+
 bool Manager::createAccount(){
     cout << "Enter your firstName:";
     string first, last, email;
@@ -79,11 +85,11 @@ bool Manager::createAccount(){
     Users newUser(first, last, email);
     allUsers.push_back(newUser);
     currentUser = &allUsers.back();
-    userData.createData(currentUser);
     userData.saveData(currentUser);
     
     return true;
 }
+
 
 bool Manager::signIn(){
     cout << "Enter your email:\n";

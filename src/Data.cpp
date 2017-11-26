@@ -10,14 +10,14 @@
 #include <iostream>
 using namespace std;
 #include "Data.h"
+#include "Users.h"
 
-void Data::createData(const Users* user){
+void Data::createData(string dataTitle, const map<string, string>& toCreate){
     stringstream ss;
     
     ss << "CREATE TABLE IF NOT EXISTS ";
-    ss << user->dataTitle() << " (Id INTEGER PRIMARY KEY";
-    map<string, string> create = user->toCreate();
-    for(auto i = create.begin(); i != create.end(); i++){
+    ss << dataTitle << " (Id INTEGER PRIMARY KEY";
+    for(auto i = toCreate.begin(); i != toCreate.end(); i++){
         ss << ", " << i->first << " " << i->second;
     }
     ss << ")" ;

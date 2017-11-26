@@ -94,6 +94,7 @@ int main(){
     
     
     Manager manager;
+    manager.createData();
     manager.execute(step);
     
     
