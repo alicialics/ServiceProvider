@@ -12,7 +12,7 @@ using namespace std;
 
 
 int main(){
-    
+
     Step next[4];
     
     string parse_instru = R"(
@@ -92,7 +92,6 @@ int main(){
     Step* step = &next[0];
     
     
-   
     
     Manager manager;
     manager.execute(step);

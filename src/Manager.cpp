@@ -4,6 +4,7 @@
 using namespace std;
 
 #include "Manager.h"
+#include "Data.h"
 
 Manager::Manager(){
     currentUser = nullptr;
@@ -48,6 +49,7 @@ void Manager::execute(Step* step){
     }
 }
 
+
 bool Manager::executeAction(string action){
     cout << "I'm executing " << action << endl;
     
@@ -77,8 +79,12 @@ bool Manager::createAccount(){
     Users newUser(first, last, email);
     allUsers.push_back(newUser);
     currentUser = &allUsers.back();
+    userData.createData(currentUser);
+    userData.saveData(currentUser);
+    
     return true;
 }
+
 bool Manager::signIn(){
     cout << "Enter your email:\n";
     string email;
@@ -91,6 +97,8 @@ bool Manager::signIn(){
     }
     return false;
 }
+
+
 
 bool Manager::buyMenu(){
     return true;

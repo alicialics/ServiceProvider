@@ -1,4 +1,6 @@
 #include <string>
+#include <map>
+using namespace std;
 
 #ifndef Users_h
 #define Users_h
@@ -14,9 +16,9 @@ public:
     string getFirst() const {return first;}
     string getLast() const{return last;}
     string getEmail() const{return email;}
-    void createAccount(string, string, string);
-    
-    
+    string dataTitle() const{return "Users";}
+    map<string, string> toSave() const;
+    map<string, string> toCreate() const;
 };
 
 
