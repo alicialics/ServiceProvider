@@ -11,12 +11,15 @@ using namespace std;
 #include "PersonalService.hpp"
 #include "Service.hpp"
 #include "Step.h"
+#include "Sqlitedata.h"
 
 void printTableHeader();
 
 int main(){
-    
-    /*Step next[4];
+
+    Sqlitedata data;
+   
+    Step next[4];
     
     string parse_instru = R"(
     0 signIn 1
@@ -89,21 +92,18 @@ int main(){
      addMoney 20
      checkOut
      displayBuyandSell
-     
+     */
      
     
     Step* step = &next[0];
     
     
+    
+
+    Manager manager(&data);
+    manager.createData();
+    manager.execute(step);
    
-    
-    Manager manager;
-    manager.execute(step); */
-    
-    
-    //test change on the github.com
-    
-    //test change on my local
   
     printTableHeader();
     //testingAutomotiveServiceClass

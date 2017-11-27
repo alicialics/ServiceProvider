@@ -17,6 +17,53 @@ Graph below is the output screenshot.
 
 ![screen shot 2017-11-19 at 5 32 22 pm](https://user-images.githubusercontent.com/31378877/32998473-2e9152a0-cd50-11e7-8d17-38279481cf27.png)
 
+    /*
+     step 0:
+     createAccount : addUser firstName lastName email
+     sign in : signIn(email)
+     
+     step 1:
+     buyMenu -> step 2
+     sellMenu -> step 3
+     viewMyService
+     withdrawMoney
+     signOut -> step 0
+     
+     
+     step 2:
+     displayAvailableSerive
+     buyService
+     addMoney
+     checkOut -> 1
+     goBack -> 1
+
+     step 3:
+     displayServiceOption
+     addService(serviceName, date, time, price, duration, location)
+
+     
+     5.clearAllData
+     clear
+    
+     eg:
+     createAccount Andrew Fearing andrew@gmail.com
+     signIn andrew@gmail.com
+     displayServiceOption
+     addService carwash 11/12 2pm 2234 clinton street, new york, 30, 30
+     displayBuyandSell
+     
+     
+     createAccount zhuo li aliciali666@gmail.com
+     signIn aliciali666@gmail.com
+     displayAvailableSerive
+     buyService 2
+     buyService 4
+     buyservice 5
+     addMoney 20
+     checkOut
+     displayBuyandSell
+     */
+
 # Sqlite 
 introduction: http://sqlite.org/
 
