@@ -3,18 +3,21 @@ using namespace std;
 
 #include "Users.h"
 #include "Step.h"
-#include "Data.h"
+#include "Sqlitedata.h"
 
 #ifndef Manager_h
 #define Manager_h
 
 class Manager{
 private:
-    vector<Users> allUsers; //save all users
-    const Users* currentUser; //pointer to const Users
-    Data userData;
+    vector<Users*> allUsers; //save all users
+    
+    Users* currentUser; //pointer to const Users
+    Data* data;
+    
+    
 public:
-    Manager();
+    Manager(Data*);
     void execute(Step*);
     bool executeAction(string);
     const Users* getCurrentUser() const{return currentUser;}

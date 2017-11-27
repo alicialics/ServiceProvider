@@ -8,11 +8,13 @@ using namespace std;
 #include "Manager.h"
 #include "Service.hpp"
 #include "Step.h"
+#include "Sqlitedata.h"
 //JENNS COMMENT FOR TESTING
 
 
 int main(){
-
+    Sqlitedata data;
+   
     Step next[4];
     
     string parse_instru = R"(
@@ -93,7 +95,7 @@ int main(){
     
     
     
-    Manager manager;
+    Manager manager(&data);
     manager.createData();
     manager.execute(step);
     

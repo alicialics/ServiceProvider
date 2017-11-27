@@ -6,8 +6,9 @@ using namespace std;
 #include "Manager.h"
 #include "Data.h"
 
-Manager::Manager(){
+Manager::Manager(Data* _data){
     currentUser = nullptr;
+    data = _data;
 }
 
 void Manager::execute(Step* step){
@@ -27,6 +28,7 @@ void Manager::execute(Step* step){
         cin >> action;
         
         if (action == "exit") {
+            data->saveAll();
             cout << "Bye!" << endl;
             break;
         }
@@ -64,7 +66,13 @@ bool Manager::executeAction(string action){
 }
 
 bool Manager::createData(){
-    userData.createData(Users::dataTitle(), Users::toCreate());
+    auto dataPrev = data->loadData();
+    for(int i = 0; i < dataPrev.size(); i++){
+        if(dataPrev[i]->dataTitle() == "Users"){
+            allUsers.push_back(static_cast<Users*>(dataPrev[i]));
+        }
+    }
+   
     return true;
 }
 
@@ -77,15 +85,17 @@ bool Manager::createAccount(){
     cin >> last;
     cout << "Enter your email:";
     cin >> email;
-    for(Users& user : allUsers){
-        if(user.getEmail() == email){
+    for(Users* user : allUsers){
+        if(user->getEmail() == email){
             return false;
         }
     }
-    Users newUser(first, last, email);
+    
+    Users* newUser = new Users(first, last, email); //create newuser 
     allUsers.push_back(newUser);
-    currentUser = &allUsers.back();
-    userData.saveData(currentUser);
+    currentUser = allUsers.back();
+    
+    data->saveData(currentUser);
     
     return true;
 }
@@ -95,9 +105,9 @@ bool Manager::signIn(){
     cout << "Enter your email:\n";
     string email;
     cin >> email;
-    for(Users& user : allUsers){  //reference not copy of each user
-        if(user.getEmail() == email){
-            currentUser = &user;
+    for(Users* user : allUsers){  //reference not copy of each user
+        if(user->getEmail() == email){
+            currentUser = user;
             return true;
         }
     }
@@ -146,6 +156,7 @@ bool Manager::checkout(){
 bool Manager::goBack(){
     return true;
 }
+
 
 bool Manager::displayServiceOption(){
     return true;

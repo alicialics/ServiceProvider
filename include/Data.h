@@ -6,20 +6,24 @@
 //  Copyright © 2017 alicia li. All rights reserved.
 //
 
+#include <vector>
+using namespace std;
 
 #include "Users.h"
+#include "Savedata.h"
 
-#ifndef Database2_h
-#define Database2_h
+#ifndef Data_h
+#define Data_h
 
 class Data{
 private:
     
 public:
-    void createData(string, const map<string, string>&);
-    void saveData(const Users*);
+    virtual vector<Savedata*> loadData(){ return vector<Savedata*>();}
+    virtual void saveData(Savedata*){}
+    virtual void saveAll(){}
 };
 
 
 
-#endif /* Database2_h */
+#endif /* Data_h */

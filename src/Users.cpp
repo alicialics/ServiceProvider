@@ -11,7 +11,7 @@ using namespace std;
 
 
 Users::Users(string _first, string _last, string _email)
-:id(0),first(_first),last(_last),email(_email)
+:first(_first),last(_last),email(_email)
 {
     
 }
