@@ -12,6 +12,7 @@ class BusinessService: public Service
   public:
     BusinessService(string, string, string, double, double, int, bool, string = ""); //constructor
     void setBusinessType(string); //setter
+    void addBusService(); //user sets object attributes manually
     string getBusinessType(); //getter
     double getFeePercentage(); //getter
     double calculateFee(); //calculate the fee per sale
@@ -20,8 +21,8 @@ class BusinessService: public Service
     void printBusiness();
     
   private:
-    string businessType;
-    double feePercentage = 8;
+    string businessType; //The type of business being offered (media services, secretary, accounting, etc)
+    const double feePercentage = 8;
 };
 
 #endif

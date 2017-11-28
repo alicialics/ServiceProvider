@@ -11,7 +11,14 @@ class PersonalService: public Service
     PersonalService(string, string, string, double, double, int, bool, bool = false, string = "English");
   
     //getters
+    bool getLicense();
+    string getLanguage();
+    
     //setters
+    void setLicense(bool);
+    void setLanguage(string);
+    void addPerService();
+  
     //print
     void printPersonalService();
   

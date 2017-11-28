@@ -15,6 +15,7 @@
 		3BCA67451FCA281B00A51175 /* AutomotiveService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67431FCA281B00A51175 /* AutomotiveService.cpp */; };
 		3BCA67481FCA290500A51175 /* PersonalService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67461FCA290500A51175 /* PersonalService.cpp */; };
 		3BCA674B1FCA37EB00A51175 /* BusinessService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67491FCA37EB00A51175 /* BusinessService.cpp */; };
+		3BE5294F1FCC9B7B008D2CA9 /* Sqlitedata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BE5294E1FCC9B7B008D2CA9 /* Sqlitedata.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +47,10 @@
 		3BCA67471FCA290500A51175 /* PersonalService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PersonalService.hpp; path = ../src/PersonalService.hpp; sourceTree = "<group>"; };
 		3BCA67491FCA37EB00A51175 /* BusinessService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BusinessService.cpp; sourceTree = "<group>"; };
 		3BCA674A1FCA37EB00A51175 /* BusinessService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BusinessService.hpp; path = ../src/BusinessService.hpp; sourceTree = "<group>"; };
+		3BE5294E1FCC9B7B008D2CA9 /* Sqlitedata.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sqlitedata.cpp; sourceTree = "<group>"; };
+		3BE529501FCC9B84008D2CA9 /* Sqlitedata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sqlitedata.h; sourceTree = "<group>"; };
+		3BE529511FCC9B84008D2CA9 /* Savedata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Savedata.h; sourceTree = "<group>"; };
+		3BE529521FCC9B84008D2CA9 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +92,9 @@
 		3BCA67331FCA26DF00A51175 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				3BE529501FCC9B84008D2CA9 /* Sqlitedata.h */,
+				3BE529511FCC9B84008D2CA9 /* Savedata.h */,
+				3BE529521FCC9B84008D2CA9 /* Data.h */,
 				3BCA674A1FCA37EB00A51175 /* BusinessService.hpp */,
 				3BCA67471FCA290500A51175 /* PersonalService.hpp */,
 				3BCA67441FCA281B00A51175 /* AutomotiveService.hpp */,
@@ -101,6 +109,7 @@
 		3BCA67381FCA26EB00A51175 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				3BE5294E1FCC9B7B008D2CA9 /* Sqlitedata.cpp */,
 				3BCA67391FCA26EB00A51175 /* main.cpp */,
 				3BCA673A1FCA26EB00A51175 /* Manager.cpp */,
 				3BCA673B1FCA26EB00A51175 /* Service.cpp */,
@@ -178,6 +187,7 @@
 				3BCA67451FCA281B00A51175 /* AutomotiveService.cpp in Sources */,
 				3BCA673F1FCA26EB00A51175 /* Manager.cpp in Sources */,
 				3BCA67481FCA290500A51175 /* PersonalService.cpp in Sources */,
+				3BE5294F1FCC9B7B008D2CA9 /* Sqlitedata.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

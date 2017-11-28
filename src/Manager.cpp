@@ -3,8 +3,13 @@
 #include <map>
 using namespace std;
 
-#include "Manager.h"
+#include "AutomotiveService.hpp"
+#include "BusinessService.hpp"
 #include "Data.h"
+#include "Manager.h"
+#include "PersonalService.hpp"
+#include "Service.hpp"
+
 
 Manager::Manager(Data* _data){
     currentUser = nullptr;
@@ -120,7 +125,25 @@ bool Manager::buyMenu(){
     return true;
 }
 
-bool Manager::sellMenu(){
+bool Manager::sellMenu()
+{
+    //output menu
+    cout << "What type of service are you offering? [or enter 99 to go back]" << endl << endl;
+    cout << "1. Business/Office Services (subject to fee)" << endl;
+    cout << "2. Automotive Services" << endl;
+    cout << "3. Personal Services" << endl;
+    cout << "4. Home Services" << endl << endl;
+  
+    //user selects choice
+    int choice = 98;
+    while (true)
+    {
+      cin >> choice;
+      if (choice == 99) break; //sentinel value
+      if (addService(choice) != true) return false;
+      else break;
+    }//while
+  
     return true;
 }
 
@@ -158,10 +181,37 @@ bool Manager::goBack(){
 }
 
 
-bool Manager::displayServiceOption(){
-    return true;
+bool Manager::displayServiceOption(int choice)
+{
+  return true;
 }
 
-bool Manager::addService(){
-    return true;
-}
+bool Manager::addService(int choice)
+{
+  switch (choice)
+  {
+    case 1:
+      //create a business object
+      
+      //fill in the attributes
+      //[NEWOBJECTNAME].addBusService();
+      return true;
+    case 2:
+      //create an automotive object
+      
+      //[NEWOBJECTNAME].addAutoService();
+      return true;
+    case 3:
+      //create a personal object
+      
+      //[NEWOBJECTNAME].addPerService();
+      return true;
+    case 4:
+      //create a home object
+      
+      //[NEWOBJECTNAME].addHomeObject();
+      return true;
+    default:
+      return false;
+  }//switch
+}//addService

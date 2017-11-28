@@ -16,6 +16,30 @@ void Service::setName(string x)
 {
   name = x;
 }//setName
+void Service::setDesc(string x)
+{
+  description = x;
+}//setDesc
+void Service::setLoc(string x)
+{
+  location = x;
+}//setLoc
+void Service::setDur(double x)
+{
+  duration = x;
+}//setDur
+void Service::setPrice(double x)
+{
+  price = x;
+}//setPrice
+void Service::setStatus(int x)
+{
+  status = x;
+}//setStatus
+void Service::setAvail(bool x)
+{
+  availability = x;
+}//setAvail
 
 //getters
 string Service::getName()
@@ -46,6 +70,36 @@ bool Service::getAvail()
 {
   return availability;
 }//getAvail
+
+void Service::addService()
+{
+  string w;
+  double x;
+  cout << "Please enter the name of your service: ";
+  getline(cin, w);
+  setName(w);
+  
+  cout << "Describe your service: ";
+  getline(cin, w);
+  setDesc(w);
+  
+  cout << "Location of service: ";
+  getline(cin, w); cin.ignore(1000, 10);
+  setLoc(w);
+  
+  cout << "How long this service takes to complete: ";
+  cin >> x;
+  setDur(x);
+  
+  cout << "Price: ";
+  cin >> x;
+  setPrice(x);
+  
+  cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to keep hidden from the marketplace." << endl;
+  getline(cin, w);
+  if (w == "cancel") availability = false;
+  else availability = true;
+}//addService
 
 //print service info (detailed)
 void Service::printService() const

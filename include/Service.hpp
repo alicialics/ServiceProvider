@@ -26,6 +26,7 @@ class Service
     void setPrice(double);
     void setStatus(int);
     void setAvail(bool);
+    void addService();
   
     //print Service Info
     void printService() const;
