@@ -219,12 +219,6 @@ bool Manager::goBack(){
 }
 
 
-<<<<<<< HEAD
-bool Manager::displayServiceOption(int choice)
-{
-  return true;
-}
-
 bool Manager::addService(int choice)
 {
   switch (choice)
@@ -254,14 +248,6 @@ bool Manager::addService(int choice)
       return false;
   }//switch
 }//addService
-=======
-bool Manager::displayServiceOption(){
-    return true;
-}
-
-bool Manager::addService(){
-    return true;
-}
 
 
->>>>>>> 6eca87e09e4220a8415407b28776a2534a067f21
+

@@ -14,16 +14,9 @@ private:
     Step allSteps[4]; //save all steps, fixed size
     Step* currentStep; //pointer to current step
     vector<Users*> allUsers; //save all users
-<<<<<<< HEAD
     vector<Service*> allService; //stores all currently offered services
-  
     Users* currentUser; //pointer to const Users
     Data* data;
-=======
-    Users* currentUser; //pointer to current user
-    Data* data; //save current way of storing data
->>>>>>> 6eca87e09e4220a8415407b28776a2534a067f21
-    
     
 public:
     Manager(Data*);
