@@ -10,18 +10,21 @@ using namespace std;
 
 class Manager{
 private:
+    Step allSteps[4]; //save all steps, fixed size
+    Step* currentStep; //pointer to current step
     vector<Users*> allUsers; //save all users
-    
-    Users* currentUser; //pointer to const Users
-    Data* data;
+    Users* currentUser; //pointer to current user
+    Data* data; //save current way of storing data
     
     
 public:
     Manager(Data*);
-    void execute(Step*);
+    ~Manager();
+    bool createData();
+    bool setSteps();
+    void execute();
     bool executeAction(string);
     const Users* getCurrentUser() const{return currentUser;}
-    bool createData();
     bool createAccount();
     bool signIn();
     bool buyMenu();

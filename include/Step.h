@@ -11,11 +11,11 @@ private:
    
 public:
     Step();
-    void setInstruction(string, Step*);
+    void setAction(string, Step*);
     Step* nextStep(string);
-    vector<string> getInstructions() const;
+    vector<string> getActions() const;
     bool checkInput(string);
-    void printInstructions();
+    void printActions();
 };
 
 
