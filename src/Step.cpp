@@ -7,7 +7,7 @@ using namespace std;
 Step::Step(){
 }
 
-void Step::setInstruction(string instruction, Step* nextStep){
+void Step::setAction(string instruction, Step* nextStep){
     instructions[instruction] = nextStep;
 }
 
@@ -20,7 +20,7 @@ Step* Step::nextStep(string instruction){
     
 }
 
-vector<string> Step::getInstructions() const{
+vector<string> Step::getActions() const{
     vector<string>keys;
     for(auto i = instructions.begin(); i != instructions.end(); i++){
         keys.push_back(i->first);

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <map>
 using namespace std;
@@ -16,7 +17,54 @@ Manager::Manager(Data* _data){
     data = _data;
 }
 
-void Manager::execute(Step* step){
+Manager::~Manager(){
+    for(Users* oneUser : allUsers){
+        delete oneUser;
+    }
+}
+
+bool Manager::createData(){
+    auto dataPrev = data->loadData();
+    for(int i = 0; i < dataPrev.size(); i++){
+        if(dataPrev[i]->dataTitle() == "Users"){
+            allUsers.push_back(static_cast<Users*>(dataPrev[i])); //cast from base to derived object: Savedata to Users
+        }
+    }
+
+    return true;
+}
+
+bool Manager::setSteps(){
+    string parse_action = R"(
+    0 signIn 1
+    0 createAccount 1
+    1 buyMenu 2
+    1 sellMenu 3
+    1 viewMyService 1
+    1 withdrawMoney 1
+    1 signOut 0
+    2 displayAvailableService 2
+    2 buyService 2
+    2 addMoney 2
+    2 checkout 1
+    2 goBack 1
+    3 displayServiceOption 3
+    3 addService 1
+    3 goBack 1
+    )";
+    stringstream ss(parse_action);
+    int index, next_index;
+    string action;
+    while(ss >> index >> action >> next_index){
+        allSteps[index].setAction(action, &allSteps[next_index]);
+    }
+
+    currentStep = &allSteps[0];
+    return true;
+}
+
+
+void Manager::execute(){
     while(true){
         cout << "Hello";
         if(currentUser){
@@ -24,9 +72,9 @@ void Manager::execute(Step* step){
         }
         cout << "!\n";
         map<string, string> convert;
-        for(int i = 0; i < step->getInstructions().size(); i++){
-            cout << i + 1 << "." << step->getInstructions()[i] << "\n"; //get instructions
-            convert[to_string(i+1)] = step->getInstructions()[i];
+        for(int i = 0; i < currentStep->getActions().size(); i++){  //for loop to get all actions of current step
+            cout << i + 1 << "." << currentStep->getActions()[i] << "\n";
+            convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
         }
         
         string action;
@@ -38,13 +86,13 @@ void Manager::execute(Step* step){
             break;
         }
         
-        if(convert.find(action) != convert.end()){ //if user enter number instruction
-            action = convert[action];  //convert number to alphabet intruction
+        if(convert.find(action) != convert.end()){ //if user enter number action
+            action = convert[action];  //convert number to alphabet action
         }
         
-        if(step->nextStep(action) != nullptr){   //if input is correct
+        if(currentStep->nextStep(action) != nullptr){   //if input is correct
             if(executeAction(action)){
-                step = step->nextStep(action);    //goes to next step
+                currentStep = currentStep->nextStep(action);    //goes to next step
             }else{
                 cout << "Try again." << endl;
             }
@@ -70,16 +118,6 @@ bool Manager::executeAction(string action){
     return false;
 }
 
-bool Manager::createData(){
-    auto dataPrev = data->loadData();
-    for(int i = 0; i < dataPrev.size(); i++){
-        if(dataPrev[i]->dataTitle() == "Users"){
-            allUsers.push_back(static_cast<Users*>(dataPrev[i]));
-        }
-    }
-   
-    return true;
-}
 
 
 bool Manager::createAccount(){
@@ -88,7 +126,7 @@ bool Manager::createAccount(){
     cin >> first;
     cout << "Enter your lastName:";
     cin >> last;
-    cout << "Enter your email:";
+    cout <<  "Enter your email:";
     cin >> email;
     for(Users* user : allUsers){
         if(user->getEmail() == email){
@@ -181,6 +219,7 @@ bool Manager::goBack(){
 }
 
 
+<<<<<<< HEAD
 bool Manager::displayServiceOption(int choice)
 {
   return true;
@@ -215,3 +254,14 @@ bool Manager::addService(int choice)
       return false;
   }//switch
 }//addService
+=======
+bool Manager::displayServiceOption(){
+    return true;
+}
+
+bool Manager::addService(){
+    return true;
+}
+
+
+>>>>>>> 6eca87e09e4220a8415407b28776a2534a067f21

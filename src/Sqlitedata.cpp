@@ -7,14 +7,6 @@ using namespace std;
 #include "Savedata.h"
 #include "Users.h"
 
-
-vector<Savedata*> Sqlitedata::loadData(){
-    createData(Users::name(), Users::toCreate());
-    vector<Savedata*> userPrev;
-    Users* user = new Users("zhuo", "li", "gmail");
-    userPrev.push_back(user);
-    return userPrev;
-}
 void Sqlitedata::createData(string dataTitle, const map<string, string>& toCreate){
     stringstream ss;
     
@@ -25,6 +17,14 @@ void Sqlitedata::createData(string dataTitle, const map<string, string>& toCreat
     }
     ss << ")" ;
     cout << ss.str() << endl;
+}
+
+vector<Savedata*> Sqlitedata::loadData(){
+    createData(Users::name(), Users::toCreate());
+    vector<Savedata*> userPrev;
+    Users* user = new Users("zhuo", "li", "gmail");//random load one, later will load from database
+    userPrev.push_back(user);
+    return userPrev;
 }
 
 void Sqlitedata::saveData(Savedata* data){ //pass the object to save
