@@ -94,11 +94,7 @@ void Service::addService()
   cout << "Price: ";
   cin >> x;
   setPrice(x);
-  
-  cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to keep hidden from the marketplace." << endl;
-  getline(cin, w);
-  if (w == "cancel") availability = false;
-  else availability = true;
+
 }//addService
 
 //print service info (detailed)

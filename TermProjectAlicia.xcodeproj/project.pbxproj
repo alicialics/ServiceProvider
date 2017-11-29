@@ -16,6 +16,7 @@
 		3BCA67481FCA290500A51175 /* PersonalService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67461FCA290500A51175 /* PersonalService.cpp */; };
 		3BCA674B1FCA37EB00A51175 /* BusinessService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67491FCA37EB00A51175 /* BusinessService.cpp */; };
 		3BE5294F1FCC9B7B008D2CA9 /* Sqlitedata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BE5294E1FCC9B7B008D2CA9 /* Sqlitedata.cpp */; };
+		3BFF464A1FCF3E9F00732E51 /* HomeService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF46481FCF3E9F00732E51 /* HomeService.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,8 @@
 		3BE529501FCC9B84008D2CA9 /* Sqlitedata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sqlitedata.h; sourceTree = "<group>"; };
 		3BE529511FCC9B84008D2CA9 /* Savedata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Savedata.h; sourceTree = "<group>"; };
 		3BE529521FCC9B84008D2CA9 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
+		3BFF46481FCF3E9F00732E51 /* HomeService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomeService.cpp; sourceTree = "<group>"; };
+		3BFF46491FCF3E9F00732E51 /* HomeService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HomeService.hpp; path = ../src/HomeService.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,14 +95,15 @@
 		3BCA67331FCA26DF00A51175 /* include */ = {
 			isa = PBXGroup;
 			children = (
+				3BCA67351FCA26DF00A51175 /* Service.hpp */,
+				3BCA67441FCA281B00A51175 /* AutomotiveService.hpp */,
+				3BCA674A1FCA37EB00A51175 /* BusinessService.hpp */,
+				3BFF46491FCF3E9F00732E51 /* HomeService.hpp */,
+				3BCA67471FCA290500A51175 /* PersonalService.hpp */,
+				3BCA67341FCA26DF00A51175 /* Manager.h */,
+				3BE529521FCC9B84008D2CA9 /* Data.h */,
 				3BE529501FCC9B84008D2CA9 /* Sqlitedata.h */,
 				3BE529511FCC9B84008D2CA9 /* Savedata.h */,
-				3BE529521FCC9B84008D2CA9 /* Data.h */,
-				3BCA674A1FCA37EB00A51175 /* BusinessService.hpp */,
-				3BCA67471FCA290500A51175 /* PersonalService.hpp */,
-				3BCA67441FCA281B00A51175 /* AutomotiveService.hpp */,
-				3BCA67341FCA26DF00A51175 /* Manager.h */,
-				3BCA67351FCA26DF00A51175 /* Service.hpp */,
 				3BCA67361FCA26DF00A51175 /* Step.h */,
 				3BCA67371FCA26DF00A51175 /* Users.h */,
 			);
@@ -111,13 +115,14 @@
 			children = (
 				3BE5294E1FCC9B7B008D2CA9 /* Sqlitedata.cpp */,
 				3BCA67391FCA26EB00A51175 /* main.cpp */,
-				3BCA673A1FCA26EB00A51175 /* Manager.cpp */,
-				3BCA673B1FCA26EB00A51175 /* Service.cpp */,
 				3BCA673C1FCA26EB00A51175 /* Step.cpp */,
 				3BCA673D1FCA26EB00A51175 /* Users.cpp */,
+				3BCA673A1FCA26EB00A51175 /* Manager.cpp */,
+				3BCA673B1FCA26EB00A51175 /* Service.cpp */,
 				3BCA67431FCA281B00A51175 /* AutomotiveService.cpp */,
 				3BCA67461FCA290500A51175 /* PersonalService.cpp */,
 				3BCA67491FCA37EB00A51175 /* BusinessService.cpp */,
+				3BFF46481FCF3E9F00732E51 /* HomeService.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -185,6 +190,7 @@
 				3BCA67401FCA26EB00A51175 /* Service.cpp in Sources */,
 				3BCA67421FCA26EB00A51175 /* Users.cpp in Sources */,
 				3BCA67451FCA281B00A51175 /* AutomotiveService.cpp in Sources */,
+				3BFF464A1FCF3E9F00732E51 /* HomeService.cpp in Sources */,
 				3BCA673F1FCA26EB00A51175 /* Manager.cpp in Sources */,
 				3BCA67481FCA290500A51175 /* PersonalService.cpp in Sources */,
 				3BE5294F1FCC9B7B008D2CA9 /* Sqlitedata.cpp in Sources */,
