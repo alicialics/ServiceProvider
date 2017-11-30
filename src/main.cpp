@@ -12,14 +12,16 @@ using namespace std;
 #include "Service.hpp"
 #include "Step.h"
 #include "Sqlitedata.h"
+#include "Demodata.h"
 
 void printTableHeader();
 
 int main(){
-
-    Sqlitedata dataway;
+    Demodata dummyData;
+    Sqlitedata sqliteData;
+    Data* dataway = &dummyData;
     
-    Manager manager(&dataway);
+    Manager manager(dataway);
     manager.setSteps();
     manager.createData();
     

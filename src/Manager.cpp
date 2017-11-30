@@ -28,6 +28,8 @@ bool Manager::createData(){
     for(int i = 0; i < dataPrev.size(); i++){
         if(dataPrev[i]->dataTitle() == "Users"){
             allUsers.push_back(static_cast<Users*>(dataPrev[i])); //cast from base to derived object: Savedata to Users
+        }else if(dataPrev[i]->dataTitle() == "Service"){
+            allService.push_back(static_cast<Service*>(dataPrev[i]));
         }
     }
 
@@ -76,6 +78,7 @@ void Manager::execute(){
             cout << i + 1 << "." << currentStep->getActions()[i] << "\n";
             convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
         }
+        cout << endl;
         
         string action;
         cin >> action;
@@ -114,11 +117,21 @@ bool Manager::executeAction(string action){
         return createAccount();
     }else if(action == "signOut"){
         return signOut();
+    }else if(action == "buyMenu"){
+        return buyMenu();
+    }else if(action == "sellMenu"){
+        return sellMenu();
+    }else if(action == "viewMyService"){
+        return viewMyService();
+    }else if(action == "displayAvailableService"){
+        return displayAvailableService();
+    }else if(action == "displayServiceOption"){
+        //return displayServiceOption();
+    }else if(action == "goBack"){
+        return goBack();
     }
     return false;
 }
-
-
 
 bool Manager::createAccount(){
     cout << "Enter your firstName:";
@@ -133,7 +146,6 @@ bool Manager::createAccount(){
             return false;
         }
     }
-    
     Users* newUser = new Users(first, last, email); //create newuser 
     allUsers.push_back(newUser);
     currentUser = allUsers.back();
@@ -160,11 +172,15 @@ bool Manager::signIn(){
 
 
 bool Manager::buyMenu(){
+    
     return true;
 }
 
 bool Manager::sellMenu()
 {
+    //cout << "choose 1 to see service option, choose 2 to
+    
+    //can put below into displayServiceOption()
     //output menu
     cout << "What type of service are you offering? [or enter 99 to go back]" << endl << endl;
     cout << "1. Business/Office Services (subject to fee)" << endl;
@@ -221,6 +237,8 @@ bool Manager::goBack(){
 
 bool Manager::addService(int choice)
 {
+    
+    
   switch (choice)
   {
     case 1:
@@ -248,6 +266,5 @@ bool Manager::addService(int choice)
       return false;
   }//switch
 }//addService
-
 
 

@@ -1,9 +1,11 @@
 //  Service.hpp
 
+#include "Savedata.h"
+
 #ifndef Service_hpp
 #define Service_hpp
 
-class Service
+class Service : public Savedata
 {
   public:
     //getters
@@ -14,6 +16,9 @@ class Service
     double getPrice();
     int getStatus();
     bool getAvail();
+    string dataTitle()const {return "Service";}
+    map<string, string> toSave() const;
+    static map<string, string> toCreate();
   
     //Constructor
     Service(string, string, string, double, double, int, bool);
@@ -42,5 +47,8 @@ class Service
     bool availability = false; //yes,no
   
 };
+
+
+
 
 #endif

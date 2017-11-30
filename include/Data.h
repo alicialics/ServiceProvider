@@ -10,18 +10,19 @@
 using namespace std;
 
 #include "Users.h"
+#include "Service.hpp"
 #include "Savedata.h"
 
 #ifndef Data_h
 #define Data_h
 
 class Data{
-private:
-    
+
 public:
-    virtual vector<Savedata*> loadData(){ return vector<Savedata*>();}
-    virtual void saveData(Savedata*){}
-    virtual void saveAll(){}
+    //virtual vector<Savedata*> loadData(){ return vector<Savedata*>();}
+    virtual vector<Savedata*> loadData() = 0;
+    virtual void saveData(Savedata*) =0;
+    virtual void saveAll() = 0;
 };
 
 

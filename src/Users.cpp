@@ -20,14 +20,13 @@ map<string, string> Users::toSave() const{
     userData["FirstName"] = first;
     userData["LastName"] = last;
     userData["Email"] = email;
-    
     return  userData;
 }
 
 map<string, string> Users::toCreate(){
-    map<string,string> create;
-    create["FirstName"] = "string";
-    create["LastName"] = "string";
-    create["Email"] = "string";
-    return create;
+    map<string,string> table;
+    table["FirstName"] = "string";
+    table["LastName"] = "string";
+    table["Email"] = "string";
+    return table;
 }

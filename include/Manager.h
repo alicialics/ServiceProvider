@@ -38,7 +38,6 @@ public:
     bool buyService();
     bool checkout();
     bool goBack();
-    bool displayServiceOption(int);
     bool addService(int);
 };
 

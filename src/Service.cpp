@@ -42,6 +42,18 @@ void Service::setAvail(bool x)
 }//setAvail
 
 //getters
+
+map<string, string> Service::toSave() const {
+    map<string, string> serviceData;
+    serviceData["Name"] = name;
+    serviceData["Description"] = description;
+    serviceData["Location"] = location;
+    serviceData["Duration"] = to_string(duration);
+    serviceData["Price"] = to_string(price);
+    
+    return  serviceData;
+}
+
 string Service::getName()
 {
   return name;

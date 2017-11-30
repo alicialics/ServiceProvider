@@ -7,7 +7,7 @@ using namespace std;
 #include "Savedata.h"
 #include "Users.h"
 
-void Sqlitedata::createData(string dataTitle, const map<string, string>& toCreate){
+void Sqlitedata::createTable(string dataTitle, const map<string, string>& toCreate){
     stringstream ss;
     
     ss << "CREATE TABLE IF NOT EXISTS ";
@@ -16,14 +16,14 @@ void Sqlitedata::createData(string dataTitle, const map<string, string>& toCreat
         ss << ", " << i->first << " " << i->second;
     }
     ss << ")" ;
-    cout << ss.str() << endl;
+    //cout << ss.str() << endl;
 }
 
 vector<Savedata*> Sqlitedata::loadData(){
-    createData(Users::name(), Users::toCreate());
+    createTable(Users::name(), Users::toCreate());
     vector<Savedata*> userPrev;
-    Users* user = new Users("zhuo", "li", "gmail");//random load one, later will load from database
-    userPrev.push_back(user);
+    //Users* user = new Users("zhuo", "li", "gmail");//random load one, later will load from database
+    //userPrev.push_back(user);
     return userPrev;
 }
 
@@ -52,9 +52,9 @@ void Sqlitedata::saveData(Savedata* data){ //pass the object to save
         ss << i->second << "'";
     }
     ss << ");";
-    cout << ss.str() << endl;
+    //cout << ss.str() << endl;
     data->setId(55);
-    cout << data->getId() << endl;
+    
 }
 
 void Sqlitedata::deleteData(Savedata* data){
@@ -63,6 +63,6 @@ void Sqlitedata::deleteData(Savedata* data){
     ss << data->dataTitle();
     ss << " WHERE Id=";
     ss << data->getId();
-    cout << ss.str() << endl;
+    //cout << ss.str() << endl;
 }
 
