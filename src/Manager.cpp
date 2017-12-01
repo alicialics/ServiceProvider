@@ -226,14 +226,7 @@ bool Manager::signOut(){
 
 bool Manager::displayAvailableService()
 {
-<<<<<<< HEAD
-  cout << "#    Service               Location                 Price" << endl;
-  cout << "-    -------               --------                 -----" << endl;
-  for(int i = 0; ; i++)
-  {
-    //allService<i>->printServiceTable(i);
-  }//for
-=======
+
     cout << "#    Service               Location                 Price" << endl;
     cout << "-    -------               --------                 -----" << endl;
     for(int i = 0; i < allService.size(); i++){
@@ -243,7 +236,7 @@ bool Manager::displayAvailableService()
   //{
     //object[i].printServiceTable(i);
   //}//for
->>>>>>> 2a0c6008291c7d4d7d1467947e64beb8971b64cc
+
   return true;
 }
 
@@ -288,13 +281,13 @@ bool Manager::addService(int choice)
       //create a business object
       
       //fill in the attributes
-<<<<<<< HEAD
+
       //[NEWOBJECTNAME]->addBusService();
       return true;
-=======
+
       //[NEWOBJECTNAME].addBusService();
           return true;
->>>>>>> 2a0c6008291c7d4d7d1467947e64beb8971b64cc
+
     case 2:
       //create an automotive object
       //AutomotiveService* aService = new AutomotiveService("", "", "", 0.0, 0.0, 0, false, " ", 0.0);
