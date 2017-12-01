@@ -180,12 +180,7 @@ bool Manager::signIn(){
 
 bool Manager::buyMenu()
 {
-    for(int i = 0; i < allService.size(); i++){
-        allService[i]->printService();
-    }
-    
-    
-    
+  
   //ask the user what type of service they're interested in, display menu
   
   //output list of appropriate category of services
@@ -232,11 +227,10 @@ bool Manager::displayAvailableService()
     for(int i = 0; i < allService.size(); i++){
         allService[i]->printServiceTable(i+1);
     }
-  //for(int i = 0; ; i++)
-  //{
-    //object[i].printServiceTable(i);
-  //}//for
-
+  //please select a service or go back
+  //user inputs an index number
+  //output the detailed page of details for the service
+  //prompt user to either add to cart or go back to the menu
   return true;
 }
 
@@ -244,10 +238,20 @@ bool Manager::addMoney(){
     return true;
 }
 
-bool Manager::buyService(){
+bool Manager::buyService()
+{
+    //Display the list of available services
+    cout << "#    Service               Location                 Price" << endl;
+    cout << "-    -------               --------                 -----" << endl;
+    for(int i = 0; i < allService.size(); i++)
+    {
+        allService[i]->printServiceTable(i+1);
+    }//for
+
+    //User enters the index number of the service they want in the list above
     int choice;
     cout << "choice:";
-    cin>> choice;
+    cin >> choice;
     
     allService[choice-1]->setBuyer(currentUser->getEmail());
     allService[choice-1]->setAvail(false);
