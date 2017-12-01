@@ -6,6 +6,7 @@ using namespace std;
 #include "Service.hpp"
 
 //constructor
+AutomotiveService::AutomotiveService(){}
 AutomotiveService::AutomotiveService(string n, string des, string l, double dur, double p, int s, bool a, string vT, double pP): Service(n, des, l, dur, p, s, a)
 {
   vehicleType = vT;

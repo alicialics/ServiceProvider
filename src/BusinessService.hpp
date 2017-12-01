@@ -10,6 +10,7 @@ All business sellers pay a transaction fee of 8% */
 class BusinessService: public Service
 {
   public:
+    BusinessService();
     BusinessService(string, string, string, double, double, int, bool, string = ""); //constructor
     void setBusinessType(string); //setter
     void addBusService(); //user sets object attributes manually

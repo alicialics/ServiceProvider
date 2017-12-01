@@ -9,6 +9,7 @@ class AutomotiveService: public Service
 {
   public:
     //constructor
+    AutomotiveService();
     AutomotiveService(string, string, string, double, double, int, bool, string = " ", double = 0.0);
   
     //setters

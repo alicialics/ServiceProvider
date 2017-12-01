@@ -6,6 +6,7 @@ using namespace std;
 #include "Service.hpp"
 
 //constructor
+Service::Service(){}
 Service::Service(string n, string des, string l, double dur, double p, int s, bool a)
     :name(n), description(des), location(l), duration(dur), price(p), status(s), availability(a)
 {

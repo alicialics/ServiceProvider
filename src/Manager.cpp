@@ -124,6 +124,10 @@ bool Manager::executeAction(string action){
         return buyMenu();
     }else if(action == "sellMenu"){
         return sellMenu();
+    }else if(action == "buyService"){
+        return buyService();
+    }else if(action == "addService"){
+        return addService();
     }else if(action == "viewMyService"){
         return viewMyService();
     }else if(action == "displayAvailableService"){
@@ -179,6 +183,9 @@ bool Manager::buyMenu()
     for(int i = 0; i < allService.size(); i++){
         allService[i]->printService();
     }
+    
+    
+    
   //ask the user what type of service they're interested in, display menu
   
   //output list of appropriate category of services
@@ -194,28 +201,17 @@ bool Manager::buyMenu()
 
 bool Manager::sellMenu()
 {
-    //output menu
-    cout << "What type of service are you offering? [or enter 99 to go back]" << endl << endl;
-    cout << "1. Business/Office Services (subject to fee)" << endl;
-    cout << "2. Automotive Services" << endl;
-    cout << "3. Personal Services" << endl;
-    cout << "4. Home Services" << endl << endl;
-  
-    //user selects choice
-    int choice = 98;
-    while (true)
-    {
-      cin >> choice;
-      if (choice == 99) break; //sentinel value
-      if (addService(choice) != true) return false;
-      else break;
-    }//while
+    
     
     return true;
 }
 
 bool Manager::viewMyService(){
-    
+    for(Service* service : allService){
+        if(service->getBuyer() == currentUser->getEmail()){
+            service->printService();
+        }
+    }
     return true;
 }
 
@@ -247,6 +243,12 @@ bool Manager::addMoney(){
 }
 
 bool Manager::buyService(){
+    int choice;
+    cout << "choice:";
+    cin>> choice;
+    
+    allService[choice-1]->setBuyer(currentUser->getEmail());
+    allService[choice-1]->setAvail(false);
     return true;
 }
 
@@ -262,15 +264,23 @@ bool Manager::goBack(){
 bool Manager::addService(int choice)
 {
     
+    if(choice == 1){
+        BusinessService* bus1 = new BusinessService();
+        bus1->addBusService();
+        
+        allService.push_back(bus1);
+    }
+    
     
   switch (choice)
   {
     case 1:
+          
       //create a business object
       
       //fill in the attributes
       //[NEWOBJECTNAME].addBusService();
-      return true;
+          return true;
     case 2:
       //create an automotive object
       
@@ -289,6 +299,27 @@ bool Manager::addService(int choice)
     default:
       return false;
   }//switch
+    
 }//addService
 
+bool Manager::addService(){
+    //output menu
+    cout << "What type of service are you offering? [or enter 99 to go back]" << endl << endl;
+    cout << "1. Business/Office Services (subject to fee)" << endl;
+    cout << "2. Automotive Services" << endl;
+    cout << "3. Personal Services" << endl;
+    cout << "4. Home Services" << endl << endl;
+    
+    //user selects choice
+    int choice = 98;
+    cin >> choice;
+    
+    if(choice == 1){
+        BusinessService* bus1 = new BusinessService();
+        bus1->addBusService();
+        
+        allService.push_back(bus1);
+    }
+    return true;
+}
 

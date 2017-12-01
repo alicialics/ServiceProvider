@@ -7,6 +7,7 @@ using namespace std;
 #include "Service.hpp"
 
 //constructor
+BusinessService::BusinessService(){}
 BusinessService::BusinessService(string n, string des, string l, double dur, double p, int s, bool a, string c): Service(n, des, l, dur, p, s, a)
 {
   businessType = c;

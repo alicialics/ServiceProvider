@@ -39,6 +39,7 @@ public:
     bool checkout();
     bool goBack();
     bool addService(int);
+    bool addService();
 };
 
 #endif /* Manager_h */

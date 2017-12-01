@@ -23,6 +23,7 @@ class Service : public Savedata
     virtual string serviceType() = 0;
   
     //Constructor
+    Service();
     Service(string, string, string, double, double, int, bool);
     virtual ~Service(){}
   

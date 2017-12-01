@@ -7,6 +7,7 @@
 class HomeService: public Service
 {
   public:
+    HomeService();
     HomeService(string, string, string, double, double, int, bool, string = "", bool = false, bool = false); //constructor
 
     //setters
