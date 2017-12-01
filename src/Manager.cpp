@@ -51,7 +51,7 @@ bool Manager::setSteps(){
     2 displayAvailableService 2
     2 buyService 2
     2 addMoney 2
-    2 checkout 1
+    2 viewHistory 1
     2 goBack 1
     3 displayServiceOption 3
     3 addService 1
@@ -133,6 +133,8 @@ bool Manager::executeAction(string action){
         return viewMyService();
     }else if(action == "displayAvailableService"){
         return displayAvailableService();
+    }else if(action == "viewHistory"){
+        return viewHistory();
     }else if(action == "displayServiceOption"){
         //return displayServiceOption();
     }else if(action == "goBack"){
@@ -181,12 +183,7 @@ bool Manager::signIn(){
 
 bool Manager::buyMenu()
 {
-    
-    
-    
-    
-    
-    
+
   //ask the user what type of service they're interested in, display menu
   
   //output list of appropriate category of services
@@ -228,12 +225,17 @@ bool Manager::signOut(){
 bool Manager::displayAvailableService()
 {
 
-    
-    
-      //for(int i = 0; ; i++)
-  //{
-    //object[i].printServiceTable(i);
-  //}//for
+
+
+    cout << "#    Service               Location                 Price" << endl;
+    cout << "-    -------               --------                 -----" << endl;
+    for(int i = 0; i < allService.size(); i++){
+        allService[i]->printServiceTable(i+1);
+    }
+  //please select a service or go back
+  //user inputs an index number
+  //output the detailed page of details for the service
+  //prompt user to either add to cart or go back to the menu
 
   return true;
 }
@@ -242,17 +244,22 @@ bool Manager::addMoney(){
     return true;
 }
 
+
 bool Manager::buyService(){
+    //Display the list of available services
     cout << "#    Service               Location                 Price" << endl;
     cout << "-    -------               --------                 -----" << endl;
-    for(int i = 0; i < allService.size(); i++){
+    for(int i = 0; i < allService.size(); i++)
+    {
         allService[i]->printServiceTable(i+1);
-    }
+    }//for
+
+    //User enters the index number of the service they want in the list above
 
     
     int choice;
     cout << "choice:";
-    cin>> choice;
+    cin >> choice;
     
     allService[choice-1]->printService();
     
@@ -264,7 +271,33 @@ bool Manager::buyService(){
 
 
 
-bool Manager::checkout(){
+bool Manager::viewHistory(){
+    //new index to print out table
+    int index = 1;
+    for(Service* service : allService){
+        if(service->getBuyer() == currentUser->getEmail()){
+            service->printServiceTable(index);
+            index++;
+        }
+    
+    }
+    int choice;
+    cout << "detail?";
+    cin >> choice;
+    cin.ignore(1000,10);
+    int index2 = 1;
+    for(Service* service : allService){
+        if(service->getBuyer() == currentUser->getEmail()){
+            if(index2 == choice){
+                service->printService();
+            }
+            index2++;
+            
+        }
+        
+    }
+    
+    
     return true;
 }
 
@@ -272,6 +305,26 @@ bool Manager::goBack(){
     return true;
 }
 
+bool Manager::addService(){
+    //output menu
+    cout << "What type of service are you offering? [or enter 99 to go back]" << endl << endl;
+    cout << "1. Business/Office Services (subject to fee)" << endl;
+    cout << "2. Automotive Services" << endl;
+    cout << "3. Personal Services" << endl;
+    cout << "4. Home Services" << endl << endl;
+    
+    //user selects choice
+    int choice = 98;
+    cin >> choice;
+    
+    if(choice == 1){
+        BusinessService* bus1 = new BusinessService();
+        bus1->addBusService();
+        
+        allService.push_back(bus1);
+    }
+    return true;
+}
 
 bool Manager::addService(int choice)
 {
@@ -321,24 +374,4 @@ bool Manager::addService(int choice)
     
 }//addService
 
-bool Manager::addService(){
-    //output menu
-    cout << "What type of service are you offering? [or enter 99 to go back]" << endl << endl;
-    cout << "1. Business/Office Services (subject to fee)" << endl;
-    cout << "2. Automotive Services" << endl;
-    cout << "3. Personal Services" << endl;
-    cout << "4. Home Services" << endl << endl;
-    
-    //user selects choice
-    int choice = 98;
-    cin >> choice;
-    
-    if(choice == 1){
-        BusinessService* bus1 = new BusinessService();
-        bus1->addBusService();
-        
-        allService.push_back(bus1);
-    }
-    return true;
-}
 

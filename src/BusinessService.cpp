@@ -26,7 +26,7 @@ void BusinessService::addBusService()
   getline(cin, w); cin.ignore(1000, 10);
   setBusinessType(w);
   cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to keep hidden from the marketplace." << endl;
-  getline(cin, w);
+  getline(cin, w); cin.ignore(1000, 10);
   if (w == "cancel") Service::setAvail(false);
   else Service::setAvail(true);
 }//addBusService

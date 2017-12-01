@@ -48,7 +48,7 @@ public:
     bool displayAvailableService();
     bool addMoney();
     bool buyService();
-    bool checkout();
+    bool viewHistory();
     bool goBack();
     bool addService(int);
     bool addService();

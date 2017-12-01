@@ -98,6 +98,7 @@ void Service::addService()
 {
   string w;
   double x;
+    cin.ignore(1000,10);
   cout << "Please enter the name of your service: ";
   getline(cin, w);
   setName(w);
@@ -107,7 +108,7 @@ void Service::addService()
   setDesc(w);
   
   cout << "Location of service: ";
-  getline(cin, w); cin.ignore(1000, 10);
+  getline(cin, w); //cin.ignore(1000, 10);
   setLoc(w);
   
   cout << "How long this service takes to complete: ";
@@ -117,7 +118,7 @@ void Service::addService()
   cout << "Price: ";
   cin >> x;
   setPrice(x);
-
+    cin.ignore(1000, 10);
 }//addService
 
 //print service info (detailed)
