@@ -20,7 +20,7 @@ void Sqlitedata::createTable(string dataTitle, const map<string, string>& toCrea
 }
 
 vector<Savedata*> Sqlitedata::loadData(){
-    createTable(Users::name(), Users::toCreate());
+    createTable(Users::getType(), Users::toCreate());
     vector<Savedata*> userPrev;
     //Users* user = new Users("zhuo", "li", "gmail");//random load one, later will load from database
     //userPrev.push_back(user);

@@ -171,8 +171,21 @@ bool Manager::signIn(){
 
 
 
-bool Manager::buyMenu(){
-    
+bool Manager::buyMenu()
+{
+    for(Service* service: allService){
+        service->printServiceTable(1);
+    }
+  //ask the user what type of service they're interested in, display menu
+  
+  //output list of appropriate category of services
+  
+  //prompt user for sort method or select an index of a service on the list
+  
+  //output a detailed description of service of interest
+  
+  //buyer either purchases or returns to browsing
+
     return true;
 }
 
@@ -214,8 +227,15 @@ bool Manager::signOut(){
     return true;
 }
 
-bool Manager::displayAvailableService(){
-    return true;
+bool Manager::displayAvailableService()
+{
+  cout << "#    Service               Location                 Price" << endl;
+  cout << "-    -------               --------                 -----" << endl;
+  for(int i = 0; ; i++)
+  {
+    //object[i].printServiceTable(i);
+  }//for
+  return true;
 }
 
 bool Manager::addMoney(){
@@ -260,7 +280,7 @@ bool Manager::addService(int choice)
     case 4:
       //create a home object
       
-      //[NEWOBJECTNAME].addHomeObject();
+      //[NEWOBJECTNAME].addHomeService();
       return true;
     default:
       return false;

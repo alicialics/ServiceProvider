@@ -14,7 +14,6 @@ using namespace std;
 #include "Sqlitedata.h"
 #include "Demodata.h"
 
-void printTableHeader();
 
 int main(){
     Demodata dummyData;
@@ -27,7 +26,7 @@ int main(){
     
     manager.execute();
    
-    printTableHeader();
+    /*printTableHeader();
     //testingAutomotiveServiceClass
     AutomotiveService auto1("Car Wash", "High quality interior/exterior wash", "DVC Parking lot", 20, 10.00, -1, true, "All modern cars and motorcycles");
     auto1.printServiceTable(1); 
@@ -38,17 +37,12 @@ int main(){
   
     //testingBusinessServiceClass
     BusinessService bus1("Wedding Videography", "HD editing in 4k, burned to Blu Ray", "Your Wedding", 0, 550.00, -1, true, "Media Services");
-    bus1.printServiceTable(3);
+    bus1.printServiceTable(3);*/
   
     
     return 0;
     
 }//main
 
-void printTableHeader()
-{
-  cout << "#    Service               Location                 Price" << endl;
-  cout << "-    -------               --------                 -----" << endl;
-}//printTableHeader
 
 

@@ -19,6 +19,7 @@ class Service : public Savedata
     string dataTitle()const {return "Service";}
     map<string, string> toSave() const;
     static map<string, string> toCreate();
+    static string getType(){return "Service";}
   
     //Constructor
     Service(string, string, string, double, double, int, bool);

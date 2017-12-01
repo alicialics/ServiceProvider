@@ -33,6 +33,10 @@ void AutomotiveService::addAutoService()
   cout << "Please add all vehicle types for this service [cars, trucks, motorcycles, etc]: ";
   getline(cin, w); cin.ignore(1000, 10);
   setVclType(w);
+  cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to keep hidden from the marketplace." << endl;
+  getline(cin, w);
+  if (w == "cancel") Service::setAvail(false);
+  else Service::setAvail(true);
 }//addAutoService
 
 //print
