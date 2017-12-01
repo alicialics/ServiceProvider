@@ -77,6 +77,7 @@ void Manager::execute(){
         }
         cout << "!\n";
         map<string, string> convert;
+        
         for(int i = 0; i < currentStep->getActions().size(); i++){  //for loop to get all actions of current step
             cout << i + 1 << "." << currentStep->getActions()[i] << "\n";
             convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
@@ -180,9 +181,9 @@ bool Manager::signIn(){
 
 bool Manager::buyMenu()
 {
-    for(int i = 0; i < allService.size(); i++){
-        allService[i]->printService();
-    }
+    
+    
+    
     
     
     
@@ -227,12 +228,9 @@ bool Manager::signOut(){
 bool Manager::displayAvailableService()
 {
 
-    cout << "#    Service               Location                 Price" << endl;
-    cout << "-    -------               --------                 -----" << endl;
-    for(int i = 0; i < allService.size(); i++){
-        allService[i]->printServiceTable(i+1);
-    }
-  //for(int i = 0; ; i++)
+    
+    
+      //for(int i = 0; ; i++)
   //{
     //object[i].printServiceTable(i);
   //}//for
@@ -245,14 +243,26 @@ bool Manager::addMoney(){
 }
 
 bool Manager::buyService(){
+    cout << "#    Service               Location                 Price" << endl;
+    cout << "-    -------               --------                 -----" << endl;
+    for(int i = 0; i < allService.size(); i++){
+        allService[i]->printServiceTable(i+1);
+    }
+
+    
     int choice;
     cout << "choice:";
     cin>> choice;
     
+    allService[choice-1]->printService();
+    
+    //add a cout asking user if buying is ok before code below is executed
     allService[choice-1]->setBuyer(currentUser->getEmail());
     allService[choice-1]->setAvail(false);
     return true;
 }
+
+
 
 bool Manager::checkout(){
     return true;
