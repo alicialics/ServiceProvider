@@ -1,0 +1,328 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3BCA673E1FCA26EB00A51175 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67391FCA26EB00A51175 /* main.cpp */; };
+		3BCA673F1FCA26EB00A51175 /* Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA673A1FCA26EB00A51175 /* Manager.cpp */; };
+		3BCA67401FCA26EB00A51175 /* Service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA673B1FCA26EB00A51175 /* Service.cpp */; };
+		3BCA67411FCA26EB00A51175 /* Step.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA673C1FCA26EB00A51175 /* Step.cpp */; };
+		3BCA67421FCA26EB00A51175 /* Users.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA673D1FCA26EB00A51175 /* Users.cpp */; };
+		3BCA67451FCA281B00A51175 /* AutomotiveService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67431FCA281B00A51175 /* AutomotiveService.cpp */; };
+		3BCA67481FCA290500A51175 /* PersonalService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67461FCA290500A51175 /* PersonalService.cpp */; };
+		3BCA674B1FCA37EB00A51175 /* BusinessService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67491FCA37EB00A51175 /* BusinessService.cpp */; };
+		3BE5294F1FCC9B7B008D2CA9 /* Sqlitedata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BE5294E1FCC9B7B008D2CA9 /* Sqlitedata.cpp */; };
+		3BFF464A1FCF3E9F00732E51 /* HomeService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BFF46481FCF3E9F00732E51 /* HomeService.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3BCA67271FCA24D900A51175 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3BCA67291FCA24D900A51175 /* TermProjectAlicia */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TermProjectAlicia; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BCA67341FCA26DF00A51175 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
+		3BCA67351FCA26DF00A51175 /* Service.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Service.hpp; sourceTree = "<group>"; };
+		3BCA67361FCA26DF00A51175 /* Step.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Step.h; sourceTree = "<group>"; };
+		3BCA67371FCA26DF00A51175 /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
+		3BCA67391FCA26EB00A51175 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3BCA673A1FCA26EB00A51175 /* Manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Manager.cpp; sourceTree = "<group>"; };
+		3BCA673B1FCA26EB00A51175 /* Service.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Service.cpp; sourceTree = "<group>"; };
+		3BCA673C1FCA26EB00A51175 /* Step.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Step.cpp; sourceTree = "<group>"; };
+		3BCA673D1FCA26EB00A51175 /* Users.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Users.cpp; sourceTree = "<group>"; };
+		3BCA67431FCA281B00A51175 /* AutomotiveService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AutomotiveService.cpp; sourceTree = "<group>"; };
+		3BCA67441FCA281B00A51175 /* AutomotiveService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AutomotiveService.hpp; path = ../src/AutomotiveService.hpp; sourceTree = "<group>"; };
+		3BCA67461FCA290500A51175 /* PersonalService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PersonalService.cpp; sourceTree = "<group>"; };
+		3BCA67471FCA290500A51175 /* PersonalService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PersonalService.hpp; path = ../src/PersonalService.hpp; sourceTree = "<group>"; };
+		3BCA67491FCA37EB00A51175 /* BusinessService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BusinessService.cpp; sourceTree = "<group>"; };
+		3BCA674A1FCA37EB00A51175 /* BusinessService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BusinessService.hpp; path = ../src/BusinessService.hpp; sourceTree = "<group>"; };
+		3BE5294E1FCC9B7B008D2CA9 /* Sqlitedata.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sqlitedata.cpp; sourceTree = "<group>"; };
+		3BE529501FCC9B84008D2CA9 /* Sqlitedata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sqlitedata.h; sourceTree = "<group>"; };
+		3BE529511FCC9B84008D2CA9 /* Savedata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Savedata.h; sourceTree = "<group>"; };
+		3BE529521FCC9B84008D2CA9 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
+		3BFF46481FCF3E9F00732E51 /* HomeService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomeService.cpp; sourceTree = "<group>"; };
+		3BFF46491FCF3E9F00732E51 /* HomeService.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HomeService.hpp; path = ../src/HomeService.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3BCA67261FCA24D900A51175 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3BCA67201FCA24D800A51175 = {
+			isa = PBXGroup;
+			children = (
+				3BCA672B1FCA24D900A51175 /* TermProjectAlicia */,
+				3BCA672A1FCA24D900A51175 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3BCA672A1FCA24D900A51175 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BCA67291FCA24D900A51175 /* TermProjectAlicia */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3BCA672B1FCA24D900A51175 /* TermProjectAlicia */ = {
+			isa = PBXGroup;
+			children = (
+				3BCA67381FCA26EB00A51175 /* src */,
+				3BCA67331FCA26DF00A51175 /* include */,
+			);
+			path = TermProjectAlicia;
+			sourceTree = "<group>";
+		};
+		3BCA67331FCA26DF00A51175 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				3BCA67351FCA26DF00A51175 /* Service.hpp */,
+				3BCA67441FCA281B00A51175 /* AutomotiveService.hpp */,
+				3BCA674A1FCA37EB00A51175 /* BusinessService.hpp */,
+				3BFF46491FCF3E9F00732E51 /* HomeService.hpp */,
+				3BCA67471FCA290500A51175 /* PersonalService.hpp */,
+				3BCA67341FCA26DF00A51175 /* Manager.h */,
+				3BE529521FCC9B84008D2CA9 /* Data.h */,
+				3BE529501FCC9B84008D2CA9 /* Sqlitedata.h */,
+				3BE529511FCC9B84008D2CA9 /* Savedata.h */,
+				3BCA67361FCA26DF00A51175 /* Step.h */,
+				3BCA67371FCA26DF00A51175 /* Users.h */,
+			);
+			path = include;
+			sourceTree = SOURCE_ROOT;
+		};
+		3BCA67381FCA26EB00A51175 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				3BE5294E1FCC9B7B008D2CA9 /* Sqlitedata.cpp */,
+				3BCA67391FCA26EB00A51175 /* main.cpp */,
+				3BCA673C1FCA26EB00A51175 /* Step.cpp */,
+				3BCA673D1FCA26EB00A51175 /* Users.cpp */,
+				3BCA673A1FCA26EB00A51175 /* Manager.cpp */,
+				3BCA673B1FCA26EB00A51175 /* Service.cpp */,
+				3BCA67431FCA281B00A51175 /* AutomotiveService.cpp */,
+				3BCA67461FCA290500A51175 /* PersonalService.cpp */,
+				3BCA67491FCA37EB00A51175 /* BusinessService.cpp */,
+				3BFF46481FCF3E9F00732E51 /* HomeService.cpp */,
+			);
+			path = src;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3BCA67281FCA24D900A51175 /* TermProjectAlicia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BCA67301FCA24D900A51175 /* Build configuration list for PBXNativeTarget "TermProjectAlicia" */;
+			buildPhases = (
+				3BCA67251FCA24D900A51175 /* Sources */,
+				3BCA67261FCA24D900A51175 /* Frameworks */,
+				3BCA67271FCA24D900A51175 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TermProjectAlicia;
+			productName = TermProjectAlicia;
+			productReference = 3BCA67291FCA24D900A51175 /* TermProjectAlicia */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3BCA67211FCA24D800A51175 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = CS200;
+				TargetAttributes = {
+					3BCA67281FCA24D900A51175 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3BCA67241FCA24D800A51175 /* Build configuration list for PBXProject "TermProjectAlicia" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3BCA67201FCA24D800A51175;
+			productRefGroup = 3BCA672A1FCA24D900A51175 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3BCA67281FCA24D900A51175 /* TermProjectAlicia */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3BCA67251FCA24D900A51175 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BCA673E1FCA26EB00A51175 /* main.cpp in Sources */,
+				3BCA674B1FCA37EB00A51175 /* BusinessService.cpp in Sources */,
+				3BCA67411FCA26EB00A51175 /* Step.cpp in Sources */,
+				3BCA67401FCA26EB00A51175 /* Service.cpp in Sources */,
+				3BCA67421FCA26EB00A51175 /* Users.cpp in Sources */,
+				3BCA67451FCA281B00A51175 /* AutomotiveService.cpp in Sources */,
+				3BFF464A1FCF3E9F00732E51 /* HomeService.cpp in Sources */,
+				3BCA673F1FCA26EB00A51175 /* Manager.cpp in Sources */,
+				3BCA67481FCA290500A51175 /* PersonalService.cpp in Sources */,
+				3BE5294F1FCC9B7B008D2CA9 /* Sqlitedata.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3BCA672E1FCA24D900A51175 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3BCA672F1FCA24D900A51175 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3BCA67311FCA24D900A51175 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3BCA67321FCA24D900A51175 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3BCA67241FCA24D800A51175 /* Build configuration list for PBXProject "TermProjectAlicia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BCA672E1FCA24D900A51175 /* Debug */,
+				3BCA672F1FCA24D900A51175 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BCA67301FCA24D900A51175 /* Build configuration list for PBXNativeTarget "TermProjectAlicia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BCA67311FCA24D900A51175 /* Debug */,
+				3BCA67321FCA24D900A51175 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3BCA67211FCA24D800A51175 /* Project object */;
+}

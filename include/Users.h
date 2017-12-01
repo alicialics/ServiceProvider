@@ -1,18 +1,27 @@
 #include <string>
+#include <map>
+using namespace std;
+
+#include "Savedata.h"
 
 #ifndef Users_h
 #define Users_h
 
-class Users{
+class Users : public Savedata{
 private:
+    
     string first;
     string last;
-    int age;
+    string email;
 public:
-    Users(string, string, int);
-    string getFirst() const;
-    string getLast() const;
-    int getAge() const;
+    Users(string, string, string);
+    string getFirst() const {return first;}
+    string getLast() const{return last;}
+    string getEmail() const{return email;}
+    string dataTitle() const {return "Users";}
+    static string getType(){return "Users";}
+    map<string, string> toSave() const;
+    static map<string, string> toCreate(); //call static function without object
 };
 
 
