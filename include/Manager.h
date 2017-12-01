@@ -1,6 +1,10 @@
 #include <vector>
 using namespace std;
 
+#include "AutomotiveService.hpp"
+#include "BusinessService.hpp"
+#include "HomeService.hpp"
+#include "PersonalService.hpp"
 #include "Users.h"
 #include "Step.h"
 #include "Sqlitedata.h"
@@ -15,6 +19,14 @@ private:
     Step* currentStep; //pointer to current step
     vector<Users*> allUsers; //save all users
     vector<Service*> allService; //stores all currently offered services
+  
+/*   DO WE NEED THESE TO ALLOW USER TO BROWSE BY CATEGORY? OR IS THERE A GOOD WAY TO SEARCH THE allService VECTOR?
+vector<AutomotiveService*> autoService; //stores all the automotive services
+vector<BusinessService*> busService; //stores all the business services
+vector<HomeService*> homeService; //stores all the home services
+vector<PersonalService*> perService; ///stores all the personal services
+*/
+
     Users* currentUser; //pointer to const Users
     Data* data;
     

@@ -214,7 +214,7 @@ bool Manager::displayAvailableService()
   cout << "-    -------               --------                 -----" << endl;
   for(int i = 0; ; i++)
   {
-    //object[i].printServiceTable(i);
+    //allService<i>->printServiceTable(i);
   }//for
   return true;
 }
@@ -244,22 +244,24 @@ bool Manager::addService(int choice)
       //create a business object
       
       //fill in the attributes
-      //[NEWOBJECTNAME].addBusService();
+      //[NEWOBJECTNAME]->addBusService();
       return true;
     case 2:
       //create an automotive object
-      
-      //[NEWOBJECTNAME].addAutoService();
+      //AutomotiveService* aService = new AutomotiveService("", "", "", 0.0, 0.0, 0, false, " ", 0.0);
+      //aService->addAutoService();
+      //push aService into allService vector
+      //allService.push_back(aService);
       return true;
     case 3:
       //create a personal object
       
-      //[NEWOBJECTNAME].addPerService();
+      //[NEWOBJECTNAME]->addPerService();
       return true;
     case 4:
       //create a home object
       
-      //[NEWOBJECTNAME].addHomeService();
+      //[NEWOBJECTNAME]->addHomeService();
       return true;
     default:
       return false;
