@@ -8,6 +8,7 @@ class PersonalService: public Service
 {
   public:
     //constructor
+    PersonalService();
     PersonalService(string, string, string, double, double, int, bool, bool = false, string = "English");
   
     //getters
@@ -20,8 +21,9 @@ class PersonalService: public Service
     void addPerService();
   
     //print
-    void printPersonalService();
-  
+    void printSpecialService() const;
+    string serviceType(){return "PersonalService";}
+
   private:
     bool hasLicense;
     string language;

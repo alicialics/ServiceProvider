@@ -21,6 +21,9 @@ Manager::~Manager(){
     for(Users* oneUser : allUsers){
         delete oneUser;
     }
+    for(auto oneService : allService){
+        delete oneService;
+    }
 }
 
 bool Manager::createData(){
@@ -28,6 +31,8 @@ bool Manager::createData(){
     for(int i = 0; i < dataPrev.size(); i++){
         if(dataPrev[i]->dataTitle() == "Users"){
             allUsers.push_back(static_cast<Users*>(dataPrev[i])); //cast from base to derived object: Savedata to Users
+        }else if(dataPrev[i]->dataTitle() == "Service"){
+            allService.push_back(static_cast<Service*>(dataPrev[i]));
         }
     }
 
@@ -76,6 +81,7 @@ void Manager::execute(){
             cout << i + 1 << "." << currentStep->getActions()[i] << "\n";
             convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
         }
+        cout << endl;
         
         string action;
         cin >> action;
@@ -114,11 +120,25 @@ bool Manager::executeAction(string action){
         return createAccount();
     }else if(action == "signOut"){
         return signOut();
+    }else if(action == "buyMenu"){
+        return buyMenu();
+    }else if(action == "sellMenu"){
+        return sellMenu();
+    }else if(action == "buyService"){
+        return buyService();
+    }else if(action == "addService"){
+        return addService();
+    }else if(action == "viewMyService"){
+        return viewMyService();
+    }else if(action == "displayAvailableService"){
+        return displayAvailableService();
+    }else if(action == "displayServiceOption"){
+        //return displayServiceOption();
+    }else if(action == "goBack"){
+        return goBack();
     }
     return false;
 }
-
-
 
 bool Manager::createAccount(){
     cout << "Enter your firstName:";
@@ -133,7 +153,6 @@ bool Manager::createAccount(){
             return false;
         }
     }
-    
     Users* newUser = new Users(first, last, email); //create newuser 
     allUsers.push_back(newUser);
     currentUser = allUsers.back();
@@ -161,6 +180,12 @@ bool Manager::signIn(){
 
 bool Manager::buyMenu()
 {
+    for(int i = 0; i < allService.size(); i++){
+        allService[i]->printService();
+    }
+    
+    
+    
   //ask the user what type of service they're interested in, display menu
   
   //output list of appropriate category of services
@@ -170,32 +195,23 @@ bool Manager::buyMenu()
   //output a detailed description of service of interest
   
   //buyer either purchases or returns to browsing
+
     return true;
 }
 
 bool Manager::sellMenu()
 {
-    //output menu
-    cout << "What type of service are you offering? [or enter 99 to go back]" << endl << endl;
-    cout << "1. Business/Office Services (subject to fee)" << endl;
-    cout << "2. Automotive Services" << endl;
-    cout << "3. Personal Services" << endl;
-    cout << "4. Home Services" << endl << endl;
-  
-    //user selects choice
-    int choice = 98;
-    while (true)
-    {
-      cin >> choice;
-      if (choice == 99) break; //sentinel value
-      if (addService(choice) != true) return false;
-      else break;
-    }//while
-  
+    
+    
     return true;
 }
 
 bool Manager::viewMyService(){
+    for(Service* service : allService){
+        if(service->getBuyer() == currentUser->getEmail()){
+            service->printService();
+        }
+    }
     return true;
 }
 
@@ -210,12 +226,24 @@ bool Manager::signOut(){
 
 bool Manager::displayAvailableService()
 {
+<<<<<<< HEAD
   cout << "#    Service               Location                 Price" << endl;
   cout << "-    -------               --------                 -----" << endl;
   for(int i = 0; ; i++)
   {
     //allService<i>->printServiceTable(i);
   }//for
+=======
+    cout << "#    Service               Location                 Price" << endl;
+    cout << "-    -------               --------                 -----" << endl;
+    for(int i = 0; i < allService.size(); i++){
+        allService[i]->printServiceTable(i+1);
+    }
+  //for(int i = 0; ; i++)
+  //{
+    //object[i].printServiceTable(i);
+  //}//for
+>>>>>>> 2a0c6008291c7d4d7d1467947e64beb8971b64cc
   return true;
 }
 
@@ -224,6 +252,12 @@ bool Manager::addMoney(){
 }
 
 bool Manager::buyService(){
+    int choice;
+    cout << "choice:";
+    cin>> choice;
+    
+    allService[choice-1]->setBuyer(currentUser->getEmail());
+    allService[choice-1]->setAvail(false);
     return true;
 }
 
@@ -238,14 +272,29 @@ bool Manager::goBack(){
 
 bool Manager::addService(int choice)
 {
+    
+    if(choice == 1){
+        BusinessService* bus1 = new BusinessService();
+        bus1->addBusService();
+        
+        allService.push_back(bus1);
+    }
+    
+    
   switch (choice)
   {
     case 1:
+          
       //create a business object
       
       //fill in the attributes
+<<<<<<< HEAD
       //[NEWOBJECTNAME]->addBusService();
       return true;
+=======
+      //[NEWOBJECTNAME].addBusService();
+          return true;
+>>>>>>> 2a0c6008291c7d4d7d1467947e64beb8971b64cc
     case 2:
       //create an automotive object
       //AutomotiveService* aService = new AutomotiveService("", "", "", 0.0, 0.0, 0, false, " ", 0.0);
@@ -266,7 +315,27 @@ bool Manager::addService(int choice)
     default:
       return false;
   }//switch
+    
 }//addService
 
-
+bool Manager::addService(){
+    //output menu
+    cout << "What type of service are you offering? [or enter 99 to go back]" << endl << endl;
+    cout << "1. Business/Office Services (subject to fee)" << endl;
+    cout << "2. Automotive Services" << endl;
+    cout << "3. Personal Services" << endl;
+    cout << "4. Home Services" << endl << endl;
+    
+    //user selects choice
+    int choice = 98;
+    cin >> choice;
+    
+    if(choice == 1){
+        BusinessService* bus1 = new BusinessService();
+        bus1->addBusService();
+        
+        allService.push_back(bus1);
+    }
+    return true;
+}
 

@@ -1,10 +1,6 @@
-//
-//  Savedata.h
-//  project
-//
-//  Created by alicia li on 11/26/17.
-//  Copyright © 2017 alicia li. All rights reserved.
-//
+#include <map>
+using namespace std;
+
 
 #ifndef Savedata_h
 #define Savedata_h

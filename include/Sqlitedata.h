@@ -13,9 +13,10 @@
 class Sqlitedata : public Data{
 public:
     vector<Savedata*> loadData();
-    void createData(string, const map<string, string>&);
+    void createTable(string, const map<string, string>&);
     void saveData(Savedata*);
     void deleteData(Savedata*);
+    void saveAll(){}
 };
 
 #endif /* Sqlitedata_h */

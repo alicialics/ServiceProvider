@@ -9,6 +9,7 @@ using namespace std;
 
 class Users : public Savedata{
 private:
+    
     string first;
     string last;
     string email;
@@ -17,8 +18,8 @@ public:
     string getFirst() const {return first;}
     string getLast() const{return last;}
     string getEmail() const{return email;}
-    string dataTitle() const{return "Users";}
-    static string name(){return "Users";}
+    string dataTitle() const {return "Users";}
+    static string getType(){return "Users";}
     map<string, string> toSave() const;
     static map<string, string> toCreate(); //call static function without object
 };

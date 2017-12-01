@@ -9,6 +9,7 @@ class AutomotiveService: public Service
 {
   public:
     //constructor
+    AutomotiveService();
     AutomotiveService(string, string, string, double, double, int, bool, string = " ", double = 0.0);
   
     //setters
@@ -17,7 +18,8 @@ class AutomotiveService: public Service
     void addAutoService(); //user manually enters attributes
   
     //print
-    void printAutoService();
+    void printSpecialService() const;
+    string serviceType(){return "AutomotiveService";}
 
   private:
     string vehicleType;

@@ -6,6 +6,7 @@ using namespace std;
 #include "Service.hpp"
 
 //constructor
+HomeService::HomeService(){}
 HomeService::HomeService(string n, string des, string l, double dur, double p, int s, bool a, string x, bool y, bool z): Service(n, des, l, dur, p, s, a)
 {
   residenceType = x;
@@ -90,9 +91,9 @@ void HomeService::addHomeService()
 
 
 //print
-void HomeService::printHomeService()
+void HomeService::printSpecialService() const
 {
-  Service::printService();
+  //Service::printService();
   cout << "Type of Residences: " << residenceType << endl;
   cout << "Interior/Exterior: " << (intExt == true ? "Interior" : "Exterior") << endl;
   cout << "Permit Required: " << (permit == true ? "Yes" : "No") << endl;

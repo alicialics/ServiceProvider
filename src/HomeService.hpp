@@ -7,6 +7,7 @@
 class HomeService: public Service
 {
   public:
+    HomeService();
     HomeService(string, string, string, double, double, int, bool, string = "", bool = false, bool = false); //constructor
 
     //setters
@@ -21,7 +22,8 @@ class HomeService: public Service
     bool getPermit();
   
     //print
-    void printHomeService();
+    void printSpecialService() const;
+    string serviceType(){return "HomeService";}
 
   private:
     string residenceType;

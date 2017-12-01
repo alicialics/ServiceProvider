@@ -6,10 +6,13 @@ using namespace std;
 #include "Service.hpp"
 
 //constructor
+Service::Service(){}
 Service::Service(string n, string des, string l, double dur, double p, int s, bool a)
     :name(n), description(des), location(l), duration(dur), price(p), status(s), availability(a)
 {
+    buyer = string();
 }//constructor
+//we can change availability to a string buyer, if the service purchased, set buyer to user name.
 
 //setters
 void Service::setName(string x)
@@ -41,7 +44,23 @@ void Service::setAvail(bool x)
   availability = x;
 }//setAvail
 
+void Service::setBuyer(string x){
+    buyer = x;
+}
+
 //getters
+
+map<string, string> Service::toSave() const {
+    map<string, string> serviceData;
+    serviceData["Name"] = name;
+    serviceData["Description"] = description;
+    serviceData["Location"] = location;
+    serviceData["Duration"] = to_string(duration);
+    serviceData["Price"] = to_string(price);
+    
+    return  serviceData;
+}
+
 string Service::getName()
 {
   return name;
@@ -70,6 +89,10 @@ bool Service::getAvail()
 {
   return availability;
 }//getAvail
+
+string Service::getBuyer(){
+    return buyer;
+}
 
 void Service::addService()
 {
@@ -109,7 +132,11 @@ void Service::printService() const
   cout << "Price: $" << price << endl;
   cout.unsetf(ios::fixed|ios::showpoint);
   cout << "Availability: " << (availability == true ? "Yes" : "No" ) << endl;
+    this->printSpecialService();
 }//printService
+
+
+
 
 //print basic service details for browsing
 void Service::printServiceTable(int a) const

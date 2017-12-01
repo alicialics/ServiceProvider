@@ -6,11 +6,13 @@ using namespace std;
 #include "Service.hpp"
 
 //constructor
+AutomotiveService::AutomotiveService(){}
 AutomotiveService::AutomotiveService(string n, string des, string l, double dur, double p, int s, bool a, string vT, double pP): Service(n, des, l, dur, p, s, a)
 {
   vehicleType = vT;
   if (pP >= 0.0) priceForParts = pP;
     else cout << "Error- Price for Parts Cannot Be Negative." << endl;
+
 }
 
 //setters
@@ -40,8 +42,8 @@ void AutomotiveService::addAutoService()
 }//addAutoService
 
 //print
-void AutomotiveService::printAutoService()
+void AutomotiveService::printSpecialService() const
 {
-  Service::printService();
+  //Service::printService();
   cout << "Available for vehicle types: " << vehicleType << endl << endl;
 }//printAutoService
