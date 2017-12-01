@@ -16,13 +16,15 @@ class Service : public Savedata
     double getPrice();
     int getStatus();
     bool getAvail();
+    string getBuyer();
     string dataTitle()const {return "Service";}
     map<string, string> toSave() const;
     static map<string, string> toCreate();
-    static string getType(){return "Service";}
+    virtual string serviceType() = 0;
   
     //Constructor
     Service(string, string, string, double, double, int, bool);
+    virtual ~Service(){}
   
     //setters
     void setName(string);
@@ -32,11 +34,13 @@ class Service : public Savedata
     void setPrice(double);
     void setStatus(int);
     void setAvail(bool);
+    void setBuyer(string);
     void addService();
   
     //print Service Info
     void printService() const;
     void printServiceTable(int) const;
+
 
   private:
     string name;
@@ -46,7 +50,8 @@ class Service : public Savedata
     double price; //dollars
     int status = -1; //-1,0,1  not started, in progress, complete
     bool availability = false; //yes,no
-  
+    string buyer;//if buyer set, unavailable, else available
+    virtual void printSpecialService() const= 0;
 };
 
 

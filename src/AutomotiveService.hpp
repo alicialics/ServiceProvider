@@ -17,7 +17,8 @@ class AutomotiveService: public Service
     void addAutoService(); //user manually enters attributes
   
     //print
-    void printAutoService();
+    void printSpecialService() const;
+    string serviceType(){return "AutomotiveService";}
 
   private:
     string vehicleType;

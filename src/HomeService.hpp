@@ -21,7 +21,8 @@ class HomeService: public Service
     bool getPermit();
   
     //print
-    void printHomeService();
+    void printSpecialService() const;
+    string serviceType(){return "HomeService";}
 
   private:
     string residenceType;

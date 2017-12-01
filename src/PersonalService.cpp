@@ -59,9 +59,9 @@ string PersonalService::getLanguage()
 }//getLanguage
 
 //print
-void PersonalService::printPersonalService()
+void PersonalService::printSpecialService() const
 {
-  Service::printService();
+  //Service::printService();
   cout << "Licensed: " << (hasLicense == true ? "Yes" : "No") << endl;
   cout << "Language(s): " << language << endl << endl;
 }//printPersonalService

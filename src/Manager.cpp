@@ -21,6 +21,9 @@ Manager::~Manager(){
     for(Users* oneUser : allUsers){
         delete oneUser;
     }
+    for(auto oneService : allService){
+        delete oneService;
+    }
 }
 
 bool Manager::createData(){
@@ -173,8 +176,8 @@ bool Manager::signIn(){
 
 bool Manager::buyMenu()
 {
-    for(Service* service: allService){
-        service->printServiceTable(1);
+    for(int i = 0; i < allService.size(); i++){
+        allService[i]->printService();
     }
   //ask the user what type of service they're interested in, display menu
   
@@ -191,9 +194,6 @@ bool Manager::buyMenu()
 
 bool Manager::sellMenu()
 {
-    //cout << "choose 1 to see service option, choose 2 to
-    
-    //can put below into displayServiceOption()
     //output menu
     cout << "What type of service are you offering? [or enter 99 to go back]" << endl << endl;
     cout << "1. Business/Office Services (subject to fee)" << endl;
@@ -210,11 +210,12 @@ bool Manager::sellMenu()
       if (addService(choice) != true) return false;
       else break;
     }//while
-  
+    
     return true;
 }
 
 bool Manager::viewMyService(){
+    
     return true;
 }
 
@@ -229,12 +230,15 @@ bool Manager::signOut(){
 
 bool Manager::displayAvailableService()
 {
-  cout << "#    Service               Location                 Price" << endl;
-  cout << "-    -------               --------                 -----" << endl;
-  for(int i = 0; ; i++)
-  {
+    cout << "#    Service               Location                 Price" << endl;
+    cout << "-    -------               --------                 -----" << endl;
+    for(int i = 0; i < allService.size(); i++){
+        allService[i]->printServiceTable(i+1);
+    }
+  //for(int i = 0; ; i++)
+  //{
     //object[i].printServiceTable(i);
-  }//for
+  //}//for
   return true;
 }
 

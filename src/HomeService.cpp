@@ -90,9 +90,9 @@ void HomeService::addHomeService()
 
 
 //print
-void HomeService::printHomeService()
+void HomeService::printSpecialService() const
 {
-  Service::printService();
+  //Service::printService();
   cout << "Type of Residences: " << residenceType << endl;
   cout << "Interior/Exterior: " << (intExt == true ? "Interior" : "Exterior") << endl;
   cout << "Permit Required: " << (permit == true ? "Yes" : "No") << endl;

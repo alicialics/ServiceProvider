@@ -46,8 +46,8 @@ double BusinessService::calculateFee()
 }//calculateFee
 
 //print
-void BusinessService::printBusiness()
+void BusinessService::printSpecialService() const
 {
-  Service::printService();
+  //Service::printService();
   cout << "Business type: " << businessType << endl << endl;
 }//printBusiness

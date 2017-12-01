@@ -11,6 +11,7 @@ AutomotiveService::AutomotiveService(string n, string des, string l, double dur,
   vehicleType = vT;
   if (pP >= 0.0) priceForParts = pP;
     else cout << "Error- Price for Parts Cannot Be Negative." << endl;
+
 }
 
 //setters
@@ -40,8 +41,8 @@ void AutomotiveService::addAutoService()
 }//addAutoService
 
 //print
-void AutomotiveService::printAutoService()
+void AutomotiveService::printSpecialService() const
 {
-  Service::printService();
+  //Service::printService();
   cout << "Available for vehicle types: " << vehicleType << endl << endl;
 }//printAutoService

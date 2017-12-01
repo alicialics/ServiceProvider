@@ -18,8 +18,9 @@ class BusinessService: public Service
     double calculateFee(); //calculate the fee per sale
   
     //print
-    void printBusiness();
-    
+    void printSpecialService() const;
+    string serviceType(){return "BusinessService";}
+
   private:
     string businessType; //The type of business being offered (media services, secretary, accounting, etc)
     const double feePercentage = 8;

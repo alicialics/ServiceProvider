@@ -20,8 +20,9 @@ class PersonalService: public Service
     void addPerService();
   
     //print
-    void printPersonalService();
-  
+    void printSpecialService() const;
+    string serviceType(){return "PersonalService";}
+
   private:
     bool hasLicense;
     string language;

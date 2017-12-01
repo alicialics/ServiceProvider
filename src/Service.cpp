@@ -9,6 +9,7 @@ using namespace std;
 Service::Service(string n, string des, string l, double dur, double p, int s, bool a)
     :name(n), description(des), location(l), duration(dur), price(p), status(s), availability(a)
 {
+    buyer = string();
 }//constructor
 //we can change availability to a string buyer, if the service purchased, set buyer to user name.
 
@@ -41,6 +42,10 @@ void Service::setAvail(bool x)
 {
   availability = x;
 }//setAvail
+
+void Service::setBuyer(string x){
+    buyer = x;
+}
 
 //getters
 
@@ -84,6 +89,10 @@ bool Service::getAvail()
   return availability;
 }//getAvail
 
+string Service::getBuyer(){
+    return buyer;
+}
+
 void Service::addService()
 {
   string w;
@@ -122,7 +131,11 @@ void Service::printService() const
   cout << "Price: $" << price << endl;
   cout.unsetf(ios::fixed|ios::showpoint);
   cout << "Availability: " << (availability == true ? "Yes" : "No" ) << endl;
+    this->printSpecialService();
 }//printService
+
+
+
 
 //print basic service details for browsing
 void Service::printServiceTable(int a) const
