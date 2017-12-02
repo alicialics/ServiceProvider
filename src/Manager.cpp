@@ -45,12 +45,9 @@ bool Manager::setSteps(){
     0 createAccount 1
     1 buyMenu 2
     1 sellMenu 3
-    1 viewMyService 1
-    1 withdrawMoney 1
     1 signOut 0
     2 displayAvailableService 2
     2 buyService 2
-    2 addMoney 2
     2 viewHistory 1
     2 goBack 1
     3 displayServiceOption 3
