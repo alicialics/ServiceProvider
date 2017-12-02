@@ -17,8 +17,7 @@ class Service : public Savedata
     int getStatus();
     bool getAvail();
     string getBuyer();
-    string dataTitle()const {return "Service";}
-    map<string, string> toSave() const;
+    map<string, string> toSave() const;//base map to be call in the sub class toSave(called by pointer to base class)
     static map<string, string> toCreate();
     virtual string serviceType() = 0;
   

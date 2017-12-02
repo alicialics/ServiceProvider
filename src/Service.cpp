@@ -6,13 +6,12 @@ using namespace std;
 #include "Service.hpp"
 
 //constructor
-Service::Service(){}
+Service::Service(){}//an empty default base constructor so that subclass empty object can be created with base class pointer
 Service::Service(string n, string des, string l, double dur, double p, int s, bool a)
     :name(n), description(des), location(l), duration(dur), price(p), status(s), availability(a)
 {
     buyer = string();
 }//constructor
-//we can change availability to a string buyer, if the service purchased, set buyer to user name.
 
 //setters
 void Service::setName(string x)
@@ -50,15 +49,24 @@ void Service::setBuyer(string x){
 
 //getters
 
-map<string, string> Service::toSave() const {
+map<string, string> Service::toSave() const{
     map<string, string> serviceData;
     serviceData["Name"] = name;
     serviceData["Description"] = description;
     serviceData["Location"] = location;
     serviceData["Duration"] = to_string(duration);
     serviceData["Price"] = to_string(price);
-    
     return  serviceData;
+}
+
+map<string, string> Service::toCreate(){
+    map<string, string> serviceTable;
+    serviceTable["Name"] = "string";
+    serviceTable["Description"] = "string";
+    serviceTable["Location"] = "string";
+    serviceTable["Duration"] = "double";
+    serviceTable["Price"] = "double";
+    return  serviceTable;
 }
 
 string Service::getName()

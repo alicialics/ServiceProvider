@@ -12,6 +12,10 @@ class PersonalService: public Service
     PersonalService(string, string, string, double, double, int, bool, bool = false, string = "English");
   
     //getters
+    string dataTitle() const{return "PersonalService";}
+    map<string, string> toSave() const;
+    static map<string, string> toCreate();//for sqlitedata
+
     bool getLicense();
     string getLanguage();
     

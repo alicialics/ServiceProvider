@@ -15,6 +15,22 @@ HomeService::HomeService(string n, string des, string l, double dur, double p, i
 }//constructor
 
 //getters
+map<string, string> HomeService::toSave() const{
+    map<string, string> HomeData = Service::toSave(); //get base class data
+    HomeData["ResidenceType"] = residenceType;
+    HomeData["IntExt"] = intExt;
+    HomeData["Permit"] = permit;
+    return HomeData;
+}
+
+map<string, string> HomeService::toCreate() {
+    map<string, string> HomeTable = Service::toCreate(); //get base class data
+    HomeTable["ResidenceType"] = "string";
+    HomeTable["IntExt"] = "bool";
+    HomeTable["Permit"] = "bool";
+    return HomeTable;
+}
+
 string HomeService::getResType()
 {
   return residenceType;

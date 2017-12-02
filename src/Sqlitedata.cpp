@@ -16,10 +16,11 @@ void Sqlitedata::createTable(string dataTitle, const map<string, string>& toCrea
         ss << ", " << i->first << " " << i->second;
     }
     ss << ")" ;
-    //cout << ss.str() << endl;
+    cout << ss.str() << endl;
 }
 
 vector<Savedata*> Sqlitedata::loadData(){
+    
     createTable(Users::getType(), Users::toCreate());
     vector<Savedata*> userPrev;
     //Users* user = new Users("zhuo", "li", "gmail");//random load one, later will load from database

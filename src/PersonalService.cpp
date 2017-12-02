@@ -50,6 +50,20 @@ void PersonalService::addPerService()
 }//addPerService
 
 //getters
+map<string, string> PersonalService::toSave() const{
+    map<string, string> PersonalService = Service::toSave(); //get base class data
+    PersonalService["HasLicense"] = hasLicense;
+    PersonalService["Languaget"] = language;
+    return PersonalService;
+}
+
+map<string, string> PersonalService::toCreate() {
+    map<string, string> PersonalTable = Service::toCreate(); //get base class data
+    PersonalTable["HasLicense"] = "bool";
+    PersonalTable["Languaget"] = "string";
+    return PersonalTable;
+}
+
 bool PersonalService::getLicense()
 {
   return hasLicense;

@@ -31,6 +31,19 @@ void BusinessService::addBusService()
   else Service::setAvail(true);
 }//addBusService
 
+
+map<string, string> BusinessService::toSave() const{
+    map<string, string> BusinessData = Service::toSave(); //get base class data
+    BusinessData["BusinessType"] = businessType;
+    return BusinessData;
+}
+
+map<string, string> BusinessService::toCreate(){
+    map<string, string> BusinessTable = Service::toCreate(); //get base class data
+    BusinessTable["BusinessType"] = "string";
+    return BusinessTable;
+}
+
 string BusinessService::getBusinessType()
 {
   return businessType;

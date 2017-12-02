@@ -17,6 +17,10 @@ class HomeService: public Service
     void addHomeService();
     
     //getters
+    string dataTitle() const{return "HomeService";}
+    map<string, string> toSave() const;
+    static map<string, string> toCreate();//for sqlitedata
+
     string getResType();
     bool getIntExt();
     bool getPermit();

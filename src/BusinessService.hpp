@@ -14,6 +14,10 @@ class BusinessService: public Service
     BusinessService(string, string, string, double, double, int, bool, string = ""); //constructor
     void setBusinessType(string); //setter
     void addBusService(); //user sets object attributes manually
+    string dataTitle() const{return "BusinessService";}
+    map<string, string> toSave() const;
+    static map<string, string> toCreate();//for sqlitedata
+
     string getBusinessType(); //getter
     double getFeePercentage(); //getter
     double calculateFee(); //calculate the fee per sale

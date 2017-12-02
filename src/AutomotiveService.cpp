@@ -14,7 +14,20 @@ AutomotiveService::AutomotiveService(string n, string des, string l, double dur,
     else cout << "Error- Price for Parts Cannot Be Negative." << endl;
 
 }
+//getters for sqlitedata
+map<string, string> AutomotiveService::toSave() const{
+    map<string, string> autotiveData = Service::toSave(); //get base class data
+    autotiveData["VehicleType"] = vehicleType;
+    autotiveData["VehicleType"] = priceForParts;
+    return autotiveData;
+}
 
+map<string, string> AutomotiveService::toCreate(){
+    map<string,string> automotiveTable = Service::toCreate();
+    automotiveTable["VehicleType"] = "string";
+    automotiveTable["VehicleType"] = "double";
+    return automotiveTable;
+}
 //setters
 void AutomotiveService::setVclType(string w)
 {
