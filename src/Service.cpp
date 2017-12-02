@@ -1,28 +1,36 @@
 //  Service.cpp
-#include <iomanip>
-#include <iostream>
-using namespace std;
 
 #include "Service.hpp"
 
 //constructor
-Service::Service(){}//an empty default base constructor so that subclass empty object can be created with base class pointer
-Service::Service(string n, string des, string l, double dur, double p, int s, bool a)
-    :name(n), description(des), location(l), duration(dur), price(p), status(s), availability(a)
+Service::Service(){//an empty default base constructor so that subclass empty object can be created with base class pointer
+	status = -1;
+	availability = false;
+}
+Service::Service(const string& n, const string& des, const string& l,const double& dur, const double&  p, const int& s, const bool& a)
+	:Service()
 {
+	name = n;
+	description = des;
+	location = l;
+	duration = dur;
+	price = p;
+	status = s;
+	availability = a;
+
     buyer = string();
 }//constructor
 
 //setters
-void Service::setName(string x)
+void Service::setName(const string& x)
 {
   name = x;
 }//setName
-void Service::setDesc(string x)
+void Service::setDesc(const string& x)
 {
   description = x;
 }//setDesc
-void Service::setLoc(string x)
+void Service::setLoc(const string& x)
 {
   location = x;
 }//setLoc
@@ -43,7 +51,7 @@ void Service::setAvail(bool x)
   availability = x;
 }//setAvail
 
-void Service::setBuyer(string x){
+void Service::setBuyer(const string& x){
     buyer = x;
 }
 
@@ -106,7 +114,6 @@ void Service::addService()
 {
   string w;
   double x;
-    cin.ignore(1000,10);
   cout << "Please enter the name of your service: ";
   getline(cin, w);
   setName(w);
@@ -116,17 +123,18 @@ void Service::addService()
   setDesc(w);
   
   cout << "Location of service: ";
-  getline(cin, w); //cin.ignore(1000, 10);
+  getline(cin, w);
   setLoc(w);
   
   cout << "How long this service takes to complete: ";
-  cin >> x;
+  getline(cin, w);
+  stringstream(w) >> x;
   setDur(x);
   
   cout << "Price: ";
-  cin >> x;
+  getline(cin, w);
+  stringstream(w) >> x;
   setPrice(x);
-    cin.ignore(1000, 10);
 }//addService
 
 //print service info (detailed)

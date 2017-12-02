@@ -1,9 +1,13 @@
 //  Service.hpp
-
-#include "Savedata.h"
-
 #ifndef Service_hpp
 #define Service_hpp
+
+#include "Savedata.h"
+#include <string>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+using namespace std;
 
 class Service : public Savedata
 {
@@ -23,18 +27,18 @@ class Service : public Savedata
   
     //Constructor
     Service();
-    Service(string, string, string, double, double, int, bool);
+    Service(const string&, const string&, const string&, const double&, const double&,const int&, const bool&);
     virtual ~Service(){}
   
     //setters
-    void setName(string);
-    void setDesc(string);
-    void setLoc(string);
+    void setName(const string&);
+    void setDesc(const string&);
+    void setLoc(const string&);
     void setDur(double);
     void setPrice(double);
     void setStatus(int);
     void setAvail(bool);
-    void setBuyer(string);
+    void setBuyer(const string&);
     void addService();
   
     //print Service Info
@@ -48,8 +52,8 @@ class Service : public Savedata
     string location;
     double duration; //minutes
     double price; //dollars
-    int status = -1; //-1,0,1  not started, in progress, complete
-    bool availability = false; //yes,no
+    int status; //-1,0,1  not started, in progress, complete
+    bool availability; //yes,no
     string buyer;//if buyer set, unavailable, else available
     virtual void printSpecialService() const= 0;
 };

@@ -4,7 +4,7 @@
 #define AutomotiveService_hpp
 
 #include "Service.hpp"
-
+#include <string>
 class AutomotiveService: public Service
 {
   public:
