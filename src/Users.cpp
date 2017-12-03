@@ -5,16 +5,13 @@
 #include <map>
 using namespace std;
 
-
 #include "Users.h"
-
-
 
 Users::Users(string _first, string _last, string _email)
 :first(_first),last(_last),email(_email)
 {
-    
 }
+
 map<string, string> Users::toSave() const{
     map<string, string> userData;
     userData["FirstName"] = first;

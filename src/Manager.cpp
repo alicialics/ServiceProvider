@@ -11,12 +11,13 @@ using namespace std;
 #include "PersonalService.hpp"
 #include "Service.hpp"
 
-
+//constructor
 Manager::Manager(Data* _data){
     currentUser = nullptr;
     data = _data;
 }
 
+//destructor
 Manager::~Manager(){
     for(Users* oneUser : allUsers){
         delete oneUser;
@@ -28,13 +29,20 @@ Manager::~Manager(){
 
 bool Manager::createData(){
     auto dataPrev = data->loadData();
-    for(int i = 0; i < dataPrev.size(); i++){
-        if(dataPrev[i]->dataTitle() == "Users"){
+    for(int i = 0; i < dataPrev.size(); i++)
+    {
+        if(dataPrev[i]->dataTitle() == "Users")
+        {
             allUsers.push_back(static_cast<Users*>(dataPrev[i])); //cast from base to derived object: Savedata to Users
-        }else if(dataPrev[i]->dataTitle() == "Service"){
+            cout << "All user objects were pushed into vector" << endl;
+        }//if
+//THIS CODE BELOW NEVER EXECUTES
+        else if(dataPrev[i]->dataTitle() == "Service")
+        {
             allService.push_back(static_cast<Service*>(dataPrev[i]));
-        }
-    }
+            cout << "All service objects were pushed into vector" << endl;
+        }//elseIf
+    }//for
 
     return true;
 }
@@ -66,51 +74,69 @@ bool Manager::setSteps(){
 }
 
 
-void Manager::execute(){
-    while(true){
-        cout << "Hello";
-        if(currentUser){
-            cout <<" " + currentUser->getFirst();
-        }
-        cout << "!\n";
-        map<string, string> convert;
+void Manager::execute()
+{
+    //output initial greeting upon sign in
+    cout << "Hello";
+    if(currentUser)
+    {
+      cout <<" " + currentUser->getFirst();
+    }//if
+    cout << "!\n" << endl;
+
+    //output the menu
+    while(true)
+    {
+      /*cout << "Hello";
+      if(currentUser){
+        cout <<" " + currentUser->getFirst();
+      }
+      cout << "!\n" << endl;*/
+      map<string, string> convert;
+      
+      //get all actions of current step in the process
+      for(int i = 0; i < currentStep->getActions().size(); i++){
+        cout << i + 1 << "." << currentStep->getActions()[i] << "\n";
+        convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
+      }
+      cout << endl;
+      
+      //user selects their choice of what to do
+      string action;
+      cin >> action;
         
-        for(int i = 0; i < currentStep->getActions().size(); i++){  //for loop to get all actions of current step
-            cout << i + 1 << "." << currentStep->getActions()[i] << "\n";
-            convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
-        }
-        cout << endl;
+      if (action == "exit")
+      {
+        data->saveAll();
+        cout << "Bye!" << endl << endl;
+        break;
+      }
+      
+      if(convert.find(action) != convert.end()){ //if user enter number action
+        action = convert[action];  //convert number to alphabet action
+      }
         
-        string action;
-        cin >> action;
-        
-        if (action == "exit") {
-            data->saveAll();
-            cout << "Bye!" << endl;
-            break;
-        }
-        
-        if(convert.find(action) != convert.end()){ //if user enter number action
-            action = convert[action];  //convert number to alphabet action
-        }
-        
-        if(currentStep->nextStep(action) != nullptr){   //if input is correct
-            if(executeAction(action)){
-                currentStep = currentStep->nextStep(action);    //goes to next step
-            }else{
-                cout << "Try again." << endl;
-            }
-            
-        }else{
-            cout << "wrong input" << endl;
-        }
-    
-    }
-}
+      if(currentStep->nextStep(action) != nullptr)   //if input is correct
+      {
+        if(executeAction(action))
+        {
+          currentStep = currentStep->nextStep(action);    //goes to next step
+        }//ifInner
+        else
+        {
+          cout << "Try again." << endl << endl;
+        }//else
+      }//if
+      else
+      {
+        cout << "wrong input" << endl << endl;
+      }//else
+    }//while
+}//execute
 
 
 bool Manager::executeAction(string action){
-    cout << "I'm executing " << action << endl;
+    cout << "I'm executing " << action << endl << endl;
     
     if(action == "signIn"){
         return signIn();
@@ -134,64 +160,69 @@ bool Manager::executeAction(string action){
         return viewHistory();
     }else if(action == "displayServiceOption"){
         //return displayServiceOption();
-    }else if(action == "goBack"){
+    }else if(action == "goBack"){ cout << "MAIN MENU" << endl;
         return goBack();
     }
+    cout << endl;
     return false;
 }
 
 bool Manager::createAccount(){
-    cout << "Enter your firstName:";
+    cout << "Enter your firstName: ";
     string first, last, email;
     cin >> first;
-    cout << "Enter your lastName:";
+    cout << "Enter your lastName: ";
     cin >> last;
-    cout <<  "Enter your email:";
-    cin >> email;
-    for(Users* user : allUsers){
-        if(user->getEmail() == email){
-            return false;
-        }
-    }
+    cout <<  "Enter your email: ";
+    cin >> email; cout << endl;
+    for(Users* user : allUsers)
+    {
+      if(user->getEmail() == email) return false; //if this email already exists, return false
+    }//for
+  
+    //create a new user object and push into users vector
     Users* newUser = new Users(first, last, email); //create newuser 
     allUsers.push_back(newUser);
     currentUser = allUsers.back();
     
     data->saveData(currentUser);
+  
+    //welcome the new user
+    cout << "Welcome,";
+    if(currentUser)
+    {
+      cout <<" " + currentUser->getFirst();
+    }//if
+    cout << "!\n" << endl;
     
     return true;
 }
 
-
 bool Manager::signIn(){
-    cout << "Enter your email:\n";
+    cout << "Enter your email: ";
     string email;
-    cin >> email;
+    cin >> email; cin.ignore(1000, 10);
+    cout << endl;
     for(Users* user : allUsers){  //reference not copy of each user
-        if(user->getEmail() == email){
+        if(user->getEmail() == email)
+        {
             currentUser = user;
+            cout << "Welcome";
+            if(currentUser){
+            cout <<", " + currentUser->getFirst();
+        }
+        cout << "!\n" << "What would you like to do?\n" << endl << "MAIN MENU" << endl;
+
             return true;
         }
     }
     return false;
 }
 
-
-
 bool Manager::buyMenu()
 {
-
-  //ask the user what type of service they're interested in, display menu
-  
-  //output list of appropriate category of services
-  
-  //prompt user for sort method or select an index of a service on the list
-  
-  //output a detailed description of service of interest
-  
-  //buyer either purchases or returns to browsing
-
-    return true;
+  cout << "Welcome to the buy menu. Please select one of the options below:" << endl;
+  return true;
 }
 
 bool Manager::sellMenu()
@@ -221,19 +252,15 @@ bool Manager::signOut(){
 
 bool Manager::displayAvailableService()
 {
-
-
-
-    cout << "#    Service               Location                 Price" << endl;
-    cout << "-    -------               --------                 -----" << endl;
-    for(int i = 0; i < allService.size(); i++){
+    cout << "All Services" << endl;
+    cout << "------------" << endl << endl;
+    cout << "#    Service               Location                 Price       Available?" << endl;
+    cout << "-    -------               --------                 -----       ----------" << endl;
+    for(int i = 0; i < allService.size(); i++)
+    {
         allService[i]->printServiceTable(i+1);
-    }
-  //please select a service or go back
-  //user inputs an index number
-  //output the detailed page of details for the service
-  //prompt user to either add to cart or go back to the menu
-
+    }//for
+    cout << endl;
   return true;
 }
 
@@ -242,67 +269,108 @@ bool Manager::addMoney(){
 }
 
 
-bool Manager::buyService(){
+bool Manager::buyService()
+{
     //Display the list of available services
-    cout << "#    Service               Location                 Price" << endl;
-    cout << "-    -------               --------                 -----" << endl;
-    for(int i = 0; i < allService.size(); i++)
-    {
-        allService[i]->printServiceTable(i+1);
-    }//for
+    displayAvailableService();
 
     //User enters the index number of the service they want in the list above
-
-    
     int choice;
-    cout << "choice:";
-    cin >> choice;
-    
+    cout << "Which service would you like to choose? [or enter -99 to go back]: ";
+    cin >> choice; cin.ignore(1000, 10); cout << endl;
+    if(choice == -99) return false;
+  
+    //details about the service they selected are printed
     allService[choice-1]->printService();
     
-    //add a cout asking user if buying is ok before code below is executed
-    allService[choice-1]->setBuyer(currentUser->getEmail());
-    allService[choice-1]->setAvail(false);
+    //prompt the user to buy the service or go back to the menu
+    char yn = 'x';
+    cout << "Would you like to buy this service? [Y/N]: ";
+    while (cin >> yn)
+    {
+      //cout << "Would you like to buy this service? [Y/N]: ";
+      try
+      {
+        if (toupper(yn) == 'Y')
+        {
+          //if service unavailable reject
+          if (allService[choice-1]->getAvail() == false) throw 666;
+          //execute the buy option
+          allService[choice-1]->setBuyer(currentUser->getEmail());
+          allService[choice-1]->setAvail(false);
+          break;
+        }//if
+        if (toupper(yn) == 'N') break;
+        else throw yn;
+      }//try
+      catch (int)
+      {
+        cout << endl << "Sorry, this service is unavailable!" << endl << endl;
+        break;
+      }//catch
+      catch (char)
+      {
+        cout << "Invalid Entry. You must enter either 'y' to buy the service or 'n' to go back." << endl << endl;
+        cout << "Would you like to buy this service? [Y/N]: ";
+      }//catch
+    }//while
+    cout << endl << "You have just successfully puchased the ";
+    cout << allService[choice-1]->getName() << " service." << endl;
+    cout << endl << "BUY MENU" << endl;
+    cin.ignore(1000, 10);
+
     return true;
-}
+}//buyService
 
 
 
-bool Manager::viewHistory(){
-    //new index to print out table
-    int index = 1;
-    for(Service* service : allService){
-        if(service->getBuyer() == currentUser->getEmail()){
-            service->printServiceTable(index);
-            index++;
-        }
-    
-    }
-    int choice;
-    cout << "detail?";
-    cin >> choice;
-    cin.ignore(1000,10);
-    int index2 = 1;
-    for(Service* service : allService){
-        if(service->getBuyer() == currentUser->getEmail()){
-            if(index2 == choice){
-                service->printService();
-            }
-            index2++;
-            
-        }
-        
-    }
-    
-    
-    return true;
-}
+bool Manager::viewHistory()
+{
+  //new index to print out table
+  int index = 1;
+  
+  //print out the table of previously purchased services
+    cout << "PURCHASE HISTORY" << endl << endl;
+    //cout << "----------------" << endl << endl;
+    cout << "#    Service               Location                 Price       Available?" << endl;
+    cout << "-    -------               --------                 -----       ----------" << endl;
+  for(Service* service : allService)
+  {
+    if(service->getBuyer() == currentUser->getEmail())
+    {
+      service->printServiceTable(index);
+      index++;
+    }//if
+  }//for
+  
+  //user is prompted to view details of any of the services in their history
+  int choice;
+  string buf;
+  cout << "Enter a service number to view details, or -99 to return: ";
+  cin >> buf; choice = atoi(buf.c_str()); cin.ignore(1000, 10);
+  cout << endl;
+  if (choice == -99){cout << endl << "MAIN MENU" << endl; return true;}
+  int index2 = 1;
+  for(Service* service : allService)
+  {
+    if(service->getBuyer() == currentUser->getEmail())
+    {
+      if(index2 == choice)
+      {
+        service->printService();
+      }//ifInner
+      index2++;
+    }//ifOuter
+  }//for
+  return true;
+}//viewHistory
 
 bool Manager::goBack(){
     return true;
 }
 
-bool Manager::addService(){
+bool Manager::addService()
+{
     //output menu
     cout << "What type of service are you offering? [or enter 99 to go back]" << endl << endl;
     cout << "1. Business/Office Services (subject to fee)" << endl;
@@ -313,62 +381,44 @@ bool Manager::addService(){
     //user selects choice
     int choice = 98;
     cin >> choice;
-    
-    if(choice == 1){
-        BusinessService* bus1 = new BusinessService();
-        bus1->addBusService();
-        
-        allService.push_back(bus1);
-    }
+    if (choice == 99)
+    {
+      cout << "MAIN MENU" << endl;
+      return true;
+    }//if
+  
+    //add a new business service object
+    if(choice == 1)
+    {
+      BusinessService* bus1 = new BusinessService();
+      bus1->addBusService();
+      allService.push_back(bus1);
+    }//ifOne
+  
+    //add a new automotive service object
+    if(choice == 2)
+    {
+      AutomotiveService* auto1 = new AutomotiveService();
+      auto1->addAutoService();
+      allService.push_back(auto1);
+    }//ifTwo
+  
+    //add a new personal service object
+    if(choice == 3)
+    {
+      PersonalService* per1 = new PersonalService();
+      per1->addPerService();
+      allService.push_back(per1);
+    }//ifThree
+  
+    //add a new home service objects
+    if(choice == 4)
+    {
+      HomeService* home1 = new HomeService();
+      home1->addHomeService();
+      allService.push_back(home1);
+    }//ifFour
+  
     return true;
-}
-
-bool Manager::addService(int choice)
-{
-    
-    if(choice == 1){
-        BusinessService* bus1 = new BusinessService();
-        bus1->addBusService();
-        
-        allService.push_back(bus1);
-    }
-    
-    
-  switch (choice)
-  {
-    case 1:
-          
-      //create a business object
-      
-      //fill in the attributes
-
-      //[NEWOBJECTNAME]->addBusService();
-      return true;
-
-      //[NEWOBJECTNAME].addBusService();
-          return true;
-
-    case 2:
-      //create an automotive object
-      //AutomotiveService* aService = new AutomotiveService("", "", "", 0.0, 0.0, 0, false, " ", 0.0);
-      //aService->addAutoService();
-      //push aService into allService vector
-      //allService.push_back(aService);
-      return true;
-    case 3:
-      //create a personal object
-      
-      //[NEWOBJECTNAME]->addPerService();
-      return true;
-    case 4:
-      //create a home object
-      
-      //[NEWOBJECTNAME]->addHomeService();
-      return true;
-    default:
-      return false;
-  }//switch
-    
 }//addService
-
 

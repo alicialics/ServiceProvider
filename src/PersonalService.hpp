@@ -9,7 +9,7 @@ class PersonalService: public Service
   public:
     //constructor
     PersonalService();
-    PersonalService(string, string, string, double, double, int, bool, bool = false, string = "English");
+    PersonalService(string, string, string, double, double, bool, bool = false, string = "English");
   
     //getters
     string dataTitle() const{return "PersonalService";}

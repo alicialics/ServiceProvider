@@ -8,7 +8,7 @@ using namespace std;
 
 //constructor
 BusinessService::BusinessService(){}
-BusinessService::BusinessService(string n, string des, string l, double dur, double p, int s, bool a, string c): Service(n, des, l, dur, p, s, a)
+BusinessService::BusinessService(string n, string des, string l, double dur, double p, bool a, string c): Service(n, des, l, dur, p, a)
 {
   businessType = c;
 }//constructor
@@ -23,10 +23,10 @@ void BusinessService::addBusService()
   Service::addService();
   string w;
   cout << "What type of business service is being offered? (Examples: Secretary, Accounting, Media, Legal): ";
-  getline(cin, w); cin.ignore(1000, 10);
+  getline(cin, w);
   setBusinessType(w);
   cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to keep hidden from the marketplace." << endl;
-  getline(cin, w); cin.ignore(1000, 10);
+  getline(cin, w); cout << endl;
   if (w == "cancel") Service::setAvail(false);
   else Service::setAvail(true);
 }//addBusService

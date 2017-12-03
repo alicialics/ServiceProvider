@@ -10,7 +10,7 @@ class AutomotiveService: public Service
   public:
     //constructor
     AutomotiveService();
-    AutomotiveService(string, string, string, double, double, int, bool, string = " ", double = 0.0);
+    AutomotiveService(string, string, string, double, double, bool, string = " ", double = 0.0);
   
     //getters
     map<string, string> toSave() const;//for sqlitedata
