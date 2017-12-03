@@ -6,12 +6,12 @@ using namespace std;
 #define Savedata_h
 class Savedata{
 private:
-    int id;
+    long long id;
 public:
     virtual string dataTitle() const= 0;
     virtual map<string, string> toSave() const = 0;
-    int getId() const{return id;}
-    void setId(int _id){id = _id;}
+    long long getId() const{return id;}
+    void setId(long long _id){id = _id;}
     
 };
 

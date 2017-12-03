@@ -8,10 +8,16 @@
 #include "Data.h"
 #include "Savedata.h"
 
+#include <stdio.h>
+#include <sqlite3.h>
+
 #ifndef Sqlitedata_h
 #define Sqlitedata_h
 class Sqlitedata : public Data{
+private:
+    sqlite3 *db; //pointer to database
 public:
+    Sqlitedata();
     vector<Savedata*> loadData();
     void createTable(string, const map<string, string>&);
     void saveData(Savedata*);
