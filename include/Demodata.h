@@ -10,8 +10,10 @@
 
 #ifndef Demodata_h
 #define Demodata_h
-class Demodata : public Data{
-public:
+
+class Demodata : public Data
+{
+  public:
     vector<Savedata*> loadData();
     void saveData(Savedata*){}
     void saveAll(){}

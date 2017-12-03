@@ -7,7 +7,7 @@ using namespace std;
 
 //constructor
 AutomotiveService::AutomotiveService(){}
-AutomotiveService::AutomotiveService(string n, string des, string l, double dur, double p, int s, bool a, string vT, double pP): Service(n, des, l, dur, p, s, a)
+AutomotiveService::AutomotiveService(string n, string des, string l, double dur, double p, bool a, string vT, double pP): Service(n, des, l, dur, p, a)
 {
   vehicleType = vT;
   if (pP >= 0.0) priceForParts = pP;
@@ -46,12 +46,13 @@ void AutomotiveService::addAutoService()
   string w;
   Service::addService();
   cout << "Please add all vehicle types for this service [cars, trucks, motorcycles, etc]: ";
-  getline(cin, w); cin.ignore(1000, 10);
+  getline(cin, w); 
   setVclType(w);
   cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to keep hidden from the marketplace." << endl;
-  getline(cin, w);
+  getline(cin, w); cout << endl;
   if (w == "cancel") Service::setAvail(false);
   else Service::setAvail(true);
+  cout << "MAIN MENU" << endl;
 }//addAutoService
 
 //print

@@ -5,11 +5,12 @@ using namespace std;
 
 #ifndef Step_h
 #define Step_h
-class Step{
-private:
+class Step
+{
+  private:
     map<string, Step*> instructions;
    
-public:
+  public:
     Step();
     void setAction(string, Step*);
     Step* nextStep(string);

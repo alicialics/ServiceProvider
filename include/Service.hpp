@@ -14,16 +14,17 @@ class Service : public Savedata
     string getLoc();
     double getDur();
     double getPrice();
-    int getStatus();
     bool getAvail();
     string getBuyer();
     map<string, string> toSave() const;//base map to be call in the sub class toSave(called by pointer to base class)
     static map<string, string> toCreate();
     virtual string serviceType() = 0;
+    string dataTitle() const {return "Service";} //JENN JUST ADDED (try to fix bug in manager.cpp ln 39)
+    static string getType(){return "Service";} //JENN JUST ADDED (try to fix bug in manager.cpp ln 39)
   
     //Constructor
     Service();
-    Service(string, string, string, double, double, int, bool);
+    Service(string, string, string, double, double, bool);
     virtual ~Service(){}
   
     //setters
@@ -32,7 +33,6 @@ class Service : public Savedata
     void setLoc(string);
     void setDur(double);
     void setPrice(double);
-    void setStatus(int);
     void setAvail(bool);
     void setBuyer(string);
     void addService();
@@ -48,13 +48,9 @@ class Service : public Savedata
     string location;
     double duration; //minutes
     double price; //dollars
-    int status = -1; //-1,0,1  not started, in progress, complete
     bool availability = false; //yes,no
     string buyer;//if buyer set, unavailable, else available
     virtual void printSpecialService() const= 0;
 };
-
-
-
 
 #endif

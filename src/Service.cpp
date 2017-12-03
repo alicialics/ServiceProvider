@@ -7,8 +7,8 @@ using namespace std;
 
 //constructor
 Service::Service(){}//an empty default base constructor so that subclass empty object can be created with base class pointer
-Service::Service(string n, string des, string l, double dur, double p, int s, bool a)
-    :name(n), description(des), location(l), duration(dur), price(p), status(s), availability(a)
+Service::Service(string n, string des, string l, double dur, double p, bool a)
+    :name(n), description(des), location(l), duration(dur), price(p), availability(a)
 {
     buyer = string();
 }//constructor
@@ -34,41 +34,36 @@ void Service::setPrice(double x)
 {
   price = x;
 }//setPrice
-void Service::setStatus(int x)
-{
-  status = x;
-}//setStatus
 void Service::setAvail(bool x)
 {
   availability = x;
 }//setAvail
 
-void Service::setBuyer(string x){
-    buyer = x;
-}
+void Service::setBuyer(string x)
+{
+  buyer = x;
+}//setBuyer
 
 //getters
-
 map<string, string> Service::toSave() const{
-    map<string, string> serviceData;
-    serviceData["Name"] = name;
-    serviceData["Description"] = description;
-    serviceData["Location"] = location;
-    serviceData["Duration"] = to_string(duration);
-    serviceData["Price"] = to_string(price);
-    return  serviceData;
-}
-
-map<string, string> Service::toCreate(){
-    map<string, string> serviceTable;
-    serviceTable["Name"] = "string";
-    serviceTable["Description"] = "string";
-    serviceTable["Location"] = "string";
-    serviceTable["Duration"] = "double";
-    serviceTable["Price"] = "double";
-    return  serviceTable;
-}
-
+  map<string, string> serviceData;
+  serviceData["Name"] = name;
+  serviceData["Description"] = description;
+  serviceData["Location"] = location;
+  serviceData["Duration"] = to_string(duration);
+  serviceData["Price"] = to_string(price);
+  return  serviceData;
+}//toSave
+map<string, string> Service::toCreate()
+{
+  map<string, string> serviceTable;
+  serviceTable["Name"] = "string";
+  serviceTable["Description"] = "string";
+  serviceTable["Location"] = "string";
+  serviceTable["Duration"] = "double";
+  serviceTable["Price"] = "double";
+  return  serviceTable;
+}//toCreate
 string Service::getName()
 {
   return name;
@@ -89,10 +84,6 @@ double Service::getPrice()
 {
   return price;
 }//getPrice
-int Service::getStatus()
-{
-  return status;
-}//getStatus
 bool Service::getAvail()
 {
   return availability;
@@ -106,7 +97,7 @@ void Service::addService()
 {
   string w;
   double x;
-    cin.ignore(1000,10);
+  cin.ignore(1000,10);
   cout << "Please enter the name of your service: ";
   getline(cin, w);
   setName(w);
@@ -116,17 +107,17 @@ void Service::addService()
   setDesc(w);
   
   cout << "Location of service: ";
-  getline(cin, w); //cin.ignore(1000, 10);
+  getline(cin, w);
   setLoc(w);
   
-  cout << "How long this service takes to complete: ";
-  cin >> x;
-  setDur(x);
+  cout << "How long this service takes to complete, in minutes [enter 0 for n/a]: ";
+  cin >> w; x = atof(w.c_str()); cin.ignore(1000, 10);
+  setDur(x); 
   
   cout << "Price: ";
-  cin >> x;
+  cin >> w; x = atof(w.c_str()); cin.ignore(1000, 10);
   setPrice(x);
-    cin.ignore(1000, 10);
+  
 }//addService
 
 //print service info (detailed)
@@ -144,9 +135,6 @@ void Service::printService() const
     this->printSpecialService();
 }//printService
 
-
-
-
 //print basic service details for browsing
 void Service::printServiceTable(int a) const
 {
@@ -155,6 +143,7 @@ void Service::printServiceTable(int a) const
   cout.width(25); cout << location;
   cout.width(1); cout << "$";
   cout.setf(ios::fixed|ios::showpoint); cout << setprecision(2);
-  cout.width(6); cout << price << endl;
-  cout.unsetf(ios::fixed|ios::showpoint);
+  cout.width(14); cout << price;
+  cout.width(7); cout.unsetf(ios::fixed|ios::showpoint);
+  cout << (availability == true ? "Yes" : "No")  << endl;
 }//printServiceTable

@@ -8,7 +8,7 @@ using namespace std;
 
 //constructor
 PersonalService::PersonalService(){}
-PersonalService::PersonalService(string n, string des, string l, double dur, double p, int s, bool a, bool c, string b): Service(n, des, l, dur, p, s, a)
+PersonalService::PersonalService(string n, string des, string l, double dur, double p, bool a, bool c, string b): Service(n, des, l, dur, p, a)
 {
   hasLicense = c;
   language = b; 
@@ -44,7 +44,7 @@ void PersonalService::addPerService()
   getline(cin, w); cin.ignore(1000, 10);
   setLanguage(w);
   cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to keep hidden from the marketplace." << endl;
-  getline(cin, w);
+  getline(cin, w); cout << endl;
   if (w == "cancel") Service::setAvail(false);
   else Service::setAvail(true);
 }//addPerService

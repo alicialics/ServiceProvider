@@ -11,7 +11,7 @@ class BusinessService: public Service
 {
   public:
     BusinessService();
-    BusinessService(string, string, string, double, double, int, bool, string = ""); //constructor
+    BusinessService(string, string, string, double, double, bool, string = ""); //constructor
     void setBusinessType(string); //setter
     void addBusService(); //user sets object attributes manually
     string dataTitle() const{return "BusinessService";}

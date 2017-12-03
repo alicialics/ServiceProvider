@@ -7,7 +7,7 @@ using namespace std;
 
 //constructor
 HomeService::HomeService(){}
-HomeService::HomeService(string n, string des, string l, double dur, double p, int s, bool a, string x, bool y, bool z): Service(n, des, l, dur, p, s, a)
+HomeService::HomeService(string n, string des, string l, double dur, double p, bool a, string x, bool y, bool z): Service(n, des, l, dur, p, a)
 {
   residenceType = x;
   intExt = y;
@@ -63,12 +63,12 @@ void HomeService::addHomeService()
   string w;
   char x = 'o';
   cout << "What type of residences is this service for? (Examples: apartment, house, condo, etc): ";
-  getline(cin, w); cin.ignore(1000, 10);
+  getline(cin, w);
   setResType(w);
   while (true)
   {
     cout << "Please enter 'i' if this service is for interior, or 'e' for exterior: ";
-    cin >> x;
+    cin >> x; cin.ignore(1000, 10);
     if (toupper(x) == 'I')
     {
       setIntExt(true);
@@ -85,7 +85,7 @@ void HomeService::addHomeService()
   while (true)
   {
     cout << "Is a permit required to perform this service? [Y/N]: ";
-    cin >> x;
+    cin >> x; cin.ignore(1000, 10);
     if (toupper(x) == 'Y')
     {
       setIntExt(true);
@@ -100,7 +100,7 @@ void HomeService::addHomeService()
   }//while
 
   cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to keep hidden from the marketplace." << endl;
-  getline(cin, w);
+  getline(cin, w); cout << endl;
   if (w == "cancel") Service::setAvail(false);
   else Service::setAvail(true);
 }//addHomeService
