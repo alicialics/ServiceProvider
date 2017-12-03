@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iostream>
 using namespace std;
+//#include <cstring>
 #include "Sqlitedata.h"
 #include "Savedata.h"
 #include "Users.h"
@@ -35,16 +36,26 @@ void Sqlitedata::createTable(string dataTitle, const map<string, string>& toCrea
     ss << ")" ;
     /* Execute SQL statement */
     sqlite3_exec(db, ss.str().c_str(), 0, 0, 0); //create a table for data to store in private database
-    cout << ss.str() << endl;
+    //cout << ss.str() << endl;
 }
 
 vector<Savedata*> Sqlitedata::loadData(){
+    //callback provides a way to obtain results from SELECT statements
+    //sqlite3_exec(sqlite3*, const char *sql, sqlite_callback, void *data, char **errmsg)
+    vector<Savedata*> dataPrev;
+    
+    char* sql = "SELECT * from Users";
+    sqlite3_exec(db, sql, userCallback, (void*)&dataPrev, 0);
+    
+    sql = "SELECT * from AutomotiveService";
+    sqlite3_exec(db, sql, userCallback, (void*)&dataPrev, 0);
+    
     
     createTable(Users::getType(), Users::toCreate());
-    vector<Savedata*> userPrev;
+    
     //Users* user = new Users("zhuo", "li", "gmail");//random load one, later will load from database
     //userPrev.push_back(user);
-    return userPrev;
+    return dataPrev;
 }
 
 void Sqlitedata::saveData(Savedata* data){ //pass the object to save
@@ -74,6 +85,7 @@ void Sqlitedata::saveData(Savedata* data){ //pass the object to save
     }
     ss << ");";
     
+    /* Execute SQL statement */
     sqlite3_exec(db, ss.str().c_str(), 0, 0, 0);
     //cout << ss.str() << endl;
     long long id = sqlite3_last_insert_rowid(db);
@@ -87,8 +99,36 @@ void Sqlitedata::deleteData(Savedata* data){
     ss << data->dataTitle();
     ss << " WHERE Id=";
     ss << data->getId();
-    
+    /* Execute SQL statement */
+    sqlite3_exec(db, ss.str().c_str(), 0, 0, 0);
     
     //cout << ss.str() << endl;
 }
 
+int Sqlitedata::userCallback(void *dataPrev, int colNum, char **value, char **colName){
+    int i;
+    cout << "callback running" << endl;
+    
+    vector<Savedata*>* copyPrev = (vector<Savedata*>*)dataPrev;
+    Users* user = new Users();
+    for(i = 0; i<colNum; i++){
+        if(strcmp(colName[i], "FirstName")== 0) user->setFirst(value[i]);
+        else if(strcmp(colName[i], "LastName")== 0) user->setLast(value[i]);
+        else if(strcmp(colName[i], "Email")== 0) user->setEmail(value[i]);
+    }
+    copyPrev->push_back(user);
+    return 0;
+}
+
+/*int Sqlitedata::userCallback(void *userPrev, int colNum, char **value, char **colName){
+    int i;
+    cout << "callback running" << endl;
+    
+    (vector<Savedata*> *)userPrev;
+    for(i = 0; i<colNum; i++){
+        printf("%s = %s\n", colName[i], value[i] ? value[i] : "NULL");
+    }
+    
+    printf("\n");
+    return 0;
+}*/

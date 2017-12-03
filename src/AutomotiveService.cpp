@@ -18,14 +18,14 @@ AutomotiveService::AutomotiveService(string n, string des, string l, double dur,
 map<string, string> AutomotiveService::toSave() const{
     map<string, string> autotiveData = Service::toSave(); //get base class data
     autotiveData["VehicleType"] = vehicleType;
-    autotiveData["VehicleType"] = priceForParts;
+    autotiveData["PriceForParts"] = priceForParts;
     return autotiveData;
 }
 
 map<string, string> AutomotiveService::toCreate(){
     map<string,string> automotiveTable = Service::toCreate();
     automotiveTable["VehicleType"] = "string";
-    automotiveTable["VehicleType"] = "double";
+    automotiveTable["PriceForParts"] = "double";
     return automotiveTable;
 }
 //setters

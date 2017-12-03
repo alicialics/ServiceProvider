@@ -14,10 +14,14 @@ private:
     string last;
     string email;
 public:
+    Users();
     Users(string, string, string);
     string getFirst() const {return first;}
     string getLast() const{return last;}
     string getEmail() const{return email;}
+    void setFirst(string);
+    void setLast(string);
+    void setEmail(string);
     string dataTitle() const {return "Users";}
     static string getType(){return "Users";}
     map<string, string> toSave() const;

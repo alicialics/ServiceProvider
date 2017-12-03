@@ -19,6 +19,8 @@ private:
 public:
     Sqlitedata();
     vector<Savedata*> loadData();
+    static int userCallback(void *, int, char**, char**);
+    
     void createTable(string, const map<string, string>&);
     void saveData(Savedata*);
     void deleteData(Savedata*);

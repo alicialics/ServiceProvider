@@ -19,7 +19,7 @@ using namespace std;
 int main(){
     Demodata dummyData; //creates a Demodata object
     Sqlitedata sqliteData;
-    Data* dataway = &dummyData; //creates a pointer to the reference of Demodata object
+    Data* dataway = &sqliteData; //creates a pointer to the reference of Demodata object
     
     Manager manager(dataway); //create a manager object with all the demodata information in it
     manager.setSteps();
