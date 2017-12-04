@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B78756E1FD4E3AF0074B818 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B78756D1FD4E3AF0074B818 /* libsqlite3.tbd */; };
 		3BCA673E1FCA26EB00A51175 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA67391FCA26EB00A51175 /* main.cpp */; };
 		3BCA673F1FCA26EB00A51175 /* Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA673A1FCA26EB00A51175 /* Manager.cpp */; };
 		3BCA67401FCA26EB00A51175 /* Service.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA673B1FCA26EB00A51175 /* Service.cpp */; };
@@ -33,6 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3B78756D1FD4E3AF0074B818 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		3BCA67291FCA24D900A51175 /* TermProjectAlicia */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TermProjectAlicia; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BCA67341FCA26DF00A51175 /* Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
 		3BCA67351FCA26DF00A51175 /* Service.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Service.hpp; sourceTree = "<group>"; };
@@ -64,17 +66,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B78756E1FD4E3AF0074B818 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B78756C1FD4E3AF0074B818 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B78756D1FD4E3AF0074B818 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3BCA67201FCA24D800A51175 = {
 			isa = PBXGroup;
 			children = (
 				3BCA672B1FCA24D900A51175 /* TermProjectAlicia */,
 				3BCA672A1FCA24D900A51175 /* Products */,
+				3B78756C1FD4E3AF0074B818 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
