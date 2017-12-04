@@ -74,13 +74,12 @@ bool Manager::setSteps(){
 void Manager::execute()
 {
     //output initial greeting upon sign in
-    cout << "Hello";
+    cout << "WELCOME";
     if(currentUser)
     {
         cout <<" " + currentUser->getFirst();
     }//if
-    cout << "!\n" << endl;
-    
+    cout << "\n";
     //output the menu
     while(true)
     {
@@ -91,13 +90,15 @@ void Manager::execute()
             cout << i + 1 << "." << currentStep->getActions()[i] << "\n";
             convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
         }
-        cout << endl;
+        if(currentStep == &allSteps[0]){
+            cout << "[Q/q to exit program]\n";
+        }
         
         //user selects their choice of what to do
         string action;
         cin >> action;
         
-        if (action == "exit")
+        if (action == "q" || action == "Q")
         {
             data->saveAll();
             cout << "Bye!" << endl << endl;
@@ -151,7 +152,8 @@ bool Manager::executeAction(string action){
         return viewHistory();
     }else if(action == "displayServiceOption"){
         //return displayServiceOption();
-    }else if(action == "goBack"){ cout << "MAIN MENU" << endl;
+    }else if(action == "goBack"){
+        cout << "MAIN MENU" << endl;
         return goBack();
     }
     cout << endl;
@@ -184,8 +186,7 @@ bool Manager::createAccount(){
     {
         cout <<" " + currentUser->getFirst();
     }//if
-    cout << "!\n" << endl;
-    
+    cout << "!\nWhat would you like to do?\n" << endl << "MAIN MENU" << endl;
     return true;
 }
 
@@ -212,14 +213,13 @@ bool Manager::signIn(){
 
 bool Manager::buyMenu()
 {
-    cout << "Welcome to the buy menu. Please select one of the options below:" << endl;
+    cout << "\nWelcome to the buy menu. Please select one of the options below:\n\nBUY MENU" << endl;
     return true;
 }
 
 bool Manager::sellMenu()
 {
-    
-    
+    cout << "\nWelcome to the sell menu. Please select one of the options below:\n\nSELL MENU" << endl;
     return true;
 }
 

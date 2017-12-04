@@ -7,13 +7,13 @@ using namespace std;
 Step::Step(){
 }
 
-void Step::setAction(string instruction, Step* nextStep){
-    instructions[instruction] = nextStep;
+void Step::setAction(string action, Step* nextStep){
+    actions[action] = nextStep;
 }
 
-Step* Step::nextStep(string instruction){
-    if(instructions.find(instruction) != instructions.end()){
-        return instructions[instruction];
+Step* Step::nextStep(string action){
+    if(actions.find(action) != actions.end()){
+        return actions[action];
     }else{
         return nullptr;
     }
@@ -22,13 +22,13 @@ Step* Step::nextStep(string instruction){
 
 vector<string> Step::getActions() const{
     vector<string>keys;
-    for(auto i = instructions.begin(); i != instructions.end(); i++){
+    for(auto i = actions.begin(); i != actions.end(); i++){
         keys.push_back(i->first);
     }
     return keys;
 }
 
 bool Step::checkInput(string action){
-    return instructions.find(action) != instructions.end();
+    return actions.find(action) != actions.end();
 }
 

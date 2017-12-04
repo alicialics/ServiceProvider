@@ -8,7 +8,7 @@ using namespace std;
 class Step
 {
 private:
-    map<string, Step*> instructions;
+    map<string, Step*> actions;
     
 public:
     Step();
