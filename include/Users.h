@@ -9,7 +9,7 @@ using namespace std;
 
 class Users : public Savedata{
 private:
-    
+    long long id;
     string first;
     string last;
     string email;

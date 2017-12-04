@@ -1,12 +1,17 @@
-
-
 #include <sstream>
+#include <string>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 //#include <cstring>
 #include "Sqlitedata.h"
 #include "Savedata.h"
 #include "Users.h"
+#include "Service.hpp"
+#include "AutomotiveService.hpp"
+#include "BusinessService.hpp"
+#include "HomeService.hpp"
+#include "PersonalService.hpp"
 
 #include <stdio.h>
 #include <sqlite3.h>
@@ -17,11 +22,8 @@ Sqlitedata::Sqlitedata(){
     string fileName = "mydata.db";
     rc = sqlite3_open(fileName.c_str(),&db);//pass db by reference db points to "mydata.db" now
     if(rc){
-        cerr << "Can't open database!\n";
-    }else{
-        cout << "Open database successfully.\n";
+        throw "Can't open database!\n";
     }
-    
 }
 
 void Sqlitedata::createTable(string dataTitle, const map<string, string>& toCreate){
@@ -35,32 +37,51 @@ void Sqlitedata::createTable(string dataTitle, const map<string, string>& toCrea
     }
     ss << ")" ;
     /* Execute SQL statement */
-    sqlite3_exec(db, ss.str().c_str(), 0, 0, 0); //create a table for data to store in private database
-    //cout << ss.str() << endl;
+    char * err = 0;
+    sqlite3_exec(db, ss.str().c_str(), 0, 0, &err); //create a table for data to store in private database
+    if(err){
+        throw err;
+    }
 }
 
 vector<Savedata*> Sqlitedata::loadData(){
     //callback provides a way to obtain results from SELECT statements
-    //sqlite3_exec(sqlite3*, const char *sql, sqlite_callback, void *data, char **errmsg)
     vector<Savedata*> dataPrev;
     
-    char* sql = "SELECT * from Users";
-    sqlite3_exec(db, sql, userCallback, (void*)&dataPrev, 0);
+    createTable("Users", Users::toCreate());
+    createTable("AutomotiveService", AutomotiveService::toCreate());
+    createTable("BusinessService", BusinessService::toCreate());
+    createTable("HomeService", HomeService::toCreate());
+    createTable("PersonalService", PersonalService::toCreate());
     
-    sql = "SELECT * from AutomotiveService";
-    sqlite3_exec(db, sql, userCallback, (void*)&dataPrev, 0);
+    char * err = 0;
+    sqlite3_exec(db, "SELECT * from Users", userCallback, (void*)&dataPrev, &err);
+    if(err){
+        throw err;
+    }
+    sqlite3_exec(db, "SELECT * from AutomotiveService", autoCallback, (void*)&dataPrev, &err);
+    if(err){
+        throw err;
+    }
+    sqlite3_exec(db, "SELECT * from BusinessService", businessCallback, (void*)&dataPrev, &err);
+    if(err){
+        throw err;
+    }
+    sqlite3_exec(db, "SELECT * from HomeService", homeCallback, (void*)&dataPrev, &err);
+    if(err){
+        throw err;
+    }
+    sqlite3_exec(db, "SELECT * from PersonalService", personalCallback, (void*)&dataPrev, &err);
+    if(err){
+        throw err;
+    }
     
-    
-    createTable(Users::getType(), Users::toCreate());
-    
-    //Users* user = new Users("zhuo", "li", "gmail");//random load one, later will load from database
-    //userPrev.push_back(user);
     return dataPrev;
 }
 
 void Sqlitedata::saveData(Savedata* data){ //pass the object to save
     
-    /* Create SQL statement */
+    /* Replace SQL statement */
     stringstream ss;
     ss << "REPLACE INTO ";
     ss << data->dataTitle() << " (";
@@ -81,38 +102,44 @@ void Sqlitedata::saveData(Savedata* data){ //pass the object to save
             ss << ",";
         }
         ss << "'";
-        ss << i->second << "'";
+        string value = i->second;
+        replace(value.begin(), value.end(), '\'', ' ');
+        ss << value << "'";
     }
     ss << ");";
     
     /* Execute SQL statement */
-    sqlite3_exec(db, ss.str().c_str(), 0, 0, 0);
-    //cout << ss.str() << endl;
+    char * err = 0;
+    sqlite3_exec(db, ss.str().c_str(), 0, 0, &err);
+    if(err){
+        throw err;
+    }
+    
     long long id = sqlite3_last_insert_rowid(db);
     data->setId(id);
 }
 
 void Sqlitedata::deleteData(Savedata* data){
-    /* Create SQL statement */
+    /* Delete SQL statement */
     stringstream ss;
     ss << "DELETE FROM ";
     ss << data->dataTitle();
     ss << " WHERE Id=";
     ss << data->getId();
+    char * err = 0;
     /* Execute SQL statement */
-    sqlite3_exec(db, ss.str().c_str(), 0, 0, 0);
-    
-    //cout << ss.str() << endl;
+    sqlite3_exec(db, ss.str().c_str(), 0, 0, &err);
+    if(err){
+        throw err;
+    }
 }
 
 int Sqlitedata::userCallback(void *dataPrev, int colNum, char **value, char **colName){
-    int i;
-    cout << "callback running" << endl;
-    
-    vector<Savedata*>* copyPrev = (vector<Savedata*>*)dataPrev;
+    vector<Savedata*>* copyPrev = (vector<Savedata*>*)dataPrev; //cast void pointer
     Users* user = new Users();
-    for(i = 0; i<colNum; i++){
-        if(strcmp(colName[i], "FirstName")== 0) user->setFirst(value[i]);
+    for(int i = 0; i<colNum; i++){
+        if(strcmp(colName[i], "Id")== 0) user->setId(atoll(value[i]));
+        else if(strcmp(colName[i], "FirstName")== 0) user->setFirst(value[i]);
         else if(strcmp(colName[i], "LastName")== 0) user->setLast(value[i]);
         else if(strcmp(colName[i], "Email")== 0) user->setEmail(value[i]);
     }
@@ -120,15 +147,67 @@ int Sqlitedata::userCallback(void *dataPrev, int colNum, char **value, char **co
     return 0;
 }
 
-/*int Sqlitedata::userCallback(void *userPrev, int colNum, char **value, char **colName){
-    int i;
-    cout << "callback running" << endl;
-    
-    (vector<Savedata*> *)userPrev;
-    for(i = 0; i<colNum; i++){
-        printf("%s = %s\n", colName[i], value[i] ? value[i] : "NULL");
+void Sqlitedata::loadService(Service* service, int colNum, char **value, char **colName){
+    for(int i = 0; i<colNum; i++){
+        if(strcmp(colName[i], "Id")== 0) service->setId(atoll(value[i]));
+        else if(strcmp(colName[i], "Name")== 0) service->setName(value[i]);
+        else if(strcmp(colName[i], "Description")== 0) service->setDesc(value[i]);
+        else if(strcmp(colName[i], "Location")== 0) service->setLoc(value[i]);
+        else if(strcmp(colName[i], "Duration")== 0) service->setDur(atof(value[i]));
+        else if(strcmp(colName[i], "Price")== 0) service->setPrice(atof(value[i]));
+        else if(strcmp(colName[i], "Availability")== 0) service->setAvail(atoi(value[i]));
+        else if(strcmp(colName[i], "Buyer")== 0) service->setBuyer(value[i]);
     }
+}
+
+int Sqlitedata::autoCallback(void *autoPrev, int colNum, char **value, char **colName){
+    vector<Savedata*>* copyPrev = (vector<Savedata*>*)autoPrev;
+    AutomotiveService* automotive = new AutomotiveService();
+    loadService(automotive, colNum, value, colName);
     
-    printf("\n");
+    for(int i = 0; i<colNum; i++){
+        if(strcmp(colName[i], "VehicleType")== 0) automotive->setVclType(value[i]);
+        else if(strcmp(colName[i], "PriceForParts")== 0) automotive->setPriceForParts(atof(value[i]));
+    }
+    copyPrev->push_back(automotive);
     return 0;
-}*/
+}
+
+int Sqlitedata::businessCallback(void *businessPrev, int colNum, char **value, char **colName){
+    vector<Savedata*>* copyPrev = (vector<Savedata*>*)businessPrev;
+    BusinessService* business = new BusinessService();
+    loadService(business, colNum, value, colName);
+    
+    for(int i = 0; i<colNum; i++){
+        if(strcmp(colName[i], "BusinessType")== 0) business->setBusinessType(value[i]);
+    }
+    copyPrev->push_back(business);
+    return 0;
+}
+
+int Sqlitedata::homeCallback(void *homePrev, int colNum, char **value, char **colName){
+    vector<Savedata*>* copyPrev = (vector<Savedata*>*)homePrev;
+    HomeService* home = new HomeService();
+    loadService(home, colNum, value, colName);
+    
+    for(int i = 0; i<colNum; i++){
+        if(strcmp(colName[i], "ResidenceType")== 0) home->setResType(value[i]);
+        else if(strcmp(colName[i], "IntExt")== 0) home->setIntExt(atoi(value[i]));
+        else if(strcmp(colName[i], "Permit")== 0) home->setPermit(atoi(value[i]));
+    }
+    copyPrev->push_back(home);
+    return 0;
+}
+
+int Sqlitedata::personalCallback(void *personalPrev, int colNum, char **value, char **colName){
+    vector<Savedata*>* copyPrev = (vector<Savedata*>*)personalPrev;
+    PersonalService* perosonal = new PersonalService();
+    loadService(perosonal, colNum, value, colName);
+    
+    for(int i = 0; i<colNum; i++){
+        if(strcmp(colName[i], "HasLicense")== 0) perosonal->setLicense(atoi(value[i]));
+        else if(strcmp(colName[i], "Language")== 0) perosonal->setLanguage(value[i]);
+    }
+    copyPrev->push_back(perosonal);
+    return 0;
+}

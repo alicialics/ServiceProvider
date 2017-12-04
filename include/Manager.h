@@ -19,7 +19,7 @@ private:
     Step* currentStep; //pointer to current step
     vector<Users*> allUsers; //save all users
     vector<Service*> allService; //stores all currently offered services
-  
+    
     Users* currentUser; //pointer to const Users
     Data* data;
     

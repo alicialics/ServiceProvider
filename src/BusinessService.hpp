@@ -1,6 +1,6 @@
 /*  BusinessService.hpp
-class for business type services such as media, tech, general office, logistics etc.
-All business sellers pay a transaction fee of 8% */
+ class for business type services such as media, tech, general office, logistics etc.
+ All business sellers pay a transaction fee of 8% */
 
 #ifndef BusinessService_hpp
 #define BusinessService_hpp
@@ -9,7 +9,7 @@ All business sellers pay a transaction fee of 8% */
 
 class BusinessService: public Service
 {
-  public:
+public:
     BusinessService();
     BusinessService(string, string, string, double, double, bool, string = ""); //constructor
     void setBusinessType(string); //setter
@@ -17,16 +17,16 @@ class BusinessService: public Service
     string dataTitle() const{return "BusinessService";}
     map<string, string> toSave() const;
     static map<string, string> toCreate();//for sqlitedata
-
+    
     string getBusinessType(); //getter
     double getFeePercentage(); //getter
     double calculateFee(); //calculate the fee per sale
-  
+    
     //print
     void printSpecialService() const;
     string serviceType(){return "BusinessService";}
-
-  private:
+    
+private:
     string businessType; //The type of business being offered (media services, secretary, accounting, etc)
     const double feePercentage = 8;
 };

@@ -7,7 +7,7 @@
 
 class Service : public Savedata
 {
-  public:
+public:
     //getters
     string getName();
     string getDesc();
@@ -19,14 +19,12 @@ class Service : public Savedata
     map<string, string> toSave() const;//base map to be call in the sub class toSave(called by pointer to base class)
     static map<string, string> toCreate();
     virtual string serviceType() = 0;
-    string dataTitle() const {return "Service";} //JENN JUST ADDED (try to fix bug in manager.cpp ln 39)
-    static string getType(){return "Service";} //JENN JUST ADDED (try to fix bug in manager.cpp ln 39)
-  
+    
     //Constructor
     Service();
     Service(string, string, string, double, double, bool);
     virtual ~Service(){}
-  
+    
     //setters
     void setName(string);
     void setDesc(string);
@@ -36,13 +34,13 @@ class Service : public Savedata
     void setAvail(bool);
     void setBuyer(string);
     void addService();
-  
+    
     //print Service Info
     void printService() const;
     void printServiceTable(int) const;
-
-
-  private:
+    
+    
+private:
     string name;
     string description;
     string location;

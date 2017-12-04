@@ -34,16 +34,13 @@ bool Manager::createData(){
         if(dataPrev[i]->dataTitle() == "Users")
         {
             allUsers.push_back(static_cast<Users*>(dataPrev[i])); //cast from base to derived object: Savedata to Users
-            cout << "All user objects were pushed into vector" << endl;
         }//if
-//THIS CODE BELOW NEVER EXECUTES
-        else if(dataPrev[i]->dataTitle() == "Service")
+        else
         {
             allService.push_back(static_cast<Service*>(dataPrev[i]));
-            cout << "All service objects were pushed into vector" << endl;
         }//elseIf
     }//for
-
+    
     return true;
 }
 
@@ -68,7 +65,7 @@ bool Manager::setSteps(){
     while(ss >> index >> action >> next_index){
         allSteps[index].setAction(action, &allSteps[next_index]);
     }
-
+    
     currentStep = &allSteps[0];
     return true;
 }
@@ -80,63 +77,57 @@ void Manager::execute()
     cout << "Hello";
     if(currentUser)
     {
-      cout <<" " + currentUser->getFirst();
+        cout <<" " + currentUser->getFirst();
     }//if
     cout << "!\n" << endl;
-
+    
     //output the menu
     while(true)
     {
-      /*cout << "Hello";
-      if(currentUser){
-        cout <<" " + currentUser->getFirst();
-      }
-      cout << "!\n" << endl;*/
-      map<string, string> convert;
-      
-      //get all actions of current step in the process
-      for(int i = 0; i < currentStep->getActions().size(); i++){
-        cout << i + 1 << "." << currentStep->getActions()[i] << "\n";
-        convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
-      }
-      cout << endl;
-      
-      //user selects their choice of what to do
-      string action;
-      cin >> action;
+        map<string, string> convert;
         
-      if (action == "exit")
-      {
-        data->saveAll();
-        cout << "Bye!" << endl << endl;
-        break;
-      }
-      
-      if(convert.find(action) != convert.end()){ //if user enter number action
-        action = convert[action];  //convert number to alphabet action
-      }
+        //get all actions of current step in the process
+        for(int i = 0; i < currentStep->getActions().size(); i++){
+            cout << i + 1 << "." << currentStep->getActions()[i] << "\n";
+            convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
+        }
+        cout << endl;
         
-      if(currentStep->nextStep(action) != nullptr)   //if input is correct
-      {
-        if(executeAction(action))
+        //user selects their choice of what to do
+        string action;
+        cin >> action;
+        
+        if (action == "exit")
         {
-          currentStep = currentStep->nextStep(action);    //goes to next step
-        }//ifInner
+            data->saveAll();
+            cout << "Bye!" << endl << endl;
+            break;
+        }
+        
+        if(convert.find(action) != convert.end()){ //if user enter number action
+            action = convert[action];  //convert number to alphabet action
+        }
+        
+        if(currentStep->nextStep(action) != nullptr)   //if input is correct
+        {
+            if(executeAction(action))
+            {
+                currentStep = currentStep->nextStep(action);    //goes to next step
+            }//ifInner
+            else
+            {
+                cout << "Try again." << endl << endl;
+            }//else
+        }//if
         else
         {
-          cout << "Try again." << endl << endl;
+            cout << "wrong input" << endl << endl;
         }//else
-      }//if
-      else
-      {
-        cout << "wrong input" << endl << endl;
-      }//else
     }//while
 }//execute
 
 
 bool Manager::executeAction(string action){
-    cout << "I'm executing " << action << endl << endl;
     
     if(action == "signIn"){
         return signIn();
@@ -177,21 +168,21 @@ bool Manager::createAccount(){
     cin >> email; cout << endl;
     for(Users* user : allUsers)
     {
-      if(user->getEmail() == email) return false; //if this email already exists, return false
+        if(user->getEmail() == email) return false; //if this email already exists, return false
     }//for
-  
+    
     //create a new user object and push into users vector
-    Users* newUser = new Users(first, last, email); //create newuser 
+    Users* newUser = new Users(first, last, email); //create newuser
     allUsers.push_back(newUser);
     currentUser = allUsers.back();
     
     data->saveData(currentUser);
-  
+    
     //welcome the new user
     cout << "Welcome,";
     if(currentUser)
     {
-      cout <<" " + currentUser->getFirst();
+        cout <<" " + currentUser->getFirst();
     }//if
     cout << "!\n" << endl;
     
@@ -209,10 +200,10 @@ bool Manager::signIn(){
             currentUser = user;
             cout << "Welcome";
             if(currentUser){
-            cout <<", " + currentUser->getFirst();
-        }
-        cout << "!\n" << "What would you like to do?\n" << endl << "MAIN MENU" << endl;
-
+                cout <<", " + currentUser->getFirst();
+            }
+            cout << "!\n" << "What would you like to do?\n" << endl << "MAIN MENU" << endl;
+            
             return true;
         }
     }
@@ -221,8 +212,8 @@ bool Manager::signIn(){
 
 bool Manager::buyMenu()
 {
-  cout << "Welcome to the buy menu. Please select one of the options below:" << endl;
-  return true;
+    cout << "Welcome to the buy menu. Please select one of the options below:" << endl;
+    return true;
 }
 
 bool Manager::sellMenu()
@@ -261,7 +252,7 @@ bool Manager::displayAvailableService()
         allService[i]->printServiceTable(i+1);
     }//for
     cout << endl;
-  return true;
+    return true;
 }
 
 bool Manager::addMoney(){
@@ -273,13 +264,13 @@ bool Manager::buyService()
 {
     //Display the list of available services
     displayAvailableService();
-
+    
     //User enters the index number of the service they want in the list above
     int choice;
     cout << "Which service would you like to choose? [or enter -99 to go back]: ";
     cin >> choice; cin.ignore(1000, 10); cout << endl;
-    if(choice == -99) return false;
-  
+    if(choice <= 0 || choice > allService.size()) return false;
+    
     //details about the service they selected are printed
     allService[choice-1]->printService();
     
@@ -288,37 +279,38 @@ bool Manager::buyService()
     cout << "Would you like to buy this service? [Y/N]: ";
     while (cin >> yn)
     {
-      //cout << "Would you like to buy this service? [Y/N]: ";
-      try
-      {
-        if (toupper(yn) == 'Y')
+        //cout << "Would you like to buy this service? [Y/N]: ";
+        try
         {
-          //if service unavailable reject
-          if (allService[choice-1]->getAvail() == false) throw 666;
-          //execute the buy option
-          allService[choice-1]->setBuyer(currentUser->getEmail());
-          allService[choice-1]->setAvail(false);
-          break;
-        }//if
-        if (toupper(yn) == 'N') break;
-        else throw yn;
-      }//try
-      catch (int)
-      {
-        cout << endl << "Sorry, this service is unavailable!" << endl << endl;
-        break;
-      }//catch
-      catch (char)
-      {
-        cout << "Invalid Entry. You must enter either 'y' to buy the service or 'n' to go back." << endl << endl;
-        cout << "Would you like to buy this service? [Y/N]: ";
-      }//catch
+            if (toupper(yn) == 'Y')
+            {
+                //if service unavailable reject
+                if (allService[choice-1]->getAvail() == false) throw 666;
+                //execute the buy option
+                allService[choice-1]->setBuyer(currentUser->getEmail());
+                allService[choice-1]->setAvail(false);
+                data->saveData(allService[choice-1]);
+                break;
+            }//if
+            if (toupper(yn) == 'N') return false;
+            else throw yn;
+        }//try
+        catch (int)
+        {
+            cout << endl << "Sorry, this service is unavailable!" << endl << endl;
+            return false;
+        }//catch
+        catch (char)
+        {
+            cout << "Invalid Entry. You must enter either 'y' to buy the service or 'n' to go back." << endl << endl;
+            cout << "Would you like to buy this service? [Y/N]: ";
+        }//catch
     }//while
-    cout << endl << "You have just successfully puchased the ";
+    cout << endl << "You have just successfully purchased the ";
     cout << allService[choice-1]->getName() << " service." << endl;
     cout << endl << "BUY MENU" << endl;
     cin.ignore(1000, 10);
-
+    
     return true;
 }//buyService
 
@@ -326,43 +318,43 @@ bool Manager::buyService()
 
 bool Manager::viewHistory()
 {
-  //new index to print out table
-  int index = 1;
-  
-  //print out the table of previously purchased services
+    //new index to print out table
+    int index = 1;
+    
+    //print out the table of previously purchased services
     cout << "PURCHASE HISTORY" << endl << endl;
     //cout << "----------------" << endl << endl;
     cout << "#    Service               Location                 Price       Available?" << endl;
     cout << "-    -------               --------                 -----       ----------" << endl;
-  for(Service* service : allService)
-  {
-    if(service->getBuyer() == currentUser->getEmail())
+    for(Service* service : allService)
     {
-      service->printServiceTable(index);
-      index++;
-    }//if
-  }//for
-  
-  //user is prompted to view details of any of the services in their history
-  int choice;
-  string buf;
-  cout << "Enter a service number to view details, or -99 to return: ";
-  cin >> buf; choice = atoi(buf.c_str()); cin.ignore(1000, 10);
-  cout << endl;
-  if (choice == -99){cout << endl << "MAIN MENU" << endl; return true;}
-  int index2 = 1;
-  for(Service* service : allService)
-  {
-    if(service->getBuyer() == currentUser->getEmail())
+        if(service->getBuyer() == currentUser->getEmail())
+        {
+            service->printServiceTable(index);
+            index++;
+        }//if
+    }//for
+    
+    //user is prompted to view details of any of the services in their history
+    int choice;
+    string buf;
+    cout << "Enter a service number to view details, or -99 to return: ";
+    cin >> buf; choice = atoi(buf.c_str()); cin.ignore(1000, 10);
+    cout << endl;
+    if (choice == -99){cout << endl << "MAIN MENU" << endl; return true;}
+    int index2 = 1;
+    for(Service* service : allService)
     {
-      if(index2 == choice)
-      {
-        service->printService();
-      }//ifInner
-      index2++;
-    }//ifOuter
-  }//for
-  return true;
+        if(service->getBuyer() == currentUser->getEmail())
+        {
+            if(index2 == choice)
+            {
+                service->printService();
+            }//ifInner
+            index2++;
+        }//ifOuter
+    }//for
+    return true;
 }//viewHistory
 
 bool Manager::goBack(){
@@ -383,42 +375,46 @@ bool Manager::addService()
     cin >> choice;
     if (choice == 99)
     {
-      cout << "MAIN MENU" << endl;
-      return true;
+        cout << "MAIN MENU" << endl;
+        return true;
     }//if
-  
+    
     //add a new business service object
     if(choice == 1)
     {
-      BusinessService* bus1 = new BusinessService();
-      bus1->addBusService();
-      allService.push_back(bus1);
+        BusinessService* bus1 = new BusinessService();
+        bus1->addBusService();
+        allService.push_back(bus1);
+        data->saveData(bus1);
     }//ifOne
-  
+    
     //add a new automotive service object
     if(choice == 2)
     {
-      AutomotiveService* auto1 = new AutomotiveService();
-      auto1->addAutoService();
-      allService.push_back(auto1);
+        AutomotiveService* auto1 = new AutomotiveService();
+        auto1->addAutoService();
+        allService.push_back(auto1);
+        data->saveData(auto1);
     }//ifTwo
-  
+    
     //add a new personal service object
     if(choice == 3)
     {
-      PersonalService* per1 = new PersonalService();
-      per1->addPerService();
-      allService.push_back(per1);
+        PersonalService* per1 = new PersonalService();
+        per1->addPerService();
+        allService.push_back(per1);
+        data->saveData(per1);
     }//ifThree
-  
+    
     //add a new home service objects
     if(choice == 4)
     {
-      HomeService* home1 = new HomeService();
-      home1->addHomeService();
-      allService.push_back(home1);
+        HomeService* home1 = new HomeService();
+        home1->addHomeService();
+        allService.push_back(home1);
+        data->saveData(home1);
     }//ifFour
-  
+    
     return true;
 }//addService
 

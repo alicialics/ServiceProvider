@@ -17,7 +17,7 @@ using namespace std;
 #define Data_h
 
 class Data{
-
+    
 public:
     //virtual vector<Savedata*> loadData(){ return vector<Savedata*>();}
     virtual vector<Savedata*> loadData() = 0;

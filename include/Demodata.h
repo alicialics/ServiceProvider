@@ -13,10 +13,10 @@
 
 class Demodata : public Data
 {
-  public:
+public:
     vector<Savedata*> loadData();
     void saveData(Savedata*){}
     void saveAll(){}
 };
 
-#endif /* Dummydata_h */
+#endif /* Demodata_h */

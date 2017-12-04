@@ -7,10 +7,10 @@ using namespace std;
 
 class Savedata
 {
-  private:
-    long long id;
-  
-  public:
+private:
+    long long id = 0;
+    
+public:
     virtual string dataTitle() const= 0;
     virtual map<string, string> toSave() const = 0;
     long long getId() const{return id;}

@@ -6,10 +6,10 @@
 
 class HomeService: public Service
 {
-  public:
+public:
     HomeService();
     HomeService(string, string, string, double, double, bool, string = "", bool = false, bool = false); //constructor
-
+    
     //setters
     void setResType(string);
     void setIntExt(bool);
@@ -20,16 +20,16 @@ class HomeService: public Service
     string dataTitle() const{return "HomeService";}
     map<string, string> toSave() const;
     static map<string, string> toCreate();//for sqlitedata
-
+    
     string getResType();
     bool getIntExt();
     bool getPermit();
-  
+    
     //print
     void printSpecialService() const;
     string serviceType(){return "HomeService";}
-
-  private:
+    
+private:
     string residenceType;
     bool intExt;  //true for interior, false for exterior
     bool permit; //true if service requires a permit

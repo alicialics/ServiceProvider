@@ -7,10 +7,10 @@ using namespace std;
 #define Step_h
 class Step
 {
-  private:
+private:
     map<string, Step*> instructions;
-   
-  public:
+    
+public:
     Step();
     void setAction(string, Step*);
     Step* nextStep(string);
