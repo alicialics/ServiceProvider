@@ -52,7 +52,7 @@ void PersonalService::addPerService()
 //getters
 map<string, string> PersonalService::toSave() const{
     map<string, string> PersonalService = Service::toSave(); //get base class data
-    PersonalService["HasLicense"] = hasLicense;
+    PersonalService["HasLicense"] = to_string(hasLicense);
     PersonalService["Language"] = language;
     return PersonalService;
 }
