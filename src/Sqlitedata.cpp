@@ -112,6 +112,7 @@ void Sqlitedata::saveData(Savedata* data){ //pass the object to save
     char * err = 0;
     sqlite3_exec(db, ss.str().c_str(), 0, 0, &err);
     if(err){
+        cout << err << endl;
         throw err;
     }
     
