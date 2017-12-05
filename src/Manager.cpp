@@ -91,7 +91,7 @@ void Manager::execute()
             convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
         }
         if(currentStep == &allSteps[0]){
-            cout << "[Q/q to exit program]\n";
+            cout << "[Or enter 'Q' to exit the marketplace]\n";
         }
         
         //user selects their choice of what to do
@@ -115,10 +115,10 @@ void Manager::execute()
             {
                 currentStep = currentStep->nextStep(action);    //goes to next step
             }//ifInner
-            else
+            /*else
             {
                 cout << "Try again." << endl << endl;
-            }//else
+            }//else*/
         }//if
         else
         {
@@ -213,11 +213,7 @@ bool Manager::signIn(){
 
 bool Manager::buyMenu()
 {
-<<<<<<< HEAD
-    cout << "Welcome to the buy menu. \nPlease select one of the options below:" << endl << endl;
-=======
     cout << "\nWelcome to the buy menu. Please select one of the options below:\n\nBUY MENU" << endl;
->>>>>>> 07d8d87614f6c5d05e3eb7df2f81e4909adb7352
     return true;
 }
 
@@ -247,8 +243,7 @@ bool Manager::signOut(){
 
 bool Manager::displayAvailableService()
 {
-    cout << "All Services" << endl;
-    cout << "------------" << endl << endl;
+    cout << "All Services:" << endl;
     cout << "#    Service               Location                 Price       Available?" << endl;
     cout << "-    -------               --------                 -----       ----------" << endl;
     for(int i = 0; i < allService.size(); i++)
