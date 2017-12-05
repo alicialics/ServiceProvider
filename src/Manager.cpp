@@ -213,11 +213,7 @@ bool Manager::signIn(){
 
 bool Manager::buyMenu()
 {
-<<<<<<< HEAD
-    cout << "Welcome to the buy menu. \nPlease select one of the options below:" << endl << endl;
-=======
     cout << "\nWelcome to the buy menu. Please select one of the options below:\n\nBUY MENU" << endl;
->>>>>>> 07d8d87614f6c5d05e3eb7df2f81e4909adb7352
     return true;
 }
 
