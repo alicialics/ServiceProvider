@@ -73,12 +73,15 @@ bool Manager::setSteps(){
 void Manager::execute()
 {
     //output initial greeting upon sign in
-    cout << "WELCOME";
-    if(currentUser)
+    cout << "Welcome To ServiceBay!\n\nHere, you will find a wide variety of services for any need.\nYou can also sell a service and be your own boss!\n\n";
+    cout << "What would you like to do?\n";
+
+    /*if(currentUser)
     {
         cout <<" " + currentUser->getFirst();
     }//if
-    cout << "\n";
+    cout << "\n";*/
+
     //output the menu
     while(true)
     {
@@ -90,17 +93,17 @@ void Manager::execute()
             convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
         }
         if(currentStep == &allSteps[0]){
-            cout << "[Q/q to exit program]\n";
+            cout << "[Or enter 'Q' to exit the marketplace]\n";
         }
         
         //user selects their choice of what to do
         string action;
         cin >> action;
-        
+      
         if (action == "q" || action == "Q")
         {
             data->saveAll();
-            cout << "Bye!" << endl << endl;
+            cout << endl << "Thank you for visiting ServiceBay. Goodbye!" << endl << endl;
             break;
         }
         
@@ -114,10 +117,10 @@ void Manager::execute()
             {
                 currentStep = currentStep->nextStep(action);    //goes to next step
             }//ifInner
-            else
+            /*else
             {
                 cout << "Try again." << endl << endl;
-            }//else
+            }//else*/
         }//if
         else
         {
@@ -153,7 +156,7 @@ bool Manager::executeAction(string action){
         cout << "MAIN MENU" << endl;
         return goBack();
     }
-    cout << endl;
+    cout << endl << endl;
     return false;
 }
 
@@ -227,8 +230,7 @@ bool Manager::signOut(){
 
 bool Manager::displayAvailableService()
 {
-    cout << "All Services" << endl;
-    cout << "------------" << endl << endl;
+    cout << "All Services:" << endl;
     cout << "#    Service               Location                 Price       Available?" << endl;
     cout << "-    -------               --------                 -----       ----------" << endl;
     for(int i = 0; i < allService.size(); i++)
@@ -313,6 +315,7 @@ bool Manager::viewHistory()
             index++;
         }//if
     }//for
+    cout << endl;
     
     //user is prompted to view details of any of the services in their history
     int choice;
@@ -333,6 +336,7 @@ bool Manager::viewHistory()
             index2++;
         }//ifOuter
     }//for
+    cout << endl << "MAIN MENU" << endl;
     return true;
 }//viewHistory
 
