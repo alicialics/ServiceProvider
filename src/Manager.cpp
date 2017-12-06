@@ -1,15 +1,5 @@
-#include <iostream>
-#include <sstream>
-#include <vector>
-#include <map>
-using namespace std;
-
-#include "AutomotiveService.hpp"
-#include "BusinessService.hpp"
-#include "Data.h"
 #include "Manager.h"
-#include "PersonalService.hpp"
-#include "Service.hpp"
+
 
 
 Manager::Manager(Data* _data){
