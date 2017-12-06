@@ -21,28 +21,27 @@ private:
     vector<Service*> allService; //stores all currently offered services
     Users* currentUser; //pointer to const Users
     Data* data; //track the way to save data
-    
 public:
     Manager(Data*);
     ~Manager();
+    //setter function to be called in main
     bool createData();
     bool setSteps();
     void execute();
-    bool executeAction(string);
+    //getter funciton to get current step
     const Users* getCurrentUser() const{return currentUser;}
+    //action fucntion to be executed in manager class
+    bool executeAction(string);
     bool createAccount();
     bool signIn();
     bool buyMenu();
+    bool buyService();
     bool sellMenu();
-    bool viewMyService();
-    bool withdrawMoney();
+    bool addService();
     bool signOut();
     bool displayAvailableService();
-    bool addMoney();
-    bool buyService();
     bool viewHistory();
     bool goBack();
-    bool addService();
 };
 
 #endif /* Manager_h */

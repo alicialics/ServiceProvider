@@ -23,7 +23,6 @@ public:
     void setLast(string);
     void setEmail(string);
     string dataTitle() const {return "Users";}
-    static string getType(){return "Users";}
     map<string, string> toSave() const;
     static map<string, string> toCreate(); //call static function without object
 };

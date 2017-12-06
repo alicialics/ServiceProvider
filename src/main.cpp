@@ -4,28 +4,19 @@
 
 using namespace std;
 
-#include "AutomotiveService.hpp"
-#include "BusinessService.hpp"
-#include "HomeService.hpp"
-#include "Users.h"
 #include "Manager.h"
-#include "PersonalService.hpp"
-#include "Service.hpp"
-#include "Step.h"
 #include "Sqlitedata.h"
 #include "Demodata.h"
 
 
 int main(){
-    Demodata dummyData; //creates a Demodata object
-    Sqlitedata sqliteData;
-    Data* dataway = &sqliteData; //creates a pointer to the reference of Demodata object
+    Sqlitedata sqliteData; //create a sqliteDate
+    Data* dataway = &sqliteData; //creates a pointer to the reference of sqliteData object
     
-    Manager manager(dataway); //create a manager object with all the demodata information in it
-    manager.setSteps();
-    manager.createData();
-    
-    manager.execute();
+    Manager manager(dataway); //create a manager object with all the sqlitedata information in it
+    manager.setSteps(); //create user interface graph in manager class
+    manager.createData(); //load all saved disk data to manager class for current running use
+    manager.execute(); //execute user interface and update data in the manager class
     
     return 0;
     

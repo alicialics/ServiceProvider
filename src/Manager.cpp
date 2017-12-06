@@ -33,11 +33,11 @@ bool Manager::createData(){
     {
         if(dataPrev[i]->dataTitle() == "Users")
         {
-            allUsers.push_back(static_cast<Users*>(dataPrev[i])); //cast from base to derived object: Savedata to Users
+            allUsers.push_back(static_cast<Users*>(dataPrev[i])); //down casting from base to derived object: Savedata to Users
         }//if
         else
         {
-            allService.push_back(static_cast<Service*>(dataPrev[i]));
+            allService.push_back(static_cast<Service*>(dataPrev[i]));//down casting
         }//elseIf
     }//for
     
@@ -55,7 +55,6 @@ bool Manager::setSteps(){
     2 buyService 2
     2 viewHistory 1
     2 goBack 1
-    3 displayServiceOption 3
     3 addService 1
     3 goBack 1
     )";
@@ -144,8 +143,6 @@ bool Manager::executeAction(string action){
         return buyService();
     }else if(action == "addService"){
         return addService();
-    }else if(action == "viewMyService"){
-        return viewMyService();
     }else if(action == "displayAvailableService"){
         return displayAvailableService();
     }else if(action == "viewHistory"){
@@ -223,19 +220,6 @@ bool Manager::sellMenu()
     return true;
 }
 
-bool Manager::viewMyService(){
-    for(Service* service : allService){
-        if(service->getBuyer() == currentUser->getEmail()){
-            service->printService();
-        }
-    }
-    return true;
-}
-
-bool Manager::withdrawMoney(){
-    return true;
-}
-
 bool Manager::signOut(){
     currentUser = nullptr;
     return true;
@@ -254,11 +238,6 @@ bool Manager::displayAvailableService()
     cout << endl;
     return true;
 }
-
-bool Manager::addMoney(){
-    return true;
-}
-
 
 bool Manager::buyService()
 {
