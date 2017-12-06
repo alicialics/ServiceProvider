@@ -16,38 +16,23 @@ using namespace std;
 #include <stdio.h>
 #include <sqlite3.h>
 
+
+//default contructor creates a database "mydata.db"
+//call sqlite api sqlite3_open(const char *filename, sqlite3 **ppDb) to update private variable db
 Sqlitedata::Sqlitedata(){
-    int rc;
-    
     string fileName = "mydata.db";
+    int rc;
     rc = sqlite3_open(fileName.c_str(),&db);//pass db by reference db points to "mydata.db" now
     if(rc){
         throw "Can't open database!\n";
     }
 }
 
-void Sqlitedata::createTable(string dataTitle, const map<string, string>& toCreate){
-    
-    /* Create SQL statement */
-    stringstream ss;
-    ss << "CREATE TABLE IF NOT EXISTS ";
-    ss << dataTitle << " (Id INTEGER PRIMARY KEY";
-    for(auto i = toCreate.begin(); i != toCreate.end(); i++){
-        ss << ", " << i->first << " " << i->second;
-    }
-    ss << ")" ;
-    /* Execute SQL statement */
-    char * err = 0;
-    sqlite3_exec(db, ss.str().c_str(), 0, 0, &err); //create a table for data to store in private database
-    if(err){
-        throw err;
-    }
-}
-
+//loadTata function 
 vector<Savedata*> Sqlitedata::loadData(){
     //callback provides a way to obtain results from SELECT statements
     vector<Savedata*> dataPrev;
-    
+
     createTable("Users", Users::toCreate());
     createTable("AutomotiveService", AutomotiveService::toCreate());
     createTable("BusinessService", BusinessService::toCreate());
@@ -118,6 +103,25 @@ void Sqlitedata::saveData(Savedata* data){ //pass the object to save
     
     long long id = sqlite3_last_insert_rowid(db);
     data->setId(id);
+}
+
+
+//createTable
+void Sqlitedata::createTable(string dataTitle, const map<string, string>& toCreate){
+    /* Create SQL statement */
+    stringstream ss;
+    ss << "CREATE TABLE IF NOT EXISTS ";
+    ss << dataTitle << " (Id INTEGER PRIMARY KEY";
+    for(auto i = toCreate.begin(); i != toCreate.end(); i++){
+        ss << ", " << i->first << " " << i->second;
+    }
+    ss << ")" ;
+    /* Execute SQL statement */
+    char * err = 0;
+    sqlite3_exec(db, ss.str().c_str(), 0, 0, &err); //create a table for data to store in private database
+    if(err){
+        throw err;
+    }
 }
 
 void Sqlitedata::deleteData(Savedata* data){

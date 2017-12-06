@@ -11,10 +11,11 @@ using namespace std;
 #include "PersonalService.hpp"
 #include "Service.hpp"
 
-//constructor
-Manager::Manager(Data* _data){
+//constructor set current user to null
+//update database
+Manager::Manager(Data* _database){
     currentUser = nullptr;
-    data = _data;
+    database = _database;
 }
 
 //destructor
@@ -27,23 +28,29 @@ Manager::~Manager(){
     }
 }
 
+//createData function call Data::loadData()
+//get all previous saved data from database , in vecotr of pointer to abstract base class
+//then down casting each element in the vector to subclass type, update all saveData object in manager class
 bool Manager::createData(){
-    auto dataPrev = data->loadData();
+    vector<Savedata*> dataPrev = database->loadData();
     for(int i = 0; i < dataPrev.size(); i++)
     {
         if(dataPrev[i]->dataTitle() == "Users")
         {
-            allUsers.push_back(static_cast<Users*>(dataPrev[i])); //down casting from base to derived object: Savedata to Users
+            //down casting from base to derived object: Savedata to Users
+            allUsers.push_back(static_cast<Users*>(dataPrev[i]));
         }//if
         else
         {
             allService.push_back(static_cast<Service*>(dataPrev[i]));//down casting
         }//elseIf
     }//for
-    
     return true;
 }
 
+
+//setSteps function parse a string that contains step information and store into allSteps by calling setAction function from step class
+//initiate current step to step0
 bool Manager::setSteps(){
     string parse_action = R"(
     0 signIn 1
@@ -64,12 +71,11 @@ bool Manager::setSteps(){
     while(ss >> index >> action >> next_index){
         allSteps[index].setAction(action, &allSteps[next_index]);
     }
-    
     currentStep = &allSteps[0];
     return true;
 }
 
-
+//execute function  all the user interface
 void Manager::execute()
 {
     //output initial greeting upon sign in
@@ -102,7 +108,6 @@ void Manager::execute()
       
         if (action == "q" || action == "Q")
         {
-            data->saveAll();
             cout << endl << "Thank you for visiting ServiceBay. Goodbye!" << endl << endl;
             break;
         }
@@ -150,8 +155,6 @@ bool Manager::executeAction(string action){
         return displayAvailableService();
     }else if(action == "viewHistory"){
         return viewHistory();
-    }else if(action == "displayServiceOption"){
-        //return displayServiceOption();
     }else if(action == "goBack"){
         cout << "MAIN MENU" << endl;
         return goBack();
@@ -178,7 +181,7 @@ bool Manager::createAccount(){
     allUsers.push_back(newUser);
     currentUser = allUsers.back();
     
-    data->saveData(currentUser);
+    database->saveData(currentUser);
     
     //welcome the new user
     cout << "Welcome,";
@@ -270,7 +273,7 @@ bool Manager::buyService()
                 //execute the buy option
                 allService[choice-1]->setBuyer(currentUser->getEmail());
                 allService[choice-1]->setAvail(false);
-                data->saveData(allService[choice-1]);
+                database->saveData(allService[choice-1]);
                 break;
             }//if
             if (toupper(yn) == 'N') return false;
@@ -368,7 +371,7 @@ bool Manager::addService()
         BusinessService* bus1 = new BusinessService();
         bus1->addBusService();
         allService.push_back(bus1);
-        data->saveData(bus1);
+        database->saveData(bus1);
     }//ifOne
     
     //add a new automotive service object
@@ -377,7 +380,7 @@ bool Manager::addService()
         AutomotiveService* auto1 = new AutomotiveService();
         auto1->addAutoService();
         allService.push_back(auto1);
-        data->saveData(auto1);
+        database->saveData(auto1);
     }//ifTwo
     
     //add a new personal service object
@@ -386,7 +389,7 @@ bool Manager::addService()
         PersonalService* per1 = new PersonalService();
         per1->addPerService();
         allService.push_back(per1);
-        data->saveData(per1);
+        database->saveData(per1);
     }//ifThree
     
     //add a new home service objects
@@ -395,7 +398,7 @@ bool Manager::addService()
         HomeService* home1 = new HomeService();
         home1->addHomeService();
         allService.push_back(home1);
-        data->saveData(home1);
+        database->saveData(home1);
     }//ifFour
     
     return true;

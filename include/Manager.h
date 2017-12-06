@@ -15,12 +15,12 @@ using namespace std;
 
 class Manager{
 private:
-    Step allSteps[4]; //save all steps, fixed size
+    Step allSteps[4]; //has all steps, fixed size
     Step* currentStep; //pointer to current step
-    vector<Users*> allUsers; //save all users
-    vector<Service*> allService; //stores all currently offered services
+    vector<Users*> allUsers; //has all users
+    vector<Service*> allService; //has all currently offered services
     Users* currentUser; //pointer to const Users
-    Data* data; //track the way to save data
+    Data* database; //use database
 public:
     Manager(Data*);
     ~Manager();

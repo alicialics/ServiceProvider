@@ -26,7 +26,7 @@ public:
     
     //print
     void printSpecialService() const;
-    string serviceType(){return "AutomotiveService";}
+    
     
 private:
     string vehicleType;
