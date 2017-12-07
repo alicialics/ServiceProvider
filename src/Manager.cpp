@@ -75,18 +75,14 @@ bool Manager::setSteps(){
     return true;
 }
 
-//execute function  all the user interface
+//execute function implement all the user interface process
+//in a while loop user will go from one step to another follow allSteps set before
+//currentStep get updated
 void Manager::execute()
 {
     //output initial greeting upon sign in
     cout << "Welcome To ServiceBay!\n\nHere, you will find a wide variety of services for any need.\nYou can also sell a service and be your own boss!\n\n";
     cout << "What would you like to do?\n";
-
-    /*if(currentUser)
-    {
-        cout <<" " + currentUser->getFirst();
-    }//if
-    cout << "\n";*/
 
     //output the menu
     while(true)
@@ -118,14 +114,10 @@ void Manager::execute()
         
         if(currentStep->nextStep(action) != nullptr)   //if input is correct
         {
-            if(executeAction(action))
+            if(executeAction(action)) //execute user action
             {
-                currentStep = currentStep->nextStep(action);    //goes to next step
-            }//ifInner
-            /*else
-            {
-                cout << "Try again." << endl << endl;
-            }//else*/
+                currentStep = currentStep->nextStep(action); //goes to next step
+            }
         }//if
         else
         {
@@ -134,7 +126,7 @@ void Manager::execute()
     }//while
 }//execute
 
-
+//executeAction excecute the action user chose
 bool Manager::executeAction(string action){
     
     if(action == "signIn"){
@@ -163,6 +155,8 @@ bool Manager::executeAction(string action){
     return false;
 }
 
+//createAccount function prompt user enter user information, create an user object and push back to allUsers vectore
+//then update current user
 bool Manager::createAccount(){
     cout << "Enter your firstName: ";
     string first, last, email;
