@@ -156,7 +156,7 @@ bool Manager::executeAction(string action){
     }else if(action == "displayServiceOption"){
         //return displayServiceOption();
     }else if(action == "goBack"){
-        cout << "MAIN MENU" << endl;
+        cout << endl << "MAIN MENU" << endl;
         return goBack();
     }
     cout << endl << endl;
