@@ -1,10 +1,13 @@
+#ifndef STEP_H
+#define STEP_H
+
+#include <iostream>
 #include <map>
 #include <vector>
 #include <string>
 using namespace std;
 
-#ifndef Step_h
-#define Step_h
+
 class Step
 {
 private:

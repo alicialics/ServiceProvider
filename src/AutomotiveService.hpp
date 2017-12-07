@@ -2,7 +2,10 @@
 
 #ifndef AutomotiveService_hpp
 #define AutomotiveService_hpp
-
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
 #include "Service.hpp"
 
 class AutomotiveService: public Service

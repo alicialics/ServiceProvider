@@ -34,3 +34,5 @@ build/
 *.out
 *.app
 .DS_Store
+/2017.12.06 Marketplace
+/.vs

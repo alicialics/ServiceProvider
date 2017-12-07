@@ -1,10 +1,3 @@
-#include <sqlite3.h>
-#include <string>
-#include <sstream>
-#include <iostream>
-#include <map>
-using namespace std;
-
 #include "Users.h"
 
 Users::Users(){}

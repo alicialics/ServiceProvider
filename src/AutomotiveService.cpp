@@ -1,9 +1,5 @@
 //  AutomotiveService.cpp
-#include <iostream>
-using namespace std;
-
 #include "AutomotiveService.hpp"
-#include "Service.hpp"
 
 //constructor
 AutomotiveService::AutomotiveService(){}
