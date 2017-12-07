@@ -28,7 +28,7 @@ Sqlitedata::Sqlitedata(){
     }
 }
 
-//loadTata function 
+//loadTata function load data from database and return a vector of saveData*
 vector<Savedata*> Sqlitedata::loadData(){
     //callback provides a way to obtain results from SELECT statements
     vector<Savedata*> dataPrev;
@@ -64,6 +64,7 @@ vector<Savedata*> Sqlitedata::loadData(){
     return dataPrev;
 }
 
+//saveData function
 void Sqlitedata::saveData(Savedata* data){ //pass the object to save
     
     /* Replace SQL statement */
@@ -100,13 +101,12 @@ void Sqlitedata::saveData(Savedata* data){ //pass the object to save
         cout << err << endl;
         throw err;
     }
-    
     long long id = sqlite3_last_insert_rowid(db);
     data->setId(id);
 }
 
 
-//createTable
+//createTable create savedata tables in database
 void Sqlitedata::createTable(string dataTitle, const map<string, string>& toCreate){
     /* Create SQL statement */
     stringstream ss;
@@ -123,7 +123,7 @@ void Sqlitedata::createTable(string dataTitle, const map<string, string>& toCrea
         throw err;
     }
 }
-
+//deleteData delete a selected data in database using Id
 void Sqlitedata::deleteData(Savedata* data){
     /* Delete SQL statement */
     stringstream ss;
@@ -139,6 +139,7 @@ void Sqlitedata::deleteData(Savedata* data){
     }
 }
 
+//userCallBack function get Users table from database and save to *dataPrev for return loadData function
 int Sqlitedata::userCallback(void *dataPrev, int colNum, char **value, char **colName){
     vector<Savedata*>* copyPrev = (vector<Savedata*>*)dataPrev; //cast void pointer
     Users* user = new Users();
@@ -152,6 +153,7 @@ int Sqlitedata::userCallback(void *dataPrev, int colNum, char **value, char **co
     return 0;
 }
 
+//loadService load base level service data into a pointer of base Service type
 void Sqlitedata::loadService(Service* service, int colNum, char **value, char **colName){
     for(int i = 0; i<colNum; i++){
         if(strcmp(colName[i], "Id")== 0) service->setId(atoll(value[i]));
@@ -165,10 +167,12 @@ void Sqlitedata::loadService(Service* service, int colNum, char **value, char **
     }
 }
 
+//autoCallback load derived auto data into the object updated by loadService function
+//save object to *autoPrev for return in loadData
 int Sqlitedata::autoCallback(void *autoPrev, int colNum, char **value, char **colName){
-    vector<Savedata*>* copyPrev = (vector<Savedata*>*)autoPrev;
+    vector<Savedata*>* copyPrev = (vector<Savedata*>*)autoPrev; //cast autoPrev
     AutomotiveService* automotive = new AutomotiveService();
-    loadService(automotive, colNum, value, colName);
+    loadService(automotive, colNum, value, colName);//update base level data into automotive
     
     for(int i = 0; i<colNum; i++){
         if(strcmp(colName[i], "VehicleType")== 0) automotive->setVclType(value[i]);
@@ -177,7 +181,8 @@ int Sqlitedata::autoCallback(void *autoPrev, int colNum, char **value, char **co
     copyPrev->push_back(automotive);
     return 0;
 }
-
+//businessCallback load derived auto data into the object updated by loadService function
+//save object to *businessPrev for return in loadData
 int Sqlitedata::businessCallback(void *businessPrev, int colNum, char **value, char **colName){
     vector<Savedata*>* copyPrev = (vector<Savedata*>*)businessPrev;
     BusinessService* business = new BusinessService();
@@ -189,7 +194,8 @@ int Sqlitedata::businessCallback(void *businessPrev, int colNum, char **value, c
     copyPrev->push_back(business);
     return 0;
 }
-
+//homeCallback load derived auto data into the object updated by loadService function
+//save object to *homePrev for return in loadData
 int Sqlitedata::homeCallback(void *homePrev, int colNum, char **value, char **colName){
     vector<Savedata*>* copyPrev = (vector<Savedata*>*)homePrev;
     HomeService* home = new HomeService();
@@ -204,6 +210,8 @@ int Sqlitedata::homeCallback(void *homePrev, int colNum, char **value, char **co
     return 0;
 }
 
+//personalCallback load derived auto data into the object updated by loadService function
+//save object to *personalPrev for return in loadData
 int Sqlitedata::personalCallback(void *personalPrev, int colNum, char **value, char **colName){
     vector<Savedata*>* copyPrev = (vector<Savedata*>*)personalPrev;
     PersonalService* perosonal = new PersonalService();

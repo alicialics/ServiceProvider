@@ -156,7 +156,8 @@ bool Manager::executeAction(string action){
 }
 
 //createAccount function prompt user enter user information, create an user object and push back to allUsers vectore
-//then update current user
+//update current user
+//save user to database
 bool Manager::createAccount(){
     cout << "Enter your firstName: ";
     string first, last, email;
@@ -238,6 +239,7 @@ bool Manager::displayAvailableService()
     return true;
 }
 
+//buyService function prompt user choose what service to buy and update the change both to allServices and database
 bool Manager::buyService()
 {
     //Display the list of available services
@@ -341,6 +343,7 @@ bool Manager::goBack(){
     return true;
 }
 
+//addService function prompt user enter service information and
 bool Manager::addService()
 {
     //output menu
@@ -365,7 +368,7 @@ bool Manager::addService()
         BusinessService* bus1 = new BusinessService();
         bus1->addBusService();
         allService.push_back(bus1);
-        database->saveData(bus1);
+        database->saveData(bus1);//save service to database
     }//ifOne
     
     //add a new automotive service object
