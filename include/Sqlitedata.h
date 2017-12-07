@@ -28,7 +28,6 @@ public:
     void createTable(string, const map<string, string>&);
     void saveData(Savedata*);
     void deleteData(Savedata*);
-    void saveAll(){}
 };
 
 #endif /* Sqlitedata_h */

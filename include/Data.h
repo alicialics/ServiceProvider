@@ -19,10 +19,8 @@ using namespace std;
 class Data{
     
 public:
-    //virtual vector<Savedata*> loadData(){ return vector<Savedata*>();}
     virtual vector<Savedata*> loadData() = 0;
     virtual void saveData(Savedata*) =0;
-    virtual void saveAll() = 0;
 };
 
 

@@ -24,7 +24,6 @@ public:
     
     //print
     void printSpecialService() const;
-    string serviceType(){return "BusinessService";}
     
 private:
     string businessType; //The type of business being offered (media services, secretary, accounting, etc)

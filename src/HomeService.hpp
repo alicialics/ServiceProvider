@@ -27,7 +27,6 @@ public:
     
     //print
     void printSpecialService() const;
-    string serviceType(){return "HomeService";}
     
 private:
     string residenceType;

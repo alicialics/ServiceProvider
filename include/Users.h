@@ -1,15 +1,22 @@
+#ifndef Users_h
+#define Users_h
+
+
+#include <sqlite3.h>
 #include <string>
+#include <sstream>
+#include <iostream>
 #include <map>
+#include <string>
+
 using namespace std;
 
 #include "Savedata.h"
 
-#ifndef Users_h
-#define Users_h
+
 
 class Users : public Savedata{
 private:
-    long long id;
     string first;
     string last;
     string email;
@@ -23,7 +30,6 @@ public:
     void setLast(string);
     void setEmail(string);
     string dataTitle() const {return "Users";}
-    static string getType(){return "Users";}
     map<string, string> toSave() const;
     static map<string, string> toCreate(); //call static function without object
 };

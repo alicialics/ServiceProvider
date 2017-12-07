@@ -26,7 +26,6 @@ public:
     
     //print
     void printSpecialService() const;
-    string serviceType(){return "PersonalService";}
     
 private:
     bool hasLicense;
