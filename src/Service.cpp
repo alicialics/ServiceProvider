@@ -96,6 +96,7 @@ string Service::getBuyer() {
 	return buyer;
 }
 
+//Function for user to fill in attributes
 void Service::addService()
 {
 	string w;
@@ -140,7 +141,7 @@ void Service::printService() const
 	this->printSpecialService();
 }//printService
 
-//print basic service details for browsing
+//print basic service details for table/browsing
 void Service::printServiceTable(int a) const
 {
 	cout.width(5); cout.setf(ios::left); cout << a;
