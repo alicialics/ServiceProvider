@@ -1,11 +1,9 @@
 #include "Manager.h"
 
-
-//constructor set current user to null
-//update database
+//constructor
 Manager::Manager(Data* _database) {
-	currentUser = nullptr;
-	database = _database;
+	currentUser = nullptr; //constructor set current user to null
+	database = _database; //update the database
 }
 
 //destructor
@@ -18,11 +16,9 @@ Manager::~Manager() {
 	}
 }
 
-//createData function call Data::loadData()
-//get all previous saved data from database , in vecotr of pointer to abstract base class
-//then down casting each element in the vector to subclass type, update all saveData object in manager class
+//function to load data and save to manager
 bool Manager::createData() {
-	vector<Savedata*> dataPrev = database->loadData();
+	vector<Savedata*> dataPrev = database->loadData(); //get all previous saved data from database class
 	for (int i = 0; i < dataPrev.size(); i++)
 	{
 		if (dataPrev[i]->dataTitle() == "Users")
@@ -38,9 +34,7 @@ bool Manager::createData() {
 	return true;
 }
 
-
 //setSteps function parse a string that contains step information and store into allSteps by calling setAction function from step class
-//initiate current step to step0
 bool Manager::setSteps() {
 	string parse_action = R"(
     0 signIn 1
@@ -61,20 +55,18 @@ bool Manager::setSteps() {
 	while (ss >> index >> action >> next_index) {
 		allSteps[index].setAction(action, &allSteps[next_index]);
 	}
-	currentStep = &allSteps[0];
+	currentStep = &allSteps[0];  //initiate current step to step0
 	return true;
 }
 
 //execute function implement all the user interface process
-//in a while loop user will go from one step to another follow allSteps set before
-//currentStep get updated
 void Manager::execute()
 {
 	//output initial greeting upon sign in
 	cout << "Welcome To ServiceBay!\n\nHere, you will find a wide variety of services for any need.\nYou can also sell a service and be your own boss!\n\n";
 	cout << "What would you like to do?\n";
 
-	//output the menu
+	//user will go from one step to another follow allSteps set before
 	while (true)
 	{
 		map<string, string> convert;
@@ -115,6 +107,7 @@ void Manager::execute()
 		}//else
 	}//while
 }//execute
+
 
 //executeAction excecute the action user chose
 bool Manager::executeAction(string action){
