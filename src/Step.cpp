@@ -1,7 +1,3 @@
-#include <iostream>
-#include <map>
-using namespace std;
-
 #include "Step.h"
 
 Step::Step(){
