@@ -25,10 +25,10 @@ void BusinessService::addBusService()
     cout << "What type of business service is being offered? (Examples: Secretary, Accounting, Media, Legal): ";
     getline(cin, w);
     setBusinessType(w);
-    cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to keep hidden from the marketplace." << endl;
-    getline(cin, w); cout << endl;
+    cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to set your service to unavailable." << endl;    getline(cin, w); cout << endl;
     if (w == "cancel") Service::setAvail(false);
     else Service::setAvail(true);
+    cout << "MAIN MENU" << endl;
 }//addBusService
 
 

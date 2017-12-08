@@ -43,10 +43,10 @@ void PersonalService::addPerService()
     cout << "Please list all languages accommodated: ";
     getline(cin, w); cin.ignore(1000, 10);
     setLanguage(w);
-    cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to keep hidden from the marketplace." << endl;
-    getline(cin, w); cout << endl;
+    cout << "Please hit enter to make this service available, or type 'cancel', followed by the enter key to set your service to unavailable." << endl;    getline(cin, w); cout << endl;
     if (w == "cancel") Service::setAvail(false);
     else Service::setAvail(true);
+    cout << "MAIN MENU" << endl;
 }//addPerService
 
 //getters

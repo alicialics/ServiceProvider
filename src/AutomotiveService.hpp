@@ -1,11 +1,7 @@
 //  AutomotiveService.hpp
-
 #ifndef AutomotiveService_hpp
 #define AutomotiveService_hpp
-#include <iostream>
-#include <map>
-#include <string>
-using namespace std;
+
 #include "Service.hpp"
 
 class AutomotiveService: public Service
@@ -23,8 +19,8 @@ public:
     
     //setters
     void setVclType(string);
-    void setPriceForParts();  //when the seller knows the price for parts, they can update the total price for service
     void setPriceForParts(double);
+    void changePriceForParts(); //when the seller knows the price for parts, they can update the total price for service
     void addAutoService(); //user manually enters attributes
     
     //print

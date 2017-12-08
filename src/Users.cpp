@@ -1,3 +1,7 @@
+#include <iostream>
+#include <map>
+using namespace std;
+
 #include "Users.h"
 
 Users::Users(){}

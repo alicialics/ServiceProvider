@@ -1,4 +1,16 @@
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <map>
+using namespace std;
+
+#include "AutomotiveService.hpp"
+#include "BusinessService.hpp"
+#include "Data.h"
 #include "Manager.h"
+#include "PersonalService.hpp"
+#include "Service.hpp"
+
 
 //constructor
 Manager::Manager(Data* _database) {
@@ -62,55 +74,56 @@ bool Manager::setSteps() {
 //execute function implement all the user interface process
 void Manager::execute()
 {
-	//output initial greeting upon sign in
-	cout << "Welcome To ServiceBay!\n\nHere, you will find a wide variety of services for any need.\nYou can also sell a service and be your own boss!\n\n";
-	cout << "What would you like to do?\n";
+   //output initial greeting upon sign in
+    cout << "Welcome To ServiceBay!\n\nHere, you will find a wide variety of services for any need.\nYou can also sell a service and be your own boss!\n\n";
+    cout << "What would you like to do?\n";
 
-	//user will go from one step to another follow allSteps set before
-	while (true)
-	{
-		map<string, string> convert;
-
-		//get all actions of current step in the process
-		for (int i = 0; i < currentStep->getActions().size(); i++) {
-			cout << i + 1 << "." << currentStep->getActions()[i] << "\n";
-			convert[to_string(i + 1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
-		}
-		if (currentStep == &allSteps[0]) {
-			cout << "[Or enter 'Q' to exit the marketplace]\n";
-		}
-
-		//user selects their choice of what to do
-		string action;
-		cin >> action;
-
-		if (action == "q" || action == "Q")
-		{
-			cout << endl << "Thank you for visiting ServiceBay. Goodbye!" << endl << endl;
-			break;
-		}
-
-		if (convert.find(action) != convert.end()) { //if user enter number action
-			action = convert[action];  //convert number to alphabet action
-		}
-
-		if (currentStep->nextStep(action) != nullptr)   //if input is correct
-		{
-			if (executeAction(action)) //execute user action
-			{
-				currentStep = currentStep->nextStep(action); //goes to next step
-			}
-		}//if
-		else
-		{
-			cout << "wrong input" << endl << endl;
-		}//else
-	}//while
+    //output the menu
+    while(true)
+    {
+        map<string, string> convert;
+        
+        //get all actions of current step in the process
+        for(int i = 0; i < currentStep->getActions().size(); i++){
+            cout << i + 1 << "." << currentStep->getActions()[i] << "\n";
+            convert[to_string(i+1)] = currentStep->getActions()[i]; //a convert map from number action to alphabet one
+        }
+        if(currentStep == &allSteps[0]){
+            cout << "[Or enter 'Q' to exit the marketplace]\n";
+        }
+        
+        //user selects their choice of what to do
+        string action;
+        cin >> action;
+      
+        if (action == "q" || action == "Q")
+        {
+            cout << endl << "Thank you for visiting ServiceBay. Goodbye!" << endl << endl;
+            break;
+        }
+        
+        if(convert.find(action) != convert.end()){ //if user enter number action
+            action = convert[action];  //convert number to alphabet action
+        }
+        
+        if(currentStep->nextStep(action) != nullptr)   //if input is correct
+        {
+            if(executeAction(action)) //execute user action
+            {
+                currentStep = currentStep->nextStep(action); //goes to next step
+            }
+        }//if
+        else
+        {
+            cout << "wrong input" << endl << endl;
+        }//else
+    }//while
 }//execute
 
 
 //executeAction excecute the action user chose
-bool Manager::executeAction(string action){
+bool Manager::executeAction(string action)
+{
 	if (action == "signIn") {
 		return signIn();
 	}
@@ -118,6 +131,7 @@ bool Manager::executeAction(string action){
 		return createAccount();
 	}
 	else if (action == "signOut") {
+    cout << endl << "WELCOME MENU" << endl;
 		return signOut();
 	}
 	else if (action == "buyMenu") {
@@ -148,35 +162,35 @@ bool Manager::executeAction(string action){
 
 //createAccount function prompt user enter user information, create an user object and push back to allUsers vectore
 //then update current user
-bool Manager::createAccount() {
-	cout << "Enter your firstName: ";
-	string first, last, email;
-	cin >> first;
-	cout << "Enter your lastName: ";
-	cin >> last;
-	cout << "Enter your email: ";
-	cin >> email; cout << endl;
-	for (Users* user : allUsers)
-	{
-		if (user->getEmail() == email) return false; //if this email already exists, return false
-	}//for
+bool Manager::createAccount()
+{
+    cout << "Enter your firstName: ";
+    string first, last, email;
+    cin >> first;
+    cout << "Enter your lastName: ";
+    cin >> last;
+    cout <<  "Enter your email: ";
+    cin >> email; cout << endl;
+    for(Users* user : allUsers)
+    {
+        if(user->getEmail() == email) return false; //if this email already exists, return false
+    }//for
 
-	//create a new user object and push into users vector
-	Users* newUser = new Users(first, last, email); //create newuser
-	allUsers.push_back(newUser);
-	currentUser = allUsers.back();
-
-	database->saveData(currentUser);
-
-	//welcome the new user
-	cout << "Welcome,";
-	if (currentUser)
-	{
-		cout << " " + currentUser->getFirst();
-	}//if
-	cout << "!\nWhat would you like to do?\n" << endl << "MAIN MENU" << endl;
-	return true;
-
+    //create a new user object and push into users vector
+    Users* newUser = new Users(first, last, email); //create newuser
+    allUsers.push_back(newUser);
+    currentUser = allUsers.back();
+    
+    database->saveData(currentUser);
+    
+    //welcome the new user
+    cout << "Welcome,";
+    if(currentUser)
+    {
+        cout <<" " + currentUser->getFirst();
+    }//if
+    cout << "!\nWhat would you like to do?\n" << endl << "MAIN MENU" << endl;
+    return true;
 }
 
 bool Manager::signIn() {
@@ -220,8 +234,8 @@ bool Manager::signOut() {
 bool Manager::displayAvailableService()
 {
 	cout << "All Services:" << endl;
-	cout << "#    Service               Location                 Price       Available?" << endl;
-	cout << "-    -------               --------                 -----       ----------" << endl;
+	cout << "#    Service                 Location                 Price       Available?" << endl;
+	cout << "-    -------                 --------                 -----       ----------" << endl;
 	for (int i = 0; i < allService.size(); i++)
 	{
 		allService[i]->printServiceTable(i + 1);
@@ -239,18 +253,24 @@ bool Manager::buyService()
 	//User enters the index number of the service they want in the list above
     int choice;
     cout << "Which service would you like to choose? [or enter -99 to go back]: ";
-    cin >> choice; cin.ignore(1000, 10); cout << endl;	if (choice <= 0 || choice > allService.size()) return false;
+    cin >> choice; cin.ignore(1000, 10); cout << endl;
+    if (choice <= 0 || choice > allService.size())
+    {
+      cout << "BUY MENU" << endl;
+      return false;
+    }//if
 
 	//details about the service they selected are printed
+  cout << "Details about service #" << (choice) << ":" << endl;
+  cout << "------------------------" << endl;
 	allService[choice - 1]->printService();
 
 	//prompt the user to buy the service or go back to the menu
 	char yn = 'x';
-	cout << "Would you like to buy this service? [Y/N]: ";
+	cout << endl << "Would you like to buy this service? [Y/N]: ";
 	while (cin >> yn)
 	{
 		yn = toupper(yn);
-		//cout << "Would you like to buy this service? [Y/N]: ";
 		try
 		{
 			if (yn == 'Y')
@@ -263,12 +283,16 @@ bool Manager::buyService()
 				database->saveData(allService[choice - 1]);
 				break;
 			}//if
-			if (yn == 'N') return false;
+			if (yn == 'N')
+      {
+        cout << endl << "BUY MENU" << endl;
+        return false;
+      }//if
 			else throw yn;
 		}//try
 		catch (int)
 		{
-			cout << endl << "Sorry, this service is unavailable!" << endl << endl;
+			cout << endl << "Sorry, this service is unavailable!" << endl << endl << "SELL MENU" << endl;
 			return false;
 		}//catch
 		catch (char)
@@ -292,10 +316,9 @@ bool Manager::viewHistory()
 	int index = 1;
 
 	//print out the table of previously purchased services
-	cout << "PURCHASE HISTORY" << endl << endl;
-	//cout << "----------------" << endl << endl;
-	cout << "#    Service               Location                 Price       Available?" << endl;
-	cout << "-    -------               --------                 -----       ----------" << endl;
+	cout << "PURCHASE HISTORY:" << endl;
+	cout << "#    Service                 Location                 Price       Available?" << endl;
+	cout << "-    -------                 --------                 -----       ----------" << endl;
 	for (Service* service : allService)
 	{
 		if (service->getBuyer() == currentUser->getEmail())

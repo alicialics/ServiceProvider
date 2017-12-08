@@ -1,26 +1,32 @@
 //  Service.cpp
+#include <iomanip>
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
 #include "Service.hpp"
 
 //constructor
 Service::Service() {
 	availability = false;
 }//an empty default base constructor so that subclass empty object can be created with base class pointer
-Service::Service(const string& n, const string& des, const string& l, double dur, double p, bool a)
+Service::Service(string n, string des, string l, double dur, double p, bool a)
 	:name(n), description(des), location(l), duration(dur), price(p), availability(a)
 {
 	buyer = string();
 }//constructor
 
 //setters
-void Service::setName(const string& x)
+void Service::setName(string x)
 {
 	name = x;
 }//setName
-void Service::setDesc(const string& x)
+void Service::setDesc(string x)
 {
 	description = x;
 }//setDesc
-void Service::setLoc(const string& x)
+void Service::setLoc(string x)
 {
 	location = x;
 }//setLoc
@@ -37,7 +43,7 @@ void Service::setAvail(bool x)
 	availability = x;
 }//setAvail
 
-void Service::setBuyer(const string& x)
+void Service::setBuyer(string x)
 {
 	buyer = x;
 }//setBuyer
@@ -145,7 +151,7 @@ void Service::printService() const
 void Service::printServiceTable(int a) const
 {
 	cout.width(5); cout.setf(ios::left); cout << a;
-	cout.width(22); cout << name;
+	cout.width(24); cout << name;
 	cout.width(25); cout << location;
 	cout.width(1); cout << "$";
 	cout.setf(ios::fixed | ios::showpoint); cout << setprecision(2);

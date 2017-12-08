@@ -1,13 +1,6 @@
 #ifndef Manager_h
 #define Manager_h
 
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <vector>
-#include <map>
-using namespace std;
-
 #include "AutomotiveService.hpp"
 #include "BusinessService.hpp"
 #include "Data.h"
@@ -17,8 +10,6 @@ using namespace std;
 #include "Step.h"
 #include "Sqlitedata.h"
 #include "Service.hpp"
-
-
 
 class Manager{
 private:

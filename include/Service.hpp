@@ -2,11 +2,6 @@
 #ifndef Service_hpp
 #define Service_hpp
 
-#include <iomanip>
-#include <iostream>
-#include <string>
-#include <sstream>
-
 #include "Savedata.h"
 
 class Service : public Savedata
@@ -26,17 +21,17 @@ public:
     
     //Constructor
     Service();
-    Service(const string&, const string&, const string&, double, double, bool);
+    Service(string, string, string, double, double, bool);
     virtual ~Service(){}
     
     //setters
-    void setName(const string&);
-    void setDesc(const string&);
-    void setLoc(const string&);
+    void setName(string);
+    void setDesc(string);
+    void setLoc(string);
     void setDur(double);
     void setPrice(double);
     void setAvail(bool);
-    void setBuyer(const string&);
+    void setBuyer(string);
     void addService();
     
     //print Service Info

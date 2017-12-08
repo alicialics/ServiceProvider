@@ -1,4 +1,9 @@
 //  AutomotiveService.cpp
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
 #include "AutomotiveService.hpp"
 
 //constructor
@@ -29,12 +34,11 @@ void AutomotiveService::setVclType(string w)
 {
     vehicleType = w;
 }//setVclType
-
-void AutomotiveService::setPriceForParts(double x){
-    priceForParts = x;
-}
-
-void AutomotiveService::setPriceForParts()
+void AutomotiveService::setPriceForParts(double x)
+{
+  priceForParts = x;
+}//setPriceForParts
+void AutomotiveService::changePriceForParts()
 {
     double x;
     cout << "What is the total price for parts for this service? ";
